@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Need Drone App</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Need Drone App</string>
+    <string name="nav_header_subtitle">needdrone@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="hint_senha">Senha</string>
+    <string name="cadastrar_usuario">Cadastrar_usuario</string>
+    <string name="login">Login</string>
+    <string name="drones">drones</string>
+    <string name="home">Home</string>
+    <string name="perfil">perfil</string>
+    <string name="esqueci_senha">Esqueceu a Senha?</string>
+    <string name="e_mail">E-mail</string>
+    <string name="piloto">Piloto</string>
+    <string name="cliente">Cliente</string>
+    <string name="bem_vindo">Bem vindo</string>
+    <string name="senha">Senha</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="eventos_com_drone">Eventos com drone para fins corporativos;</string>
+    <string name="filmagem_de_festas_com_drones">Filmagem de Festas com drones;</string>
+    <string name="utiliza_o_de_drones_para_filmar_casamentos_e_bodas">Filmagem de Casamentos e Bodas;</string>
+    <string name="filmagem_a_rea_de_shows_e_espet_culos">Filmagem aérea de Shows e espetáculos;</string>
+    <string name="lan_amento_de_produtos">Lançamento de produtos;</string>
+    <string name="eventos_esportivos_em_geral_e_campeonatos">Eventos esportivos em geral e campeonatos;</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="comentario">Arrasou na minha vida, espero que possa realizar meus projetos futuros.</string>
+    <string name="publique">Publique a sua vaga para milhares de profissionais, você irá receber propostas de pilotos talentosos.</string>
+    <string name="contrate">Reveja o histórico de trabalho, feedback de clientes e portfólio para limitar os candidatos. Então faça uma entrevista pelo chat e escolha o melhor.</string>
+    <string name="seguranca">Com o pagamento seguro do Have Drone, o pagamento será repassado para o freelancer somente quando o projeto estiver concluído.</string>
+    <string name="sobrenos">Na Need a Drone, proporcionamos uma plataforma que conecta entusiastas de drones aos clientes, comprometendo-nos a fornecer soluções inovadoras e atender às suas necessidades de captura de imagens aéreas com excelência e profissionalismo.</string>
+    <string name="descricao1">Um documentário fascinante que explora a diversidade da vida selvagem na Amazônia, destacando a importância da conservação ambiental e da preservação das espécies ameaçadas.</string>
+</resources>
