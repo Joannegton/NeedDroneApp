@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blueFirst"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/civLogo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         app:cardCornerRadius="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/container_login"
+        android:backgroundTint="@color/gray"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/civLogo"

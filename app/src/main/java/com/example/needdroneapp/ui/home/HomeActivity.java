@@ -1,4 +1,4 @@
-package com.example.needdroneapp;
+package com.example.needdroneapp.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.example.needdroneapp.LoginActivity;
+import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.ActivityHomeBinding;
 import com.example.needdroneapp.ui.criar_conta.CriarPilotoActivity;
 
