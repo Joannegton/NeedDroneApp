@@ -49,6 +49,7 @@ public class CriarClienteActivity extends AppCompatActivity {
                 "Rua: " + rua;
 
         Toast.makeText(this, dados, Toast.LENGTH_LONG).show();
+        //Enviar para o banco de dados
        /* mAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 finish();

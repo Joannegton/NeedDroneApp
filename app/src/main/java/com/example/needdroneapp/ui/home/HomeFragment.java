@@ -14,6 +14,7 @@ import com.example.needdroneapp.LoginActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.FragmentHomeBinding;
 import com.example.needdroneapp.ui.criar_conta.CriarClienteActivity;
+import com.example.needdroneapp.ui.criar_conta.CriarContaActivity;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -34,14 +35,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         if (v.getId() == R.id.btnLogin) {
             // Inicia a LoginActivity
             Intent loginIntent = new Intent(getContext(), LoginActivity.class);
             startActivity(loginIntent);}
         else if (v.getId() == R.id.btnCriar){
             // Inicia a CriarClienteActivity
-            Intent criarIntent = new Intent(getContext(), CriarClienteActivity.class);
+            Intent criarIntent = new Intent(getContext(), CriarContaActivity.class);
             startActivity(criarIntent);
 
         }

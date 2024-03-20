@@ -1,26 +1,38 @@
 package com.example.needdroneapp.ui.criar_conta;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.databinding.ActivityCriarContaBinding;
 
 public class CriarContaActivity extends AppCompatActivity {
+
+    private ActivityCriarContaBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_criar_conta);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        binding = ActivityCriarContaBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Configura o OnClickListener para os RadioButtons
+        binding.rbCliente.setOnClickListener(this::onClick);
+        binding.rbPiloto.setOnClickListener(this::onClick);
+    }
+    
+    public void onClick(View v) {
+        if (v.getId() == R.id.rbCliente) {
+            // Inicia a CriarClienteActivity
+            Intent clienteIntent = new Intent(this, CriarClienteActivity.class);
+            startActivity(clienteIntent);
+        } else if (v.getId() == R.id.rbPiloto) {
+            // Inicia a CriarPilotoActivity
+            Intent pilotoIntent = new Intent(this, CriarPilotoActivity.class);
+            startActivity(pilotoIntent);
+        }
     }
 }

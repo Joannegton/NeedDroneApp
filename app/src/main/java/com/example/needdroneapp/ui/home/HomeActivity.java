@@ -16,7 +16,6 @@ import com.example.needdroneapp.ui.criar_conta.CriarPilotoActivity;
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
