@@ -64,7 +64,7 @@
         android:text="Tipo: ... "
         android:textSize="16sp"/>
     <Spinner
-        android:id="@+id/spEstado"
+        android:id="@+id/spTipo"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
         android:textColor="#222"
