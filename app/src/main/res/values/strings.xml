@@ -37,4 +37,10 @@
     <string name="seguranca">Com o pagamento seguro do Have Drone, o pagamento será repassado para o freelancer somente quando o projeto estiver concluído.</string>
     <string name="sobrenos">Na Need a Drone, proporcionamos uma plataforma que conecta entusiastas de drones aos clientes, comprometendo-nos a fornecer soluções inovadoras e atender às suas necessidades de captura de imagens aéreas com excelência e profissionalismo.</string>
     <string name="descricao1">Um documentário fascinante que explora a diversidade da vida selvagem na Amazônia, destacando a importância da conservação ambiental e da preservação das espécies ameaçadas.</string>
+
+    <string-array name="opcoes">
+        <item>Opção 1</item>
+        <item>Opção 2</item>
+        <item>Opção 3</item>
+    </string-array>
 </resources>

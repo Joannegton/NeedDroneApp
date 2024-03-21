@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blueFirst"
-    tools:context=".ui.criar_conta.CriarPilotoActivity">
+    tools:context=".ui.cadastros.CriarPilotoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

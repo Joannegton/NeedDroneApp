@@ -13,8 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.needdroneapp.LoginActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.FragmentHomeBinding;
-import com.example.needdroneapp.ui.criar_conta.CriarClienteActivity;
-import com.example.needdroneapp.ui.criar_conta.CriarContaActivity;
+import com.example.needdroneapp.ui.cadastros.CriarContaActivity;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -46,6 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             startActivity(criarIntent);
 
         }
+
     }
 
     @Override

@@ -13,16 +13,22 @@
         android:theme="@style/Theme.NeedDroneAppOfc"
         tools:targetApi="31">
         <activity
-            android:name=".ui.criar_conta.CriarContaActivity"
+            android:name=".ui.cadastros.CriarProjetoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.edicao.EditClienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.cadastros.CriarContaActivity"
             android:exported="false" />
         <activity
             android:name=".ProjetosActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.criar_conta.CriarClienteActivity"
+            android:name=".ui.cadastros.CriarClienteActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.criar_conta.CriarPilotoActivity"
+            android:name=".ui.cadastros.CriarPilotoActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

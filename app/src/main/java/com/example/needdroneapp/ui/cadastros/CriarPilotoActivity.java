@@ -1,20 +1,18 @@
-package com.example.needdroneapp.ui.criar_conta;
+package com.example.needdroneapp.ui.cadastros;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.needdroneapp.databinding.ActivityCriarClienteBinding;
+import com.example.needdroneapp.databinding.ActivityCriarPilotoBinding;
 
-public class CriarClienteActivity extends AppCompatActivity {
-    private ActivityCriarClienteBinding binding;
+public class CriarPilotoActivity extends AppCompatActivity {
+    private ActivityCriarPilotoBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCriarClienteBinding.inflate(getLayoutInflater());
+        binding = ActivityCriarPilotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.btnCriar.setOnClickListener(v -> validaDados()); //cria o evento de click

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.needdroneapp.LoginActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.ActivityHomeBinding;
-import com.example.needdroneapp.ui.criar_conta.CriarPilotoActivity;
+import com.example.needdroneapp.ui.cadastros.CriarPilotoActivity;
 
 
 public class HomeActivity extends AppCompatActivity {

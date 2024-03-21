@@ -1,4 +1,4 @@
-package com.example.needdroneapp.ui.criar_conta;
+package com.example.needdroneapp.ui.cadastros;
 
 import android.content.Intent;
 import android.os.Bundle;
