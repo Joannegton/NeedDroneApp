@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="10dp"
             android:background="@color/blueFirst"
             app:layout_constraintTop_toTopOf="parent"
             >
@@ -63,7 +66,6 @@
             android:id="@+id/banner"
             android:layout_width="550dp"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp"
             android:src="@drawable/dronebanner"
             app:layout_constraintTop_toBottomOf="@+id/header"
             tools:layout_editor_absoluteX="-70dp"
@@ -99,8 +101,7 @@
             android:id="@+id/container_text_blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/container_text_blue"
-            android:backgroundTint="@color/gray"
+            android:background="@color/white"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -189,8 +190,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginTop="16dp"
-            android:background="@drawable/container_text_blue"
-            android:backgroundTint="@color/gray"
+            android:background="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/container_text_blue">
 
             <TextView
@@ -290,8 +290,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/gray"
-            android:background="@drawable/container_text_blue"
+            android:background="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/container_funcionamento">
 
             <TextView
@@ -371,8 +370,7 @@
             android:id="@+id/Container_publicar_projeto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:background="@drawable/container_text_blue"
+            android:background="@color/white"
             android:layout_marginTop="16dp"
             android:padding="10dp"
             android:gravity="center"
