@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C6C0C0"
+    tools:context=".ui.piloto.HistoricoActivity">
+
+    <Button
+        android:id="@+id/btn01"
+        android:layout_width="196dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#6792C7"
+        android:fontFamily="sans-serif-black"
+        android:text="Nova Oferta"
+        android:textColor="#06062C"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <TextView
+        android:id="@+id/txthistorico"
+        android:layout_width="240dp"
+        android:layout_height="82dp"
+        android:background="#FFFFFF"
+        android:fontFamily="sans-serif-medium"
+        android:text="Recusada"
+        android:textColor="#331E5E"
+        android:textSize="18sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="423dp" />
+
+    <TextView
+        android:id="@+id/txtproposta"
+        android:layout_width="240dp"
+        android:layout_height="82dp"
+        android:background="#FFFFFF"
+        android:fontFamily="sans-serif-medium"
+        android:text="Aceita"
+        android:textColor="#331E5E"
+        android:textSize="18sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="269dp" />
+
+    <TextView
+        android:id="@+id/txtevento"
+        android:layout_width="240dp"
+        android:layout_height="82dp"
+        android:background="#FFFFFF"
+        android:fontFamily="sans-serif-medium"
+        android:text="Analisando"
+        android:textColor="#331E5E"
+        android:textSize="18sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="568dp" />
+
+    <TextView
+        android:id="@+id/_project"
+        android:layout_width="400dp"
+        android:layout_height="41dp"
+        android:background="#CFD3DA"
+        android:fontFamily="sans-serif-medium"
+        android:shadowColor="#201B1B"
+        android:text="Histórico"
+        android:textColor="#007be5"
+        android:textSize="32dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="194dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_menu_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="330dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <ImageView
+        android:id="@+id/imgshistorico"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        app:srcCompat="@drawable/_star"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <ImageView
+        android:id="@+id/imgshistorico2"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        app:srcCompat="@drawable/_star"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="227dp"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <ImageView
+        android:id="@+id/imgshistorico3"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        app:srcCompat="@drawable/_star"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <TextView
+        android:id="@+id/txt_piloto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Piloto"
+        android:textColor="#010819"
+        android:textSize="25dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <ImageView
+        android:id="@+id/imgstar1"
+        android:layout_width="118dp"
+        android:layout_height="116dp"
+        app:srcCompat="@drawable/piloto"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="15dp" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="117dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/cliente"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="271dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="117dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/cliente"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="423dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="117dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/cliente"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="570dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_task_alt_24"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="278dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_chat_bubble_24"
+        tools:layout_editor_absoluteX="306dp"
+        tools:layout_editor_absoluteY="278dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_clear_24"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="433dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_query_builder_24"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="580dp"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

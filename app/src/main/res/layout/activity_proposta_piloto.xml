@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C6C0C0"
+    tools:context=".ui.piloto.PropostaPilotoActivity">
+
+    <Button
+        android:id="@+id/btn_enviar"
+        android:layout_width="101dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#6792C7"
+        android:fontFamily="sans-serif-black"
+        android:text="Voltar"
+        android:textColor="#06062C"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="563dp" />
+
+    <Button
+        android:id="@+id/btn01"
+        android:layout_width="101dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#6792C7"
+        android:fontFamily="sans-serif-black"
+        android:text="Enviar"
+        android:textColor="#06062C"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="563dp" />
+
+    <TextView
+        android:id="@+id/_project"
+        android:layout_width="400dp"
+        android:layout_height="41dp"
+        android:background="#CFD3DA"
+        android:fontFamily="sans-serif-medium"
+        android:shadowColor="#201B1B"
+        android:text="Propostas"
+        android:textColor="#007be5"
+        android:textSize="32dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="168dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_menu_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="330dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <ImageView
+        android:id="@+id/imgheader"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        app:srcCompat="@drawable/_star"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <ImageView
+        android:id="@+id/imgheader3"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        app:srcCompat="@drawable/_star"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="224dp"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <ImageView
+        android:id="@+id/imgstar3"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        app:srcCompat="@drawable/_star"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <ImageView
+        android:id="@+id/imgstar1"
+        android:layout_width="118dp"
+        android:layout_height="116dp"
+        app:srcCompat="@drawable/piloto"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_piloto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Piloto"
+        android:textColor="#010819"
+        android:textSize="25dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="117dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/cliente"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="250dp" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="345dp"
+        android:layout_height="184dp"
+        android:background="#FBFAFA"
+        android:backgroundTint="#F6F4F4"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Escreva aqui sua proposta.."
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="345dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
