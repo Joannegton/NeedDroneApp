@@ -58,7 +58,7 @@
         android:id="@+id/imgheader"
         android:layout_width="37dp"
         android:layout_height="31dp"
-        app:srcCompat="@drawable/_star"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="72dp" />
@@ -67,7 +67,7 @@
         android:id="@+id/imgheader3"
         android:layout_width="37dp"
         android:layout_height="31dp"
-        app:srcCompat="@drawable/_star"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="224dp"
         tools:layout_editor_absoluteY="72dp" />
@@ -76,7 +76,7 @@
         android:id="@+id/imgstar3"
         android:layout_width="37dp"
         android:layout_height="31dp"
-        app:srcCompat="@drawable/_star"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="187dp"
         tools:layout_editor_absoluteY="72dp" />
@@ -85,7 +85,7 @@
         android:id="@+id/imgstar1"
         android:layout_width="118dp"
         android:layout_height="116dp"
-        app:srcCompat="@drawable/piloto"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
@@ -106,9 +106,10 @@
         android:id="@+id/imageView"
         android:layout_width="117dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/cliente"
+        app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="250dp" />
+        tools:layout_editor_absoluteY="250dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextText"
@@ -120,6 +121,7 @@
         android:inputType="text"
         android:text="Escreva aqui sua proposta.."
         tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="345dp" />
+        tools:layout_editor_absoluteY="345dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,18 +9,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.databinding.ActivityHistoricoBinding;
+import com.example.needdroneapp.databinding.ActivityProjetoBinding;
+import com.example.needdroneapp.databinding.ActivityProjetosBinding;
 
 public class ProjetoActivity extends AppCompatActivity {
 
+    private ActivityProjetoBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_projeto);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        binding = ActivityProjetoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
     }
 }

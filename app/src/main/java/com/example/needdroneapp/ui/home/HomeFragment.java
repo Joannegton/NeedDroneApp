@@ -10,13 +10,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import com.example.needdroneapp.LoginActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.FragmentHomeBinding;
 import com.example.needdroneapp.ui.cadastros.CriarContaActivity;
 import com.example.needdroneapp.ui.cadastros.CriarPilotoActivity;
 import com.example.needdroneapp.ui.cadastros.CriarProjetoActivity;
+import com.example.needdroneapp.ui.login.LoginFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -46,8 +47,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(@NonNull View v) {
         if (v.getId() == R.id.btnLogin) {
             // Inicia a LoginActivity
-            Intent loginIntent = new Intent(getContext(), LoginActivity.class);
-            startActivity(loginIntent);
+            LoginFragment loginFragment = new LoginFragment();
+
+            // Obtém o FragmentManager para iniciar a transação
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+
+            // Inicia a transação para substituir o conteúdo do contêiner pelo LoginFragment
+            fragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_content_main, loginFragment)
+                    .addToBackStack(null)  // Adiciona a transação à pilha de fragmentos
+                    .commit();
         } else if (v.getId() == R.id.btnCriar){
             // Inicia a CriarClienteActivity
             Intent criarIntent = new Intent(getContext(), CriarContaActivity.class);

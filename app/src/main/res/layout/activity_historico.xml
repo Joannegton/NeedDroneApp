@@ -85,7 +85,7 @@
         android:id="@+id/imgshistorico"
         android:layout_width="37dp"
         android:layout_height="31dp"
-        app:srcCompat="@drawable/_star"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="72dp" />
@@ -94,7 +94,7 @@
         android:id="@+id/imgshistorico2"
         android:layout_width="37dp"
         android:layout_height="31dp"
-        app:srcCompat="@drawable/_star"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="227dp"
         tools:layout_editor_absoluteY="72dp" />
@@ -103,7 +103,7 @@
         android:id="@+id/imgshistorico3"
         android:layout_width="37dp"
         android:layout_height="31dp"
-        app:srcCompat="@drawable/_star"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="187dp"
         tools:layout_editor_absoluteY="72dp" />
@@ -124,7 +124,7 @@
         android:id="@+id/imgstar1"
         android:layout_width="118dp"
         android:layout_height="116dp"
-        app:srcCompat="@drawable/piloto"
+        app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="15dp" />
@@ -133,7 +133,7 @@
         android:id="@+id/imageView1"
         android:layout_width="117dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/cliente"
+        app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="271dp"
         tools:ignore="MissingConstraints" />
@@ -142,7 +142,7 @@
         android:id="@+id/imageView2"
         android:layout_width="117dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/cliente"
+        app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="22dp"
         tools:layout_editor_absoluteY="423dp"
         tools:ignore="MissingConstraints" />
@@ -151,7 +151,7 @@
         android:id="@+id/imageView"
         android:layout_width="117dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/cliente"
+        app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="570dp"
         tools:ignore="MissingConstraints" />
