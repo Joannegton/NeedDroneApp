@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.needdroneapp.CriarDroneActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.FragmentDashboardBinding;
+import com.example.needdroneapp.ui.ProjetosFragment;
 import com.example.needdroneapp.ui.edicao.EditDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
 import com.example.needdroneapp.ui.piloto.HistoricoActivity;
@@ -38,7 +39,7 @@ public class DashboardFragment extends Fragment {
             Intent editDrone = new Intent(getContext(), EditDroneActivity.class);
             startActivity(editDrone);
         } else if (v.getId() == R.id.linkVer) {
-            Intent verPerfil = new Intent(getContext(), HistoricoActivity.class);
+            Intent verPerfil = new Intent(getContext(), ProjetosFragment.class);
             startActivity(verPerfil);
         } else if (v.getId() == R.id.linkEditar) { //organizar por tipo de perfil
             Intent editPerfil = new Intent(getContext(), EditPilotoActivity.class);

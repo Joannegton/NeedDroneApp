@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gray"
             android:paddingVertical="3dp"
+            android:layout_marginHorizontal="5dp"
             android:paddingHorizontal="16dp">
 
             <TextView
@@ -156,7 +157,8 @@
             android:layout_height="wrap_content"
             android:background="@color/gray"
             android:paddingVertical="3dp"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="16dp"
+            android:layout_marginHorizontal="5dp">
 
             <TextView
                 android:id="@+id/textView20"
@@ -231,7 +233,7 @@
                     android:layout_marginBottom="5dp"
                     android:text="nome drone"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 
@@ -367,7 +369,7 @@
                     android:layout_marginBottom="5dp"
                     android:text="nome drone"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     tools:ignore="MissingConstraints" />
 

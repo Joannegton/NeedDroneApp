@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Logo e Nome do Perfil -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Foto de perfil" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wellington Tavares Galbarini"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- Biografia -->
+    <TextView
+        android:id="@+id/tituloBiografia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Biografia:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/biografia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sou um cara foda"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Experiência -->
+    <TextView
+        android:id="@+id/tituloExperiencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Experiência"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/experiencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Licença de pilotagem: 2458578516\nExperiência com drone: 3 anos\nÁrea de especialização: inspeção agrícola"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Portfólio -->
+    <TextView
+        android:id="@+id/tituloPortfolio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Portfólio"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/galeriaPortfolio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Projeto 1"
+            android:layout_marginEnd="8dp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Projeto 2"
+            android:layout_marginEnd="8dp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Projeto 3"/>
+    </LinearLayout>
+
+    <!-- Avaliações -->
+    <TextView
+        android:id="@+id/tituloAvaliacoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avaliações"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/avaliacoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/avaliacao1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="&quot;Gabriel é extremamente profissional e entrega resultados excepcionais. Recomendo seus serviços para qualquer projeto que exija qualidade e precisão.&quot;"/>
+
+        <TextView
+            android:id="@+id/avaliacao2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="&quot;Trabalho incrível! As imagens capturadas por Gabriel superaram nossas expectativas. Um verdadeiro especialista no que faz.&quot;"/>
+    </LinearLayout>
+
+    <!-- Informações de Contato -->
+    <LinearLayout
+        android:id="@+id/containerContato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/tituloContato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contato"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/emailPiloto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: mateus@gmail.com"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/telefonePiloto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telefone: 11970179936"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+</LinearLayout>
+
