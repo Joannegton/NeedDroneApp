@@ -169,6 +169,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btEnviarProposta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -375,7 +376,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btRecusar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -383,12 +384,12 @@
             android:text="Recusar"
             android:textSize="@dimen/texts"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/btAceitar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_drones" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btAceitar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -401,6 +402,7 @@
             app:layout_constraintTop_toBottomOf="@+id/container_drones" />
 
         <Button
+            android:id="@+id/btMensagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

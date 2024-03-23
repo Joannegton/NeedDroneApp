@@ -45,8 +45,8 @@
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/blueFirst"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:text="Arraste uma imagem ou selecione" />
+        android:textSize="12sp"
+        android:text="Selecione uma imagem" />
 
     <TextView
         android:layout_marginHorizontal="10dp"

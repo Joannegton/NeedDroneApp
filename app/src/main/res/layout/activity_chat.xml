@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/gray">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/container_login">
+    <!-- Título do Chat -->
+    <TextView
+        android:textAlignment="center"
+        android:id="@+id/tvChatTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Documentário sobre a Vida Selvagem Amazônica"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Spinner para Status do Projeto -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/container_border"
+        android:layout_gravity="center"
+        android:layout_marginVertical="16dp"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:text="Status: "
+            android:textStyle="bold"/>
+        <Spinner
+            android:id="@+id/spStatusProjeto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/opcoes" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/container_login"
+        android:backgroundTint="#2D00335C"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="5dp">
+    <!-- Lista de Mensagens -->
+        <ListView
+            android:id="@+id/lvChatMessages"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/tvChatTitle"
+            android:layout_margin="8dp"
+            android:background="#BCFFFFFF"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="8dp"
+            android:padding="8dp"
+            android:scrollbars="vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <!-- Campo de Digitação de Mensagem -->
+            <EditText
+                android:id="@+id/etMessageInput"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lvChatMessages"
+                android:hint="Digite sua mensagem"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:minLines="1"
+                android:padding="8dp"
+                android:background="#41AAA8A8"
+                android:layout_marginHorizontal="5dp"/>
+
+            <!-- Botão de Enviar Mensagem -->
+            <Button
+                android:id="@+id/btnSendMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etMessageInput"
+                android:text="Enviar" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+
+</LinearLayout>
