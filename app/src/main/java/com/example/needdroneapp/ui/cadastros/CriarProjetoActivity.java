@@ -34,12 +34,7 @@ public class CriarProjetoActivity extends AppCompatActivity {
 
         btnSelectDateTime = findViewById(R.id.btnSelectDateTime);
 
-        btnSelectDateTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDateTimePickerDialog();
-            }
-        });
+        btnSelectDateTime.setOnClickListener(v -> showDateTimePickerDialog());
     }
     private void showDateTimePickerDialog() {
         Calendar calendar = Calendar.getInstance();

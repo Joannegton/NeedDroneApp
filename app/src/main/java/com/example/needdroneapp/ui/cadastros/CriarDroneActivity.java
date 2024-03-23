@@ -1,4 +1,4 @@
-package com.example.needdroneapp;
+package com.example.needdroneapp.ui.cadastros;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.needdroneapp.R;
 
 public class CriarDroneActivity extends AppCompatActivity {
 

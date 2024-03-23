@@ -34,10 +34,13 @@
             android:name=".ui.edicao.EditClienteActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.edicao.EditPilotoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.cadastros.CriarContaActivity"
             android:exported="false" />
         <activity
-            android:name=".ProjetosActivity"
+            android:name=".ui.edicao.EditDroneActivity"
             android:exported="false" />
         <activity
             android:name=".ui.cadastros.CriarClienteActivity"
@@ -46,11 +49,9 @@
             android:name=".ui.cadastros.CriarPilotoActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.cadastros.CriarDroneActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Button btnLogin = root.findViewById(R.id.btnLogin);
         Button btnCriar = root.findViewById(R.id.btnCriar);
         Button btnPublicar = root.findViewById(R.id.btPublicar);
-        btnLogin.setOnClickListener(this);
+        btnLogin.setOnClickListener(this); //Implementar implements View.OnClickListener na class
         btnCriar.setOnClickListener(this);
         btnPublicar.setOnClickListener(this);
 

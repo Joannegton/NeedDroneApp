@@ -10,15 +10,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.databinding.ActivityEditDroneBinding;
 
 public class EditDroneActivity extends AppCompatActivity {
 
+    private ActivityEditDroneBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_drone);
+        binding = ActivityEditDroneBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+    }
 
-        setupSpinner(R.id.spTipo);
+      /*  setupSpinner(R.id.spTipo);
         setupSpinner(R.id.spQualidadeImagem);
         setupSpinner(R.id.spAutonomia);
         setupSpinner(R.id.spAreaCobertura);
@@ -44,5 +48,5 @@ public class EditDroneActivity extends AppCompatActivity {
                 // Ação a ser executada quando nenhuma opção é selecionada
             }
         });
-    }
+    }*/
 }

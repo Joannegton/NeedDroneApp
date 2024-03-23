@@ -5,19 +5,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.needdroneapp.CriarDroneActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.FragmentDashboardBinding;
+import com.example.needdroneapp.ui.PerfilActivity;
 import com.example.needdroneapp.ui.ProjetosFragment;
+import com.example.needdroneapp.ui.cadastros.CriarDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
 import com.example.needdroneapp.ui.piloto.HistoricoActivity;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements View.OnClickListener{
 
     private FragmentDashboardBinding binding;
 
@@ -26,20 +29,29 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.btEditarDrone.setOnClickListener(this::onClick);
-        binding.btEditarDrone2.setOnClickListener(this::onClick);
-        binding.linkEditar.setOnClickListener(this::onClick);
-        binding.linkVer.setOnClickListener(this::onClick);
+        Button btEditarDrone = root.findViewById(R.id.btEditarDrone);
+        Button btEditarDrone2 = root.findViewById(R.id.btEditarDrone2);
+        btEditarDrone.setOnClickListener(this);
+        btEditarDrone2.setOnClickListener(this);
+
+        TextView linkEditPerfil = root.findViewById(R.id.linkEditar);
+        TextView linkVerPerfil = root.findViewById(R.id.linkVer);
+        TextView linkAdcDrone = root.findViewById(R.id.linkAdcDrone);
+
+        linkEditPerfil.setOnClickListener(this);
+        linkVerPerfil.setOnClickListener(this);
+        linkAdcDrone.setOnClickListener(this);
+
         return root;
 
     }
-
-    private void onClick(View v){
+    @Override
+    public void onClick(@NonNull View v){
         if (v.getId() == R.id.btEditarDrone || v.getId() == R.id.btEditarDrone2){
             Intent editDrone = new Intent(getContext(), EditDroneActivity.class);
             startActivity(editDrone);
         } else if (v.getId() == R.id.linkVer) {
-            Intent verPerfil = new Intent(getContext(), ProjetosFragment.class);
+            Intent verPerfil = new Intent(getContext(), PerfilActivity.class);
             startActivity(verPerfil);
         } else if (v.getId() == R.id.linkEditar) { //organizar por tipo de perfil
             Intent editPerfil = new Intent(getContext(), EditPilotoActivity.class);
