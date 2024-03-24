@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.needdroneapp.R;
@@ -46,9 +48,18 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         linkVerPerfil.setOnClickListener(this);
         linkAdcDrone.setOnClickListener(this);
 
-        // SharedPreferences pra recuperar o tipo de usuário logado
+        // Obtém as SharedPreferences
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        // Recupera o tipo de usuário
         userType = sharedPreferences.getString(LoginFragment.PREF_USER_TYPE, "");
+
+        LinearLayout container_fragment = root.findViewById(R.id.container_fragment);
+        ConstraintLayout container_proposta = root.findViewById(R.id.container_propostas);
+        if (userType.equals("cliente")) {
+            container_proposta.setVisibility(View.GONE);
+        } else if (userType.equals("piloto")){
+            container_fragment.setVisibility(View.GONE);
+        }
 
         return root;
 
