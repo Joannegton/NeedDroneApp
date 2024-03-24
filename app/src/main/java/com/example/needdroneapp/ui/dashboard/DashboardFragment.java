@@ -1,6 +1,8 @@
 package com.example.needdroneapp.ui.dashboard;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +20,13 @@ import com.example.needdroneapp.ui.ProjetosFragment;
 import com.example.needdroneapp.ui.cadastros.CriarDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
+import com.example.needdroneapp.ui.login.LoginFragment;
 import com.example.needdroneapp.ui.piloto.HistoricoActivity;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener{
 
     private FragmentDashboardBinding binding;
+    private String userType;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +45,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         linkEditPerfil.setOnClickListener(this);
         linkVerPerfil.setOnClickListener(this);
         linkAdcDrone.setOnClickListener(this);
+
+        // SharedPreferences pra recuperar o tipo de usuário logado
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userType = sharedPreferences.getString(LoginFragment.PREF_USER_TYPE, "");
 
         return root;
 

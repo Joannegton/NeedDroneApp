@@ -1,6 +1,8 @@
 package com.example.needdroneapp.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,16 +48,25 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(@NonNull View v) {
         if (v.getId() == R.id.btnLogin) {
             if (rbCliente.isChecked()) {
-                validarDados();
-
+                validarDados("cliente");
             } else if (rbPiloto.isChecked()) {
-                validarDados();
+                validarDados("piloto");
             }
         }
     }
 
-    public void validarDados() {
+    public void validarDados(String tipoUsuario) {
         if (email.getText().toString().equals("teste@teste.com") && senha.getText().toString().equals("123456")) {
+            // Obtém as SharedPreferences
+            SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            // Armazena o tipo de usuário
+            editor.putString(PREF_USER_TYPE, tipoUsuario);
+            editor.apply();
+
+            Toast.makeText(getContext(), tipoUsuario, Toast.LENGTH_SHORT).show();
+
             //Inicia dashboardFragment
             DashboardFragment dashboardFragment = new DashboardFragment();
             // Obtém o FragmentManager para iniciar a transação
