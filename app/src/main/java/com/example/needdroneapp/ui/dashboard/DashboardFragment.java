@@ -18,17 +18,15 @@ import androidx.fragment.app.Fragment;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.databinding.FragmentDashboardBinding;
 import com.example.needdroneapp.ui.PerfilActivity;
-import com.example.needdroneapp.ui.ProjetosFragment;
 import com.example.needdroneapp.ui.cadastros.CriarDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
 import com.example.needdroneapp.ui.login.LoginFragment;
-import com.example.needdroneapp.ui.piloto.HistoricoActivity;
+
 
 public class DashboardFragment extends Fragment implements View.OnClickListener{
 
     private FragmentDashboardBinding binding;
-    private String userType;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         // Obtém as SharedPreferences
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         // Recupera o tipo de usuário
-        userType = sharedPreferences.getString(LoginFragment.PREF_USER_TYPE, "");
+        String userType = sharedPreferences.getString(LoginFragment.PREF_USER_TYPE, "");
 
         LinearLayout container_fragment = root.findViewById(R.id.container_fragment);
         ConstraintLayout container_proposta = root.findViewById(R.id.container_propostas);
