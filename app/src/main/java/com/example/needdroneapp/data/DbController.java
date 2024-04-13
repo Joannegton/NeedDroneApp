@@ -17,16 +17,16 @@ public class DbController {
             String nome,
             String email,
             String password,
+            String cpf,
             String dataNasc,
             String tel,
             Boolean whatsapp,
             String rua,
-            String cidade,
-            String estado,
+            String cidadeEstado,
             String cep,
             String foto,
             String biografia,
-            String avaliacao
+            Integer avaliacao
     ){
         ContentValues valores;
         long resultado;
@@ -36,16 +36,16 @@ public class DbController {
         valores.put("nome", nome);
         valores.put("email", email);
         valores.put("password", password);
+        valores.put("cpf", cpf);
         valores.put("dataNasc", dataNasc);
         valores.put("tel", tel);
         valores.put("whatsapp", whatsapp);
         valores.put("rua", rua);
-        valores.put("cidade", cidade);
-        valores.put("estado", estado);
+        valores.put("cidadeEstado", cidadeEstado);
         valores.put("cep", cep);
         valores.put("foto", foto);
         valores.put("biografia", biografia);
-        valores.put("avaliacao", avaliacao);
+        valores.put("avaliacaoCliente", avaliacao);
 
         resultado = db.insert("clientes", null, valores);
         db.close();

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.needdroneapp.data.DbController;
 import com.example.needdroneapp.databinding.ActivityCriarClienteBinding;
 
 public class CriarClienteActivity extends AppCompatActivity {
@@ -21,15 +22,23 @@ public class CriarClienteActivity extends AppCompatActivity {
     private void validaDados(){
         String email = binding.etEmail.getText().toString().trim();
         String senha = binding.etSenha.getText().toString().trim();
+        String confirmaSenha = binding.etConfirmaSenha.getText().toString().trim();
 
-        if(!email.isEmpty()){
-            if(!senha.isEmpty()){
-                criarConta(email, senha);
-            }else{
-                Toast.makeText(this, "Informe uma senha!", Toast.LENGTH_SHORT).show();
+
+        if (!email.isEmpty()) {
+            if (!senha.isEmpty()) {
+                if (senha.equals(confirmaSenha)) {
+                    criarConta(email, senha);
+                } else {
+                    Toast.makeText(this, "Senhas são diferentes!", Toast.LENGTH_SHORT).show();
+                }
+
+            } else{
+                    Toast.makeText(this, "Informe uma senha!", Toast.LENGTH_SHORT).show();
             }
-        }else {
-            Toast.makeText(this, "Informe um email!", Toast.LENGTH_SHORT).show();
+
+        } else {
+                Toast.makeText(this, "Informe um email!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -39,22 +48,24 @@ public class CriarClienteActivity extends AppCompatActivity {
         String cidade = binding.etCidade.getText().toString().trim();
         String rua = binding.etRua.getText().toString().trim();
 
-        String dados = "Nome: " + nome + "\n" +
-                "Email: " + email + "\n" +
-                "Senha: " + senha + "\n" +
-                "CPF: " + cpf + "\n" +
-                "Cidade: " + cidade + "\n" +
-                "Rua: " + rua;
+        DbController db = new DbController(getBaseContext());
 
-        Toast.makeText(this, dados, Toast.LENGTH_LONG).show();
-        //Enviar para o banco de dados
-       /* mAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                finish();
-                startActivity(new Intent(this, MainActivity.class));
-            }else {
-                Toast.makeText(this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show();
-            }
-        });*/
+        String resultado;
+        resultado = db.insereDados(nome, email, senha, cpf, null, null, null, rua, cidade, null, null, null, 3 );
+
+        Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+        limpar();
     }
+
+    public void limpar(){
+        binding.etNome.setText("") ;
+        binding.etCPF.setText("") ;
+        binding.etEmail.setText("") ;
+        binding.etSenha.setText("") ;
+        binding.etConfirmaSenha.setText("") ;
+        binding.etCidade.setText("") ;
+        binding.etRua.setText("") ;
+
+    }
+
 }
