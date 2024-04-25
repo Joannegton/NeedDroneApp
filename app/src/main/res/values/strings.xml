@@ -39,9 +39,45 @@
     <string name="descricao1">Um documentário fascinante que explora a diversidade da vida selvagem na Amazônia, destacando a importância da conservação ambiental e da preservação das espécies ameaçadas.</string>
 
 
+    <string-array name="tipoDrone">
+        <item>Selecione</item>
+        <item>Quadricóptero</item>
+        <item>Hexacóptero</item>
+        <item>Octóptero</item>
+        <item>Asa fixa</item>
+        <item>Nano drone</item>
+    </string-array>
+
+    <string-array name="qualidadeDrone">
+        <item>SD</item>
+        <item>HD</item>
+        <item>Full HD</item>
+        <item>Quad HD</item>
+        <item>4K</item>
+    </string-array>
+
+    <string-array name="autonomia">
+        <item>até 60 min</item>
+        <item>entre 61 e 90 min</item>
+        <item>entre 91 e 120 min</item>
+        <item>120+</item>
+    </string-array>
+
+    <string-array name="areaCobertura">
+        <item>até 100m²</item>
+        <item>até 200m²</item>
+        <item>até 400m²</item>
+        <item>500m² +</item>
+    </string-array>
+
+    <string-array name="status">
+        <item>Ativo</item>
+        <item>Manutenção</item>
+        <item>Inativo</item>
+    </string-array>
     <string-array name="opcoes">
-        <item>Opção 1</item>
-        <item>Opção 2</item>
-        <item>Opção 3</item>
+        <item>Ativo</item>
+        <item>Manutenção</item>
+        <item>Inativo</item>
     </string-array>
 </resources>

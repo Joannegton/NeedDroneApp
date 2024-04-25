@@ -5,11 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class DbController {
+public class ClienteController {
     private SQLiteDatabase db;
     private final CriarDb banco;
 
-    public  DbController(Context context){
+    public  ClienteController(Context context){
         banco = new CriarDb(context);
     }
 

@@ -1,11 +1,11 @@
 package com.example.needdroneapp.ui.cadastros;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.needdroneapp.data.DbController;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.databinding.ActivityCriarClienteBinding;
 
 public class CriarClienteActivity extends AppCompatActivity {
@@ -23,7 +23,6 @@ public class CriarClienteActivity extends AppCompatActivity {
         String email = binding.etEmail.getText().toString().trim();
         String senha = binding.etSenha.getText().toString().trim();
         String confirmaSenha = binding.etConfirmaSenha.getText().toString().trim();
-
 
         if (!email.isEmpty()) {
             if (!senha.isEmpty()) {
@@ -49,7 +48,7 @@ public class CriarClienteActivity extends AppCompatActivity {
         String rua = binding.etRua.getText().toString().trim();
 
         //conexão com o banco de dados
-        DbController db = new DbController(getBaseContext());
+        ClienteController db = new ClienteController(getBaseContext());
         String resultado;
         resultado = db.insereDados(nome, email, senha, cpf, null, null, null, rua, cidade, null, null, null, 3 );
 

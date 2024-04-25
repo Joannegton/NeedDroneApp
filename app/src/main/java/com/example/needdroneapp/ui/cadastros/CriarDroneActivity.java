@@ -10,25 +10,51 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.data.DroneController;
+import com.example.needdroneapp.databinding.ActivityCriarDroneBinding;
 
 public class CriarDroneActivity extends AppCompatActivity {
+    private ActivityCriarDroneBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_criar_drone);
+        binding = ActivityCriarDroneBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        setupSpinner(R.id.spTipo);
-        setupSpinner(R.id.spQualidadeImagem);
-        setupSpinner(R.id.spAutonomia);
-        setupSpinner(R.id.spAreaCobertura);
-        setupSpinner(R.id.spStatus);
+        //criar o spinner para cada campo
+        setupSpinner(R.id.spTipo, R.array.tipoDrone);
+        setupSpinner(R.id.spQualidadeImagem, R.array.qualidadeDrone);
+        setupSpinner(R.id.spAutonomia, R.array.autonomia);
+        setupSpinner(R.id.spAreaCobertura, R.array.areaCobertura);
+        setupSpinner(R.id.spStatus, R.array.status);
+
+        binding.btnCadastrar.setOnClickListener(v -> criarDrone());
     }
 
-    private void setupSpinner(int spinnerId) {
+    private void criarDrone() {
+        String nome = binding.edtNome.getText().toString().trim(); //trim() remove espaços em branco
+        String imgSobreposicao = String.valueOf(binding.cBImgSobreposicao.isChecked());
+        //String foto = binding.edtDescricao.toString().trim();
+        String tipo = valorSelecionado(R.id.spTipo);
+        String qualidadeImagem = valorSelecionado(R.id.spQualidadeImagem);
+        String autonomia = valorSelecionado(R.id.spAutonomia);
+        String areaCobertura = valorSelecionado(R.id.spAreaCobertura);
+        String status = valorSelecionado(R.id.spStatus);
+
+        DroneController db = new DroneController(getBaseContext());
+        String resultado;
+
+        resultado = db.insereDados(nome, tipo, qualidadeImagem, autonomia, areaCobertura, status, imgSobreposicao, null, null);
+
+        Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+
+    }
+
+    private void setupSpinner(int spinnerId, int opcoesSpinner) {
         Spinner spinner = findViewById(spinnerId);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.opcoes, android.R.layout.simple_spinner_item);
+                opcoesSpinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -36,7 +62,6 @@ public class CriarDroneActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String opcaoSelecionada = parent.getItemAtPosition(position).toString();
-                Toast.makeText(CriarDroneActivity.this, "Opção selecionada: " + opcaoSelecionada, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -45,4 +70,11 @@ public class CriarDroneActivity extends AppCompatActivity {
             }
         });
     }
+
+    private String valorSelecionado(int spinnerId) {
+        Spinner spinner = findViewById(spinnerId);
+        return spinner.getSelectedItem().toString();
+    }
+
+
 }

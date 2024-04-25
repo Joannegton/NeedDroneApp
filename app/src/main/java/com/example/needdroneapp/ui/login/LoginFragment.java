@@ -1,6 +1,7 @@
 package com.example.needdroneapp.ui.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,8 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.needdroneapp.R;
-import com.example.needdroneapp.data.DbController;
+import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.databinding.FragmentLoginBinding;
+import com.example.needdroneapp.ui.cadastros.CriarContaActivity;
 import com.example.needdroneapp.ui.dashboard.DashboardFragment;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -37,7 +39,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         email = binding.editTextEmailAddress;
         senha = binding.editTextPassword;
 
+
         rootView.findViewById(R.id.btnLogin).setOnClickListener(this);
+        rootView.findViewById(R.id.txtCadastro).setOnClickListener(this);
+        rootView.findViewById(R.id.txtEsqueciSenha).setOnClickListener(this);
 
         return rootView;
     }
@@ -50,6 +55,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             } else if (rbPiloto.isChecked()) {
                 validarDados("piloto");
             }
+        } else if (v.getId() == R.id.txtCadastro) {
+            Intent criarConta = new Intent(getContext(), CriarContaActivity.class);
+            startActivity(criarConta);
+        } else if (v.getId() == R.id.txtEsqueciSenha) {
+            Intent esqueciSenha = new Intent(getContext(), EsqueciSenhaActivity.class);
+            startActivity(esqueciSenha);
         }
     }
 
@@ -62,9 +73,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        DbController db = new DbController(getActivity().getBaseContext());
-        try (Cursor dados = db.carregaDadosLogin(emailText, senhaText)) {
-            if (dados.moveToFirst()) {
+     //   ClienteController db = new ClienteController(getActivity().getBaseContext());
+        // try (Cursor dados = db.carregaDadosLogin(emailText, senhaText)) {
+        //  if (dados.moveToFirst()) {
                 SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(PREF_USER_TYPE, tipoUsuario);
@@ -78,9 +89,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         .replace(R.id.nav_host_fragment_content_main, dashboardFragment)
                         .addToBackStack(null)
                         .commit();
-            } else {
-                Toast.makeText(getContext(), "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
-            }
-        }
+        //  } else {
+        //      Toast.makeText(getContext(), "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
+        //  }
+        //}
     }
+
 }
