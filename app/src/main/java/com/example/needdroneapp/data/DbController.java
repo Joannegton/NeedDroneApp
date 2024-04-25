@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DbController {
     private SQLiteDatabase db;
-    private CriarDb banco;
+    private final CriarDb banco;
 
     public  DbController(Context context){
         banco = new CriarDb(context);
@@ -63,7 +63,7 @@ public class DbController {
 
         String where = "id=" + id;
         db = banco.getReadableDatabase();
-        cursor = db.query("usuarios", campos, where, null, null, null, null, null);
+        cursor = db.query("clientes", campos, where, null, null, null, null, null);
 
         if (cursor != null){
             cursor.moveToFirst();
@@ -73,8 +73,27 @@ public class DbController {
         return cursor;
     }
 
+    public Cursor carregaDadosLogin(String email) {
+        Cursor cursor;
+        String[] campos = { "id", "email", "password"};
+
+        // Modifique a linha abaixo para incluir o valor do email no critério de seleção
+        String where = "email='" + email + "'";
+
+        db = banco.getReadableDatabase();
+        cursor = db.query("clientes", campos, where, null, null, null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        db.close();
+        return cursor;
+    }
+
+
     public String alteraDados(
-            int id,
+            Integer id,
             String nome,
             String email,
             String password,

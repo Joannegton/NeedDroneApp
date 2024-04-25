@@ -48,8 +48,8 @@ public class CriarClienteActivity extends AppCompatActivity {
         String cidade = binding.etCidade.getText().toString().trim();
         String rua = binding.etRua.getText().toString().trim();
 
+        //conexão com o banco de dados
         DbController db = new DbController(getBaseContext());
-
         String resultado;
         resultado = db.insereDados(nome, email, senha, cpf, null, null, null, rua, cidade, null, null, null, 3 );
 

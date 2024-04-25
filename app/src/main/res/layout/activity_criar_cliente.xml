@@ -173,6 +173,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/darkBlue"
+            android:textColor="@color/white"
             android:text="Criar Conta"
             android:textSize="@dimen/texts"
             app:layout_constraintEnd_toEndOf="parent"

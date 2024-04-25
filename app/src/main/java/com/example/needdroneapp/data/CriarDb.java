@@ -59,12 +59,15 @@ public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos 
                 + "FOREIGN KEY(clienteId) REFERENCES clientes(id),"
                 + "FOREIGN KEY(pilotoId) REFERENCES piloto(id));";
 
+        String teste = "INSERT INTO clientes (email, password) VALUES ('needdrone@teste.com', '1234')";
+
 
 
 
         db.execSQL(sqlClientes);
         db.execSQL(sqlPiloto);
         db.execSQL(sqlAvaliacoes);
+        db.execSQL(teste);
     }
 
     @Override
