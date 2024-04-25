@@ -63,8 +63,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
 
         DbController db = new DbController(getActivity().getBaseContext());
-        try (Cursor dados = db.carregaDadosLogin(emailText)) {
-            if (emailText.equals(dados.getString(1)) && senhaText.equals(dados.getString(2))) {
+        try (Cursor dados = db.carregaDadosLogin(emailText, senhaText)) {
+            if (dados.moveToFirst()) {
                 SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(PREF_USER_TYPE, tipoUsuario);

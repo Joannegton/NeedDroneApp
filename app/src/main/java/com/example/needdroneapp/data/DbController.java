@@ -73,23 +73,25 @@ public class DbController {
         return cursor;
     }
 
-    public Cursor carregaDadosLogin(String email) {
+    public Cursor carregaDadosLogin(String email, String password) {
         Cursor cursor;
         String[] campos = { "id", "email", "password"};
 
-        // Modifique a linha abaixo para incluir o valor do email no critério de seleção
-        String where = "email='" + email + "'";
+        // Corrigindo a cláusula where para adicionar o critério de seleção do email e senha
+        String where = "email=? AND password=?";
+        String[] whereArgs = { email, password };
 
         db = banco.getReadableDatabase();
-        cursor = db.query("clientes", campos, where, null, null, null, null, null);
+        cursor = db.query("clientes", campos, where, whereArgs, null, null, null);
 
+        // Não é necessário verificar se o cursor é nulo antes de chamar moveToFirst
         if (cursor != null){
             cursor.moveToFirst();
         }
 
-        db.close();
         return cursor;
     }
+
 
 
     public String alteraDados(
