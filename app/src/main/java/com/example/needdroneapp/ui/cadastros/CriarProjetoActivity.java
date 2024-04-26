@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.databinding.ActivityCriarProjetoBinding;
 
 import java.util.Calendar;
@@ -33,9 +34,27 @@ public class CriarProjetoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         btnSelectDateTime = findViewById(R.id.btnSelectDateTime);
-
         btnSelectDateTime.setOnClickListener(v -> showDateTimePickerDialog());
+
+        binding.btnEnviar.setOnClickListener(v -> enviarProjeto());
+
     }
+
+    private void enviarProjeto() {
+        String titulo = binding.titulo.getText().toString();
+        String descricao = binding.descricao.getText().toString();
+        String tipoDronee = binding.spTipo.toString();
+        String imgQualidade = binding.spQualidadeImagem.toString();
+        String areaCobertura = binding.spAreaCobertura.toString();
+        String dataHora = binding.editTextDate.toString();
+        String sobreposicaoImg = binding.cBImgSobreposicao.toString();
+
+        ProjetoController db = new ProjetoController(getBaseContext());
+        String resultado = db.insereDados(titulo, descricao, tipoDronee, imgQualidade, areaCobertura, dataHora, sobreposicaoImg, "Ativo", "1", "1", "1", "1", "1", "1", "1");
+        Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
+
+    }
+
     private void showDateTimePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -70,4 +89,6 @@ public class CriarProjetoActivity extends AppCompatActivity {
 
         datePickerDialog.show();
     }
+
+
 };
