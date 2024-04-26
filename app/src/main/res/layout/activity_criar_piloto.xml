@@ -87,12 +87,12 @@
             android:textSize="@dimen/texts" />
 
         <EditText
-            android:id="@+id/etConformaSenha"
+            android:id="@+id/etConfirmaSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@drawable/container_edit_text"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:textSize="@dimen/texts" />
 
         <TextView
@@ -109,38 +109,6 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/container_edit_text"
             android:inputType="number"
-            android:textSize="@dimen/texts" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rua, nº:"
-            android:textColor="@color/black"
-            android:textSize="@dimen/texts" />
-
-        <EditText
-            android:id="@+id/etRua"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/container_edit_text"
-            android:inputType="textEmailAddress"
-            android:textSize="@dimen/texts" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cidade - estado:"
-            android:textColor="@color/black"
-            android:textSize="@dimen/texts" />
-
-        <EditText
-            android:id="@+id/etCidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/container_edit_text"
-            android:inputType="textEmailAddress"
             android:textSize="@dimen/texts" />
 
         <TextView

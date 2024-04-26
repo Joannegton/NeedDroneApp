@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.needdroneapp.ui.login.LoginFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -42,11 +43,32 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        // Verifica se a Intent que iniciou a atividade possui um extra chamado "OpenFragment"
+        if (getIntent().hasExtra("OpenFragment")) {
+            // Recupera o valor do extra "OpenFragment"
+            String fragmentToOpen = getIntent().getStringExtra("OpenFragment");
+            // Verifica se o fragmento a ser aberto é o LoginFragment
+            if ("LoginFragment".equals(fragmentToOpen)) {
+                // Chama o método para exibir o LoginFragment
+                displayLoginFragment();
+            }
+        }
+    }
+
+    // Método para exibir o LoginFragment
+    private void displayLoginFragment() {
+        // Cria uma instância do LoginFragment
+        LoginFragment fragment = new LoginFragment();
+        // Inicia uma transação de fragmento para substituir o conteúdo do container pelo LoginFragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_host_fragment_content_main, fragment) // Substitui o fragmento atual pelo LoginFragment
+                .commit(); // Aplica as mudanças na interface do usuário
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Infla o menu; isso adiciona itens à barra de ação se ela estiver presente.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
