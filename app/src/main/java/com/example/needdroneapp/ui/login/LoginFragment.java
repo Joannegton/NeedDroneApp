@@ -27,13 +27,12 @@ import com.example.needdroneapp.ui.dashboard.DashboardFragment;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    private FragmentLoginBinding binding;
     private RadioButton rbCliente, rbPiloto;
     private EditText email, senha;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
         // Inicializando os componentes da interface do usuário
@@ -85,10 +84,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Inicializando o controlador de usuário apropriado com base no tipo de usuário
         UsuarioController db = null;
         if (tipoUsuario.equals("cliente")) {
-            db = new ClienteController(getActivity().getBaseContext());
+            db = new ClienteController(requireActivity().getBaseContext());
         }
         if (tipoUsuario.equals("piloto")) {
-            db = new PilotoController(getActivity().getBaseContext());
+            db = new PilotoController(requireActivity().getBaseContext());
         }
 
         // Verificando se o controlador de usuário foi inicializado corretamente
