@@ -44,13 +44,11 @@ public class CriarClienteActivity extends AppCompatActivity {
     private  void criarConta(String email, String senha){
         String nome = binding.etNome.getText().toString().trim();
         String cpf = binding.etCPF.getText().toString().trim();
-        String cidade = binding.etCidade.getText().toString().trim();
-        String rua = binding.etRua.getText().toString().trim();
 
         //conexão com o banco de dados
         ClienteController db = new ClienteController(getBaseContext());
         String resultado;
-        resultado = db.insereDados(nome, email, senha, cpf, null, null, null, rua, cidade, null, null, null, 3 );
+        resultado = db.insereDados(nome, email, senha, cpf, null, null, null, null, null, null, null, null, 3 );
 
         Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
         limpar();
@@ -62,8 +60,7 @@ public class CriarClienteActivity extends AppCompatActivity {
         binding.etEmail.setText("") ;
         binding.etSenha.setText("") ;
         binding.etConfirmaSenha.setText("") ;
-        binding.etCidade.setText("") ;
-        binding.etRua.setText("") ;
+
 
     }
 

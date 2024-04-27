@@ -10,21 +10,24 @@
     android:background="#EDEDED">
     <!-- #6792C7, #0E0E2C, #D9D9D9 -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#6792C7"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Cadastro do Drone"
-        android:textColor="@color/white"
-        android:textSize="25sp" />
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/container_login"
     android:layout_marginTop="16dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/cadastro_de_drone"
+        android:textSize="25sp" />
+
     <TextView
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="10dp"
@@ -38,102 +41,137 @@
         android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_marginHorizontal="10dp"
+        android:padding="5dp"
         android:ems="10"
+        android:background="@drawable/container_edit_text"
         android:inputType="text"
         android:hint="Moniss YLR/C"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#222"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo:"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+            <Spinner
+                android:id="@+id/spTipo"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/tipoDrone"
+                android:textSize="@dimen/texts"
+                android:padding="10dp"/>
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tipo: ... "
-        android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spTipo"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Qualidade de Imagem: ..."
-        android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spQualidadeImagem"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Autonomia: ..."
-        android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spAutonomia"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Autonomia:"
+                android:textColor="#222"
+                android:textSize="16sp" />
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Área de cobertura: ..."
-        android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spAreaCobertura"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
+            <Spinner
+                android:id="@+id/spAutonomia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:entries="@array/autonomia"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textSize="@dimen/texts" />
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Status: ..."
-        android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spStatus"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Área de cobertura:"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+            <Spinner
+                android:id="@+id/spAreaCobertura"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/areaCobertura"
+                android:textSize="@dimen/texts"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Qualidade de Imagem:"
+                android:textSize="16sp"/>
+            <Spinner
+                android:id="@+id/spQualidadeImagem"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/qualidadeDrone"
+                android:textSize="@dimen/texts"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
 
     <CheckBox
         android:layout_marginTop="10dp"

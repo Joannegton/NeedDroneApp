@@ -59,7 +59,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginTop="16dp"
+                android:textSize="@dimen/texts"
                 android:text="Eu quero Contratar"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -74,7 +76,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginTop="16dp"
+                android:textSize="@dimen/texts"
                 android:text="Eu quero Trabalhar"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -91,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="continuar"
+            android:backgroundTint="@color/blueFirst"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />

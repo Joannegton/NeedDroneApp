@@ -27,7 +27,6 @@ public class CriarDroneActivity extends AppCompatActivity {
         setupSpinner(R.id.spQualidadeImagem, R.array.qualidadeDrone);
         setupSpinner(R.id.spAutonomia, R.array.autonomia);
         setupSpinner(R.id.spAreaCobertura, R.array.areaCobertura);
-        setupSpinner(R.id.spStatus, R.array.status);
 
         binding.btnCadastrar.setOnClickListener(v -> criarDrone());
     }
@@ -40,12 +39,11 @@ public class CriarDroneActivity extends AppCompatActivity {
         String qualidadeImagem = valorSelecionado(R.id.spQualidadeImagem);
         String autonomia = valorSelecionado(R.id.spAutonomia);
         String areaCobertura = valorSelecionado(R.id.spAreaCobertura);
-        String status = valorSelecionado(R.id.spStatus);
 
         DroneController db = new DroneController(getBaseContext());
         String resultado;
 
-        resultado = db.insereDados(nome, tipo, qualidadeImagem, autonomia, areaCobertura, status, imgSobreposicao, null, null);
+        resultado = db.insereDados(nome, tipo, qualidadeImagem, autonomia, areaCobertura, null, imgSobreposicao, null, null);
 
         Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
