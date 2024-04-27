@@ -13,12 +13,14 @@
         android:padding="16dp">
 
         <ImageView
+            android:id="@+id/fotoPerfil"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_launcher_background"
             android:contentDescription="Foto de perfil" />
 
         <TextView
+            android:id="@+id/nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wellington Tavares Galbarini"
@@ -51,67 +53,97 @@
         android:layout_marginTop="8dp"/>
 
     <!-- Experiência -->
-    <TextView
-        android:id="@+id/tituloExperiencia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Experiência"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/experiencia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Licença de pilotagem: 2458578516\nExperiência com drone: 3 anos\nÁrea de especialização: inspeção agrícola"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"/>
-
-    <!-- Portfólio -->
-    <TextView
-        android:id="@+id/tituloPortfolio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Portfólio"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"/>
-
     <LinearLayout
-        android:id="@+id/galeriaPortfolio"
+        android:id="@+id/containerExperiencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_background"
-            android:contentDescription="Projeto 1"
-            android:layout_marginEnd="8dp"/>
+        <TextView
+            android:id="@+id/tituloExperiencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Experiência"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"/>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_background"
-            android:contentDescription="Projeto 2"
-            android:layout_marginEnd="8dp"/>
+        <TextView
+            android:id="@+id/licenca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Licença de pilotagem: "
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"/>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_background"
-            android:contentDescription="Projeto 3"/>
+        <TextView
+            android:id="@+id/experiencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Experiência com drone: 3 anos"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/especializacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Área de especialização: inspeção agrícola"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"/>
+        <!-- Portfólio -->
+
+        <TextView
+            android:id="@+id/tituloPortfolio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Portfólio"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/galeriaPortfolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_launcher_background"
+                android:contentDescription="Projeto 1"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_launcher_background"
+                android:contentDescription="Projeto 2"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_launcher_background"
+                android:contentDescription="Projeto 3"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Avaliações -->

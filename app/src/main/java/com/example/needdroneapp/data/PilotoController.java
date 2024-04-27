@@ -22,7 +22,7 @@ public class PilotoController {
             String tel,
             Boolean whatsapp,
             String rua,
-            String cidade,
+            String cidadeEstado,
             String cep,
             String foto,
             String biografia,
@@ -42,7 +42,7 @@ public class PilotoController {
         valores.put("tel", tel);
         valores.put("whatsapp", whatsapp);
         valores.put("rua", rua);
-        valores.put("cidadeEstado", cidade);
+        valores.put("cidadeEstado", cidadeEstado);
         valores.put("cep", cep);
         valores.put("foto", foto);
         valores.put("biografia", biografia);
@@ -61,7 +61,7 @@ public class PilotoController {
 
     public Cursor carregaDadosPorId(int id){
         Cursor cursor;
-        String[] campos = {"id", "nome", "email", "password", "dataNasc", "tel", "whatsapp", "rua", "cidade", "estado", "cep", "foto", "biografia", "avaliacaoPiloto"};
+        String[] campos = {"nome", "email", "password", "cpf", "dataNasc", "tel", "whatsapp", "rua", "cidadeEstado", "cep", "foto", "biografia", "avaliacaoPiloto", "licencaPilotagem", "experiencia", "especializacao"};
         String where = "id = " + id;
         db = banco.getReadableDatabase();
         cursor = db.query("piloto", campos, where, null, null, null, null, null);
@@ -75,26 +75,50 @@ public class PilotoController {
 
     public Cursor carregaDados() {
         Cursor cursor = null;
-        String[] campos = {"id", "nome", "email", "password", "dataNasc", "tel", "whatsapp", "rua", "cidade", "estado", "cep", "foto", "biografia", "avaliacaoPiloto"};
+        String[] campos = {"id", "nome", "email", "password", "dataNasc", "tel", "whatsapp", "rua", "cidadeEstado", "estado", "cep", "foto", "biografia", "avaliacaoPiloto"};
         db = banco.getReadableDatabase();
         return cursor;
     }
 
-    /*public String atualizaDados(){
-        valores = new ContentValues();
+    public String atualizaDados(
+            int id,
+            String nome,
+            String dataNasc,
+            String tel,
+            Boolean whatsapp,
+            String rua,
+            String cidadeEstado,
+            String cep,
+            String foto,
+            String biografia,
+            String experiencia,
+            String especializacao
+    ) {
+        ContentValues valores = new ContentValues();
         valores.put("nome", nome);
-        valores.put("email", email);
-        valores.put("password", password);
-        valores.put("cpf", password);
         valores.put("dataNasc", dataNasc);
         valores.put("tel", tel);
         valores.put("whatsapp", whatsapp);
         valores.put("rua", rua);
-        valores.put("cidadeEstado", cidade);
+        valores.put("cidadeEstado", cidadeEstado);
         valores.put("cep", cep);
         valores.put("foto", foto);
         valores.put("biografia", biografia);
-        valores.put("avaliacaoPiloto", avaliacao);
-        valores.put("licencaPilotagem", estado);
-    } */
+        valores.put("experiencia", experiencia);
+        valores.put("especializacao", especializacao);
+
+        String where = "id = " + id;
+        db = banco.getWritableDatabase();
+        long resultado = db.update("piloto", valores, where, null);
+        db.close();
+
+        String msg;
+        if (resultado == -1){
+            msg =  "Erro ao atualizar registro!";
+        } else {
+            msg =  "Registro atualizado com sucesso!";
+        }
+
+        return msg;
+    }
 }

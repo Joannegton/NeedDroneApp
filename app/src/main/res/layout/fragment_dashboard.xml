@@ -101,11 +101,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
             android:orientation="vertical"
-            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintStart_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/container_buttons_perfil"
-            app:layout_constraintBottom_toTopOf="@+id/linkSejaPremium">
+            app:layout_constraintTop_toBottomOf="@+id/container_buttons_perfil">
 
             <TextView
                 android:id="@+id/tvNome"
@@ -121,40 +121,42 @@
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toBottomOf="@+id/container_buttons_perfil"
                 app:layout_constraintVertical_bias="0.285" />
+
             <TextView
                 android:id="@+id/tvAvaliacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="7dp"
                 android:text="Numeros de estrelas (0 avaliações)"
+                android:textColor="@color/black"
+                android:textSize="@dimen/texts"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/linkSejaPremium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Nivel de membro. Seja premium"
+                android:textColor="@color/black"
                 android:textSize="@dimen/texts"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginTop="7dp" />
+                app:layout_constraintBottom_toTopOf="@+id/textView7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/linkSejaPremium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nivel de membro. Seja premium"
-            android:textSize="@dimen/texts"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView7"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardView" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:background="@color/blueSecond"
             android:gravity="center"
-            android:layout_marginTop="16dp"
             android:text="Perfil 100% preenchido"
-            android:textSize="@dimen/texts"
             android:textColor="@color/black"
+            android:textSize="@dimen/texts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

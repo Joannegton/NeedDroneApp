@@ -59,7 +59,7 @@ public class ClienteController {
 
     public Cursor carregaDadosPorId(int id){
         Cursor cursor;
-        String[] campos = { "id", "nome", "email", "password", "dataNasc", "tel", "whatsapp", "rua", "cidade", "estado", "cep", "foto", "biografia", "avaliacao"};
+            String[] campos = { "id", "nome", "email", "password", "cpf", "dataNasc", "tel", "whatsapp", "rua", "cidadeEstado", "cep", "foto", "biografia", "avaliacaoCliente"};
 
         String where = "id=" + id;
         db = banco.getReadableDatabase();
@@ -95,48 +95,42 @@ public class ClienteController {
 
 
     public String alteraDados(
-            Integer id,
+            int id,
             String nome,
-            String email,
-            String password,
             String dataNasc,
             String tel,
             Boolean whatsapp,
             String rua,
-            String cidade,
-            String estado,
+            String cidadeEstado,
             String cep,
             String foto,
-            String biografia,
-            String avaliacao
+            String biografia
     ){
         String msg = "Dados alterados com sucesso!!!";
 
         db = banco.getReadableDatabase();
 
-        ContentValues valores = new ContentValues();
+        ContentValues valores;
         valores = new ContentValues();
         valores.put("nome", nome);
-        valores.put("email", email);
-        valores.put("password", password);
         valores.put("dataNasc", dataNasc);
         valores.put("tel", tel);
         valores.put("whatsapp", whatsapp);
         valores.put("rua", rua);
-        valores.put("cidade", cidade);
-        valores.put("estado", estado);
+        valores.put("cidadeEstado", cidadeEstado);
         valores.put("cep", cep);
         valores.put("foto", foto);
         valores.put("biografia", biografia);
-        valores.put("avaliacao", avaliacao);
 
-        String where = "codigo = " + id;
+        String where = "id = " + id;
 
         int linha;
-        linha = db.update("usuarios", valores, where, null);
+        linha = db.update("clientes", valores, where, null);
 
         if(linha < 1){
             msg = "Erro ao alterar os dados!";
+        } else {
+            msg = "Dados alterados com sucesso!";
         }
 
         db.close();

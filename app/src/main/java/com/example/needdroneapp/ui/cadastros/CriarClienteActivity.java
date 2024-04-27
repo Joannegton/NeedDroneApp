@@ -1,12 +1,15 @@
 package com.example.needdroneapp.ui.cadastros;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.needdroneapp.MainActivity;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.databinding.ActivityCriarClienteBinding;
+import com.example.needdroneapp.ui.login.LoginFragment;
 
 public class CriarClienteActivity extends AppCompatActivity {
     private ActivityCriarClienteBinding binding;
@@ -51,17 +54,15 @@ public class CriarClienteActivity extends AppCompatActivity {
         resultado = db.insereDados(nome, email, senha, cpf, null, null, null, null, null, null, null, null, 3 );
 
         Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-        limpar();
-    }
 
-    public void limpar(){
-        binding.etNome.setText("") ;
-        binding.etCPF.setText("") ;
-        binding.etEmail.setText("") ;
-        binding.etSenha.setText("") ;
-        binding.etConfirmaSenha.setText("") ;
-
+        // Intent para retornar à atividade principal onde o LoginFragment pode ser exibido
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("OpenFragment", "LoginFragment"); // Identificador para o fragmento que deve ser aberto
+        startActivity(intent);
+        finish(); // Finaliza a atividade atual para que o usuário não retorne a ela ao pressionar o botão voltar
 
     }
+
+
 
 }

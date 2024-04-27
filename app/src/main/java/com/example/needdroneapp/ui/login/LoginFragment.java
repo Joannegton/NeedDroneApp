@@ -1,5 +1,6 @@
 package com.example.needdroneapp.ui.login;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +28,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private FragmentLoginBinding binding;
     private RadioButton rbCliente, rbPiloto;
     private EditText email, senha;
-    public static final String PREF_USER_TYPE = "user_type";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,12 +73,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-     //   ClienteController db = new ClienteController(getActivity().getBaseContext());
-        // try (Cursor dados = db.carregaDadosLogin(emailText, senhaText)) {
-        //  if (dados.moveToFirst()) {
+        ClienteController db = new ClienteController(getActivity().getBaseContext());
+         try (Cursor dados = db.carregaDadosLogin(emailText, senhaText)) {
+         if (dados.moveToFirst()) {
+             //salva o id e tipo do usuário logado nas SharedPreferences
+                @SuppressLint("Range") int id = dados.getInt(dados.getColumnIndex("id"));
                 SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(PREF_USER_TYPE, tipoUsuario);
+                editor.putString("userType", tipoUsuario);
+                editor.putInt("userId", id);
                 editor.apply();
 
                 Toast.makeText(getContext(), "Login bem-sucedido como " + tipoUsuario, Toast.LENGTH_SHORT).show();
@@ -89,10 +92,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         .replace(R.id.nav_host_fragment_content_main, dashboardFragment)
                         .addToBackStack(null)
                         .commit();
-        //  } else {
-        //      Toast.makeText(getContext(), "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
-        //  }
-        //}
+         } else {
+              Toast.makeText(getContext(), "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
+          }
+        }
     }
 
 }
