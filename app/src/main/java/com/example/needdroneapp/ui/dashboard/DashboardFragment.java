@@ -54,13 +54,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         // Obtém as SharedPreferences
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         // Recupera o tipo de usuário e o id do usuário
-        String userType = sharedPreferences.getString("user_type", "");
+        String userType = sharedPreferences.getString("userType", "");
         int userId = sharedPreferences.getInt("userId", 0);
         LinearLayout container_fragment = root.findViewById(R.id.container_fragment);
         ConstraintLayout container_proposta = root.findViewById(R.id.container_propostas);
 
         if (userType.equals("cliente")) {
-            container_proposta.setVisibility(View.GONE);
+            container_fragment.setVisibility(View.GONE);
             String[] informacoesCliente = pegarInformacoes(userId);
             String nome = informacoesCliente[0];
             String avaliacao = informacoesCliente[1];
@@ -70,7 +70,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
             txtNome.setText(nome);
             txtEmail.setText("Avaliação: " + avaliacao + " estrelas");
         } else if (userType.equals("piloto")){
-            container_fragment.setVisibility(View.GONE);
+            container_proposta.setVisibility(View.GONE);
             String[] informacoesCliente = pegarInformacoes(userId);
             String nome = informacoesCliente[0];
             String avaliacao = informacoesCliente[1];
@@ -80,6 +80,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
             //TextView premium = root.findViewById(R.id.linkSejaPremium);
             txtNome.setText(nome);
             txtEmail.setText("Avaliação: " + avaliacao + " estrelas");
+        } else {
+            container_fragment.setVisibility(View.GONE);
+            container_proposta.setVisibility(View.GONE);
         }
 
 

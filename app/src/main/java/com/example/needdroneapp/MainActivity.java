@@ -1,8 +1,13 @@
 package com.example.needdroneapp;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.needdroneapp.ui.login.LoginFragment;
 import com.google.android.material.snackbar.Snackbar;
@@ -74,9 +79,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            configuracoes();
+            return true;
+        } else if (id == R.id.action_logout) {
+            sair();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void configuracoes() {
+        // Este é apenas um exemplo. Substitua por sua própria implementação.
+        Toast.makeText(this, "Configurações selecionadas", Toast.LENGTH_SHORT).show();
+    }
+
+    private void sair() {
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+        //garante que todas as atividades na pilha de atividades sejam limpas quando a nova intent for iniciada.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }
