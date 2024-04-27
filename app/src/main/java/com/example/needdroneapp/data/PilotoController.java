@@ -133,4 +133,31 @@ public class PilotoController implements UsuarioController{
 
         return msg;
     }
+
+    public String resetarSenha(String email){
+        ContentValues valores = new ContentValues();
+        String novaSenha = "1234";
+        valores.put("password", novaSenha);
+
+        String where = "email = ?";
+        String[] whereArgs = { email };
+
+        db = banco.getWritableDatabase();
+        long resultado = db.update("piloto", valores, where, whereArgs);
+
+        String msg;
+        if (resultado == -1){
+            long result = db.update("clientes", valores, where, whereArgs);
+            db.close();
+            if (result == -1){
+                msg =  "Email não existe!";
+            }else {
+                msg =  "Senha temporária: " + novaSenha;
+            }
+        } else {
+            msg =  "Senha temporária: " + novaSenha;
+        }
+
+        return msg;
+    }
 }

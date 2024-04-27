@@ -1,5 +1,7 @@
 package com.example.needdroneapp.ui.login;
 
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,9 +14,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.data.PilotoController;
+import com.example.needdroneapp.data.UsuarioController;
 import com.example.needdroneapp.databinding.ActivityEsqueciSenhaBinding;
 
-public class EsqueciSenhaActivity extends AppCompatActivity implements View.OnClickListener {
+public class EsqueciSenhaActivity extends AppCompatActivity {
 
     private ActivityEsqueciSenhaBinding binding;
     private EditText emailText;
@@ -27,16 +31,18 @@ public class EsqueciSenhaActivity extends AppCompatActivity implements View.OnCl
 
          emailText = binding.editTextEmail;
 
-        binding.buttonRecuperarSenha.setOnClickListener(this);
+        binding.buttonRecuperarSenha.setOnClickListener(v -> onClick());
     }
 
-    @Override
-    public void onClick(View v) {
+    public void onClick() {
         if (emailText.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext(), "Insira um e-mail!",Toast.LENGTH_LONG).show();
 
         } else {
-            Toast.makeText(getApplicationContext(), "Enviamos um e-mail de recuperação!",Toast.LENGTH_LONG).show();
+            PilotoController db = new PilotoController(getApplicationContext());
+            String senha = db.resetarSenha(String.valueOf(emailText.getText()));
+            Toast.makeText(getApplicationContext(), senha,Toast.LENGTH_LONG).show();
         }
     }
+
 }
