@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
+import com.example.needdroneapp.data.PilotoController;
+import com.example.needdroneapp.data.UsuarioController;
 import com.example.needdroneapp.databinding.FragmentLoginBinding;
 import com.example.needdroneapp.ui.cadastros.CriarContaActivity;
 import com.example.needdroneapp.ui.dashboard.DashboardFragment;
@@ -73,28 +75,37 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        ClienteController db = new ClienteController(getActivity().getBaseContext());
-         try (Cursor dados = db.carregaDadosLogin(emailText, senhaText)) {
-         if (dados.moveToFirst()) {
-             //salva o id e tipo do usuário logado nas SharedPreferences
-                @SuppressLint("Range") int id = dados.getInt(dados.getColumnIndex("id"));
-                SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("userType", tipoUsuario);
-                editor.putInt("userId", id);
-                editor.apply();
+        UsuarioController db = null;
+        if (tipoUsuario.equals("cliente")) {
+            db = new ClienteController(getActivity().getBaseContext());
+        }
+        if (tipoUsuario.equals("piloto")) {
+            db = new PilotoController(getActivity().getBaseContext());
+        }
 
-                Toast.makeText(getContext(), "Login bem-sucedido como " + tipoUsuario, Toast.LENGTH_SHORT).show();
+        if (db != null) {
+            try (Cursor dados = db.carregaDadosLogin(emailText, senhaText)) {
+                if (dados.moveToFirst()) {
+                    //salva o id e tipo do usuário logado nas SharedPreferences
+                    @SuppressLint("Range") int id = dados.getInt(dados.getColumnIndex("id"));
+                    SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("userType", tipoUsuario);
+                    editor.putInt("userId", id);
+                    editor.apply();
 
-                DashboardFragment dashboardFragment = new DashboardFragment();
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment_content_main, dashboardFragment)
-                        .addToBackStack(null)
-                        .commit();
-         } else {
-              Toast.makeText(getContext(), "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
-          }
+                    Toast.makeText(getContext(), "Login bem-sucedido como " + tipoUsuario, Toast.LENGTH_SHORT).show();
+
+                    DashboardFragment dashboardFragment = new DashboardFragment();
+                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.nav_host_fragment_content_main, dashboardFragment)
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    Toast.makeText(getContext(), "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 

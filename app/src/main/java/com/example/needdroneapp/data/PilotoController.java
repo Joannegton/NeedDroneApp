@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class PilotoController {
+public class PilotoController implements UsuarioController{
     private SQLiteDatabase db;
     private final CriarDb banco;
 
@@ -73,10 +73,22 @@ public class PilotoController {
         return cursor;
     }
 
-    public Cursor carregaDados() {
-        Cursor cursor = null;
-        String[] campos = {"id", "nome", "email", "password", "dataNasc", "tel", "whatsapp", "rua", "cidadeEstado", "estado", "cep", "foto", "biografia", "avaliacaoPiloto"};
+    public Cursor carregaDadosLogin(String email, String password) {
+        Cursor cursor;
+        String[] campos = { "id", "email", "password"};
+
+        // Corrigindo a cláusula where para adicionar o critério de seleção do email e senha
+        String where = "email=? AND password=?";
+        String[] whereArgs = { email, password };
+
         db = banco.getReadableDatabase();
+        cursor = db.query("piloto", campos, where, whereArgs, null, null, null);
+
+        // Não é necessário verificar se o cursor é nulo antes de chamar moveToFirst
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
         return cursor;
     }
 

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class ClienteController {
+public class ClienteController implements UsuarioController {
     private SQLiteDatabase db;
     private final CriarDb banco;
 
