@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.databinding.ActivityPropostaPilotoBinding;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class PropostaPilotoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         RecyclerView recyclerView = binding.recyclerView;
-        DroneItemActivity databaseHelper = new DroneItemActivity(this);
-        List<Drone> droneList = databaseHelper.getAllDrones();
+        DroneController db = new DroneController(this);
+        List<Drone> droneList = db.pegarTodosDrones();
         DroneAdapter droneAdapter = new DroneAdapter(droneList);
         recyclerView.setAdapter(droneAdapter);
 

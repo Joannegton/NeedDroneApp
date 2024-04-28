@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
+import com.example.needdroneapp.data.PilotoController;
+import com.example.needdroneapp.data.PropostaController;
 import com.example.needdroneapp.databinding.FragmentDashboardBinding;
 import com.example.needdroneapp.ui.PerfilActivity;
 import com.example.needdroneapp.ui.cadastros.CriarDroneActivity;
@@ -69,23 +71,24 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             container_fragment.setVisibility(View.GONE);
 
             // Obtém as informações do cliente
-            String[] informacoesCliente = pegarInformacoes(userId);
-            String nome = informacoesCliente[0];
-            String avaliacao = informacoesCliente[1];
+            String[] informacoesCliente = pegarInformacoesCliente(userId);
+            String nome = informacoesCliente[1];
+            String avaliacao = informacoesCliente[2];
 
             // Configura os textos de nome e avaliação
             TextView txtNome = root.findViewById(R.id.tvNome);
             TextView txtEmail = root.findViewById(R.id.tvAvaliacao);
             txtNome.setText(nome);
             txtEmail.setText("Avaliação: " + avaliacao + " estrelas");
+
         } else if (userType.equals("piloto")) {
             // Se o usuário é um piloto, esconde o container da proposta
             container_proposta.setVisibility(View.GONE);
 
             // Obtém as informações do piloto
-            String[] informacoesCliente = pegarInformacoes(userId);
-            String nome = informacoesCliente[0];
-            String avaliacao = informacoesCliente[1];
+            String[] informacoesPiloto = pegarInformacoesPiloto(userId);
+            String nome = informacoesPiloto[1];
+            String avaliacao = informacoesPiloto[2];
 
             // Configura os textos de nome e avaliação
             TextView txtNome = root.findViewById(R.id.tvNome);
@@ -101,6 +104,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         // Retorna a visualização do fragmento
         return root;
     }
+
+
 
     // Este método é chamado quando um botão é clicado
     @Override
@@ -134,15 +139,36 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     // Este método obtém as informações do cliente
     @SuppressLint("Range")
-    public String[] pegarInformacoes(int id) {
+    public String[] pegarInformacoesCliente(int id) {
         ClienteController clienteController = new ClienteController(getContext());
         Cursor dados = clienteController.carregaDadosPorId(id);
-        String[] informacoesCliente = new String[2];
+        String[] informacoesCliente = new String[3];
         if (dados != null && dados.getCount() > 0 && dados.moveToFirst()) {
-            informacoesCliente[0] = dados.getString(dados.getColumnIndex("nome"));
-            informacoesCliente[1] = String.valueOf(dados.getInt(dados.getColumnIndex("avaliacaoCliente")));
+            informacoesCliente[0] = dados.getString(dados.getColumnIndex("id"));
+            informacoesCliente[1] = dados.getString(dados.getColumnIndex("nome"));
+            informacoesCliente[2] = String.valueOf(dados.getInt(dados.getColumnIndex("avaliacaoCliente")));
         }
         return informacoesCliente;
+    }
+
+    //Obtem informações das propostas recebidas
+    public void infromacoesPropostas(int projetoId){
+        PropostaController proposta = new PropostaController(getContext());
+        Cursor dados = proposta.recuperarInfosIdProjeto(projetoId);
+    }
+
+    //Obtem informações do piloto
+    @SuppressLint("Range")
+    private String[] pegarInformacoesPiloto(int id) {
+        PilotoController pilotoController = new PilotoController(getContext());
+        Cursor dados = pilotoController.carregaDadosPorId(id);
+        String[] informacoesPiloto = new String[3];
+        if (dados != null && dados.getCount() > 0 && dados.moveToFirst()) {
+            informacoesPiloto[0] = dados.getString(dados.getColumnIndex("id"));
+            informacoesPiloto[1] = dados.getString(dados.getColumnIndex("nome"));
+            informacoesPiloto[2] = String.valueOf(dados.getInt(dados.getColumnIndex("avaliacaoPiloto")));
+        }
+        return informacoesPiloto;
     }
 
     // Este método é chamado quando a visualização do fragmento é destruída

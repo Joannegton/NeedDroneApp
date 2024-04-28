@@ -2,8 +2,14 @@ package com.example.needdroneapp.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.example.needdroneapp.ui.piloto.Drone;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DroneController {
     private SQLiteDatabase db; //variavel para manipular o banco de dados
@@ -58,4 +64,30 @@ public class DroneController {
     }
 
 
+    public List<Drone> pegarTodosDrones(){
+        List<Drone> droneList = new ArrayList<>();
+
+        db = banco.getReadableDatabase(); //abre o banco de dados
+        Cursor cursor = db.rawQuery("SELECT * FROM drones", null); //executa a query para pegar todos os drones
+
+        if (cursor.moveToFirst()) {
+            do {
+                Drone drone = new Drone();
+                drone.setNome(String.valueOf(cursor.getColumnIndexOrThrow("nome")));
+                drone.setTipoDrone(String.valueOf(cursor.getColumnIndexOrThrow("tipoDrone")));
+                drone.setImgQualidade(String.valueOf(cursor.getColumnIndexOrThrow("imgQualidade")));
+                drone.setAutonomia(String.valueOf(cursor.getColumnIndexOrThrow("autonomia")));
+                drone.setAreaCobertura(String.valueOf(cursor.getColumnIndexOrThrow("areaCobertura")));
+                drone.setStatus(String.valueOf(cursor.getColumnIndexOrThrow("status")));
+                drone.setImgSobreposicao(String.valueOf(cursor.getColumnIndexOrThrow("imgSobreposicao")));
+                drone.setFoto(String.valueOf(cursor.getColumnIndexOrThrow("foto")));
+                drone.setPilotoId(String.valueOf(cursor.getColumnIndexOrThrow("pilotoId")));
+
+                droneList.add(drone);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return droneList;
+    }
 }

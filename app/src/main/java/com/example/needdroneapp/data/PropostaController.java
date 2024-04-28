@@ -2,6 +2,7 @@ package com.example.needdroneapp.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class PropostaController {
@@ -52,5 +53,19 @@ public class PropostaController {
         } else {
             return "Registro inserido com sucesso!";
         }
+    }
+
+    public Cursor recuperarInfosIdProjeto(int idProjeto){
+        Cursor dados;
+        String[] campos = {"tituloProjeto", "clienteId", "clienteNome", "pilotoId", "pilotoNome", "ofertaInicial", "detalhesProposta", "status", "droneId"};
+        String where = "projetoId= " + idProjeto;
+        db = banco.getReadableDatabase();
+        dados = db.query("proposta", campos, where, null, null, null, null);
+
+        if(dados != null){
+            dados.moveToFirst();
+        }
+        db.close();
+        return dados;
     }
 }

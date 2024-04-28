@@ -46,7 +46,7 @@ public class PilotoController implements UsuarioController{
         valores.put("cep", cep);
         valores.put("foto", foto);
         valores.put("biografia", biografia);
-        valores.put("avaliacaoPiloto", avaliacao);
+        valores.put("avaliacaoPiloto", 3);
         valores.put("licencaPilotagem", licenca);
 
         resultado = db.insert("piloto", null, valores);
@@ -61,7 +61,7 @@ public class PilotoController implements UsuarioController{
 
     public Cursor carregaDadosPorId(int id){
         Cursor cursor;
-        String[] campos = {"nome", "email", "password", "cpf", "dataNasc", "tel", "whatsapp", "rua", "cidadeEstado", "cep", "foto", "biografia", "avaliacaoPiloto", "licencaPilotagem", "experiencia", "especializacao"};
+        String[] campos = {"id", "nome", "email", "password", "cpf", "dataNasc", "tel", "whatsapp", "rua", "cidadeEstado", "cep", "foto", "biografia", "avaliacaoPiloto", "licencaPilotagem", "experiencia", "especializacao"};
         String where = "id = " + id;
         db = banco.getReadableDatabase();
         cursor = db.query("piloto", campos, where, null, null, null, null, null);

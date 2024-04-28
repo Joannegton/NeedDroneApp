@@ -2,12 +2,12 @@ package com.example.needdroneapp.ui.piloto;
 
 public class Drone {
     private String nome;
-    private int autonomia;
-    private int areaCobertura;
     private String tipoDrone;
     private String imgQualidade;
+    private String autonomia;
+    private String areaCobertura;
     private String status;
-    private int imgSobreposicao;
+    private String imgSobreposicao;
     private String foto;
     private String pilotoId;
 
@@ -16,28 +16,13 @@ public class Drone {
 
     // Getters and setters
 
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getAutonomia() {
-        return autonomia;
-    }
-
-    public void setAutonomia(int autonomia) {
-        this.autonomia = autonomia;
-    }
-
-    public int getAreaCobertura() {
-        return areaCobertura;
-    }
-
-    public void setAreaCobertura(int areaCobertura) {
-        this.areaCobertura = areaCobertura;
     }
 
     public String getTipoDrone() {
@@ -56,6 +41,22 @@ public class Drone {
         this.imgQualidade = imgQualidade;
     }
 
+    public String getAutonomia() {
+        return autonomia;
+    }
+
+    public void setAutonomia(String autonomia) {
+        this.autonomia = autonomia;
+    }
+
+    public String getAreaCobertura() {
+        return areaCobertura;
+    }
+
+    public void setAreaCobertura(String areaCobertura) {
+        this.areaCobertura = areaCobertura;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -64,11 +65,11 @@ public class Drone {
         this.status = status;
     }
 
-    public int getImgSobreposicao() {
+    public String getImgSobreposicao() {
         return imgSobreposicao;
     }
 
-    public void setImgSobreposicao(int imgSobreposicao) {
+    public void setImgSobreposicao(String imgSobreposicao) {
         this.imgSobreposicao = imgSobreposicao;
     }
 

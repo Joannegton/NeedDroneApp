@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,12 +34,16 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.DroneViewHol
     @Override
     public void onBindViewHolder(@NonNull DroneViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Drone drone = droneList.get(position);
+        //holder.imageViewDroneFoto.setImageBitmap(drone.getFoto());
         holder.textViewNome.setText(drone.getNome());
         holder.textViewAutonomia.setText("Autonomia: até " + drone.getAutonomia() + " minutos.");
         holder.textViewAreaCobertura.setText("Área de cobertura: até " + drone.getAreaCobertura() + "m².");
+        holder.textViewdroneSobreposicao.setText(drone.getImgSobreposicao());
+        holder.textViewdroneQualidade.setText(drone.getImgQualidade());
+        holder.textViewDroneTipo.setText(drone.getTipoDrone());
 
         if (selectedItem == position) {
-            holder.itemView.setBackgroundColor(Color.parseColor("#FF0000"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#FB2E00"));
         } else {
             holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
@@ -56,14 +61,18 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.DroneViewHol
     }
 
     static class DroneViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewNome, textViewAutonomia, textViewAreaCobertura;
-
+        TextView textViewNome, textViewAutonomia, textViewAreaCobertura, textViewDroneTipo, textViewdroneQualidade, textViewdroneSobreposicao;
+        ImageView imageViewDroneFoto;
         public DroneViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewNome = itemView.findViewById(R.id.textView8);
-            textViewAutonomia = itemView.findViewById(R.id.textView9);
-            textViewAreaCobertura = itemView.findViewById(R.id.textView10);
-            // Initialize other views...
+            imageViewDroneFoto = itemView.findViewById(R.id.droneFoto);
+            textViewNome = itemView.findViewById(R.id.droneNome);
+            textViewAutonomia = itemView.findViewById(R.id.droneAutonomia);
+            textViewAreaCobertura = itemView.findViewById(R.id.droneAreaCobertura);
+            textViewDroneTipo = itemView.findViewById(R.id.droneTipo);
+            textViewdroneQualidade = itemView.findViewById(R.id.droneQualidade);
+            textViewdroneSobreposicao = itemView.findViewById(R.id.droneSobreposicao);
+
         }
     }
 }

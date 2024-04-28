@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos de SQLiteOpenHelper
     private static final String NOME_DB = "needDroneDB.db";
-    private static final int VERSAO = 6;
+    private static final int VERSAO = 7;
 
     public CriarDb(Context context){
         super(context, NOME_DB, null, VERSAO);
@@ -57,7 +57,7 @@ public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos 
                 + "cep text,"
                 + "foto text,"
                 + "biografia text,"
-                + "avaliacaoPiloto text,"
+                + "avaliacaoPiloto integer,"
                 + "experiencia text,"
                 + "especializacao text,"
                 + "licencaPilotagem text);";
