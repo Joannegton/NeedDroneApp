@@ -20,7 +20,7 @@ public class PropostaPilotoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         RecyclerView recyclerView = binding.recyclerView;
-        DroneController db = new DroneController(this);
+        DroneController db = new DroneController(getApplicationContext());
         List<Drone> droneList = db.pegarTodosDrones();
         DroneAdapter droneAdapter = new DroneAdapter(droneList);
         recyclerView.setAdapter(droneAdapter);

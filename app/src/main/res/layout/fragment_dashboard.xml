@@ -210,7 +210,112 @@
                 tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaDrones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_projeto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/container_login"
+        app:layout_constraintTop_toBottomOf="@+id/container_perfil">
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_button_AdcProjeto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:layout_marginHorizontal="5dp">
+
+            <TextView
+                android:id="@+id/meus_projetos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meus Projetos"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/linkAdcProjeto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar Projeto"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteY="3dp"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:paddingVertical="5dp"
+            android:background="@drawable/container_border"
+            >
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@color/gray"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:shadowColor="#201B1B"
+                android:text="Documentário sobre a Vida Selvagem Amazônica"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                tools:layout_editor_absoluteX="5dp" />
+
+            <TextView
+                android:id="@+id/descricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:shadowColor="#201B1B"
+                android:text="Um documentário fascinante que explora a diversidade da vida selvagem na Amazônia, destacando a importância da conservação ambiental e da preservação das espécies ameaçadas."
+                android:textColor="@color/black"
+                android:textSize="@dimen/texts"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnDetalhes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver detalhes"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/blueFirst"
+                android:textSize="@dimen/texts"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!--
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_drones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -345,381 +450,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-
-            android:id="@+id/constraintLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/container_border"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_drones">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/logo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/btEditarDrone2"
-                android:layout_width="75dp"
-                android:layout_height="30dp"
-                android:backgroundTint="@color/blueFirst"
-                android:text="Editar"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
-                app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints">
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="nome drone"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Autonomia: até 60 minutos."
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Área de cobertura: até 400m²."
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9"
-                    tools:ignore="MissingConstraints" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btEditarDrone2"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/container_edit_text"
-                    android:backgroundTint="@color/gray"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:text="hexacoptero"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/container_edit_text"
-                    android:backgroundTint="@color/gray"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:text="Full HD"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/textView11"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/container_edit_text"
-                    android:backgroundTint="@color/gray"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:text="Sobreposição"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/textView12"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    tools:ignore="MissingConstraints" />
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_propostas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/container_login"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_perfil"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Propostas Recebidas"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Proposta de: Wellington Tavares Galbarini"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Oferta Inicial: 5651"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Oferta Final: R$ 6216.10"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Detalhes da Proposta: alguma coisa aleatória"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/accepted" />
-
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_drones1"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/container_border"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-            <ImageView
-                android:id="@+id/imageView25"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/logo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView25"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints">
-
-                <TextView
-                    android:id="@+id/textView85"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="nome drone"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textView92"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Autonomia: até 60 minutos."
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts" />
-
-                <TextView
-                    android:id="@+id/textView101"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Área de cobertura: até 400m²."
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toBottomOf="@+id/textView92"
-                    tools:ignore="MissingConstraints" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/container_edit_text"
-                    android:backgroundTint="@color/gray"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:text="hexacoptero"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/container_edit_text"
-                    android:backgroundTint="@color/gray"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:text="Full HD"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/textView11"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/container_edit_text"
-                    android:backgroundTint="@color/gray"
-                    android:paddingStart="3dp"
-                    android:paddingEnd="3dp"
-                    android:text="Sobreposição"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/texts"
-                    app:layout_constraintStart_toEndOf="@+id/textView12"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    tools:ignore="MissingConstraints" />
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <Button
-            android:id="@+id/btRecusar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#E60404"
-            android:text="Recusar"
-            android:textSize="@dimen/texts"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/btAceitar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_drones1" />
-
-        <Button
-            android:id="@+id/btAceitar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#4CAF50"
-            android:text="Aceitar"
-            android:textSize="@dimen/texts"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/container_drones1"
-            app:layout_constraintStart_toStartOf="@+id/container_drones1"
-            app:layout_constraintTop_toBottomOf="@+id/container_drones1" />
-
-        <Button
-            android:id="@+id/btMensagem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/blueFirst"
-            android:text="Mensagem"
-            android:textSize="@dimen/texts"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_drones1" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
+-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

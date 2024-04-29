@@ -11,22 +11,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
+import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.PropostaController;
 import com.example.needdroneapp.databinding.FragmentDashboardBinding;
 import com.example.needdroneapp.ui.PerfilActivity;
 import com.example.needdroneapp.ui.cadastros.CriarDroneActivity;
+import com.example.needdroneapp.ui.cadastros.CriarProjetoActivity;
 import com.example.needdroneapp.ui.edicao.EditClienteActivity;
 import com.example.needdroneapp.ui.edicao.EditDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
+import com.example.needdroneapp.ui.piloto.Drone;
+import com.example.needdroneapp.ui.piloto.DroneAdapter;
+import com.example.needdroneapp.ui.piloto.ProjetoActivity;
+
+import java.util.List;
 
 // Esta é a classe do fragmento do painel (Dashboard)
 public class DashboardFragment extends Fragment implements View.OnClickListener {
@@ -41,34 +50,31 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Configura os botões para editar drones
-        Button btEditarDrone = root.findViewById(R.id.btEditarDrone);
-        Button btEditarDrone2 = root.findViewById(R.id.btEditarDrone2);
-        btEditarDrone.setOnClickListener(this);
-        btEditarDrone2.setOnClickListener(this);
-
-        // Configura os links para editar perfil, ver perfil e adicionar drone
-        TextView linkEditPerfil = root.findViewById(R.id.linkEditar);
-        TextView linkVerPerfil = root.findViewById(R.id.linkVer);
-        TextView linkAdcDrone = root.findViewById(R.id.linkAdcDrone);
-        linkEditPerfil.setOnClickListener(this);
-        linkVerPerfil.setOnClickListener(this);
-        linkAdcDrone.setOnClickListener(this);
-
         // Obtém as SharedPreferences
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         // Recupera o tipo de usuário e o id do usuário
         String userType = sharedPreferences.getString("userType", "");
         int userId = sharedPreferences.getInt("userId", 0);
 
+        // Configura os links para editar perfil, ver perfil e adicionar drone
+        TextView linkEditPerfil = root.findViewById(R.id.linkEditar);
+        TextView linkVerPerfil = root.findViewById(R.id.linkVer);
+        linkEditPerfil.setOnClickListener(this);
+        linkVerPerfil.setOnClickListener(this);
+
         // Obtém as referências para os containers do fragmento e da proposta
         LinearLayout container_fragment = root.findViewById(R.id.container_fragment);
-        ConstraintLayout container_proposta = root.findViewById(R.id.container_propostas);
+        LinearLayout container_projeto = root.findViewById(R.id.container_projeto);
 
         // Verifica o tipo de usuário e configura a visualização de acordo
         if (userType.equals("cliente")) {
             // Se o usuário é um cliente, esconde o container do fragmento
             container_fragment.setVisibility(View.GONE);
+
+            Button btVerDetalhes = root.findViewById(R.id.btnDetalhes);
+            btVerDetalhes.setOnClickListener(this);
+            TextView linkAdcProjeto = root.findViewById(R.id.linkAdcProjeto);
+            linkAdcProjeto.setOnClickListener(this);
 
             // Obtém as informações do cliente
             String[] informacoesCliente = pegarInformacoesCliente(userId);
@@ -83,7 +89,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         } else if (userType.equals("piloto")) {
             // Se o usuário é um piloto, esconde o container da proposta
-            container_proposta.setVisibility(View.GONE);
+            container_projeto.setVisibility(View.GONE);
+
+            Button btEditarDrone = root.findViewById(R.id.btEditarDrone);
+            if (btEditarDrone != null) {
+                btEditarDrone.setOnClickListener(this);
+            }            TextView linkAdcDrone = root.findViewById(R.id.linkAdcDrone);
+            linkAdcDrone.setOnClickListener(this);
 
             // Obtém as informações do piloto
             String[] informacoesPiloto = pegarInformacoesPiloto(userId);
@@ -98,8 +110,17 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         } else {
             // Se o usuário não é nem cliente nem piloto, esconde ambos os containers
             container_fragment.setVisibility(View.GONE);
-            container_proposta.setVisibility(View.GONE);
+            container_projeto.setVisibility(View.GONE);
         }
+
+        RecyclerView listViewListaDrones = root.findViewById(R.id.listaDrones);
+        DroneController db = new DroneController(getContext());
+        List<Drone> listaDrones = db.pegarTodosDrones();
+        DroneAdapter droneAdapter = new DroneAdapter(listaDrones);
+        listViewListaDrones.setAdapter(droneAdapter);
+
+
+
 
         // Retorna a visualização do fragmento
         return root;
@@ -111,7 +132,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(@NonNull View v) {
         // Verifica qual botão foi clicado e realiza a ação correspondente
-        if (v.getId() == R.id.btEditarDrone || v.getId() == R.id.btEditarDrone2) {
+        if (v.getId() == R.id.btEditarDrone) {
             // Se o botão para editar drone foi clicado, inicia a atividade para editar drone
             Intent editDrone = new Intent(getContext(), EditDroneActivity.class);
             startActivity(editDrone);
@@ -134,6 +155,12 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             // Se o link para adicionar drone foi clicado, inicia a atividade para criar drone
             Intent adcDrone = new Intent(getContext(), CriarDroneActivity.class);
             startActivity(adcDrone);
+        } else if (v.getId() == R.id.linkAdcProjeto) {
+            Intent adcProjeto = new Intent(getContext(), CriarProjetoActivity.class);
+            startActivity(adcProjeto);
+        } else if (v.getId() == R.id.btnDetalhes) {
+            Intent detalhesProjeto = new Intent(getContext(), ProjetoActivity.class);
+            startActivity(detalhesProjeto);
         }
     }
 
