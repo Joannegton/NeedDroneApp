@@ -8,14 +8,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.databinding.FragmentLoginBinding;
 import com.example.needdroneapp.databinding.FragmentProjetosBinding;
+import com.example.needdroneapp.models.Projeto;
+import com.example.needdroneapp.models.ProjetoCompletoAdapter;
 import com.example.needdroneapp.ui.piloto.ProjetoActivity;
 
+import java.util.List;
 
-public class ProjetosFragment extends Fragment implements View.OnClickListener {
+
+public class ProjetosFragment extends Fragment {
 
     private FragmentProjetosBinding binding;
     @Override
@@ -25,25 +32,20 @@ public class ProjetosFragment extends Fragment implements View.OnClickListener {
         binding = FragmentProjetosBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
-        // Acessar o elemento raiz do layout usando rootView
 
-        TextView projeto = rootView.findViewById(R.id.tvTitulo);
-        TextView projeto1 = rootView.findViewById(R.id.tvTitulo1);
-        TextView projeto2 = rootView.findViewById(R.id.tvTitulo2);
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ProjetoController db = new ProjetoController(getContext());
+        List<Projeto> listaProjetos = db.listarTodosProjetos();
+        ProjetoCompletoAdapter projetoCompletoAdapter = new ProjetoCompletoAdapter(listaProjetos, getContext());
+        recyclerView.setAdapter(projetoCompletoAdapter);
 
-        projeto.setOnClickListener(this);
-        projeto1.setOnClickListener(this);
-        projeto2.setOnClickListener(this);
+        binding.tvFiltro.setText(Integer.toString(listaProjetos.size()));
+
         return rootView;
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.tvTitulo || v.getId() == R.id.tvTitulo1 || v.getId() == R.id.tvTitulo2){
-            Intent projeto = new Intent(getContext(), ProjetoActivity.class);
-            startActivity(projeto);
-        }
-    }
+
 
     @Override
     public void onDestroyView() {

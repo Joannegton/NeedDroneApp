@@ -1,4 +1,4 @@
-package com.example.needdroneapp.ui.piloto;
+package com.example.needdroneapp.models;
 
 public class Drone {
     private String nome;

@@ -3,10 +3,13 @@ package com.example.needdroneapp.ui.piloto;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.databinding.ActivityPropostaPilotoBinding;
+import com.example.needdroneapp.models.Drone;
+import com.example.needdroneapp.models.DroneAdapter;
 
 import java.util.List;
 
@@ -20,6 +23,7 @@ public class PropostaPilotoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         RecyclerView recyclerView = binding.recyclerView;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DroneController db = new DroneController(getApplicationContext());
         List<Drone> droneList = db.pegarTodosDrones();
         DroneAdapter droneAdapter = new DroneAdapter(droneList);

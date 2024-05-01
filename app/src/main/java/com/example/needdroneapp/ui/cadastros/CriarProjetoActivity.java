@@ -2,10 +2,12 @@ package com.example.needdroneapp.ui.cadastros;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -20,12 +22,16 @@ import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.databinding.ActivityCriarProjetoBinding;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class CriarProjetoActivity extends AppCompatActivity {
 
     private ActivityCriarProjetoBinding binding;
 
     private Button btnSelectDateTime;
+    private String dataHora;
+    int clienteId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,22 +41,20 @@ public class CriarProjetoActivity extends AppCompatActivity {
 
         btnSelectDateTime = findViewById(R.id.btnSelectDateTime);
         btnSelectDateTime.setOnClickListener(v -> showDateTimePickerDialog());
-
         binding.btnEnviar.setOnClickListener(v -> enviarProjeto());
+
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        clienteId = prefs.getInt("userId", 0);
 
     }
 
     private void enviarProjeto() {
         String titulo = binding.titulo.getText().toString();
-        String descricao = binding.descricao.getText().toString();
-        String tipoDronee = binding.spTipo.toString();
-        String imgQualidade = binding.spQualidadeImagem.toString();
-        String areaCobertura = binding.spAreaCobertura.toString();
-        String dataHora = binding.editTextDate.toString();
-        String sobreposicaoImg = binding.cBImgSobreposicao.toString();
-
+        String descricao = Objects.requireNonNull(binding.descricao.getText()).toString();
+        String rua = binding.editTextRua.getText().toString();
+        String cidadeEstado = binding.editTextCidadeEstado.getText().toString();
         ProjetoController db = new ProjetoController(getBaseContext());
-        String resultado = db.insereDados(titulo, descricao, tipoDronee, imgQualidade, areaCobertura, dataHora, sobreposicaoImg, "Ativo", "1", "1", "1", "1", "1", "1", "1");
+        String resultado = db.insereDados(titulo, descricao, dataHora, rua, cidadeEstado, clienteId, null);
         Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
 
     }
@@ -63,32 +67,18 @@ public class CriarProjetoActivity extends AppCompatActivity {
         int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
-        // Cria um DatePickerDialog para a seleção da data
         DatePickerDialog datePickerDialog = new DatePickerDialog(CriarProjetoActivity.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        // Ação a ser executada quando a data é selecionada
-                        // Aqui você pode fazer algo com a data selecionada
-                        Toast.makeText(CriarProjetoActivity.this, "Data selecionada: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year, Toast.LENGTH_SHORT).show();
-
-                        // Cria um TimePickerDialog para a seleção da hora
-                        TimePickerDialog timePickerDialog = new TimePickerDialog(CriarProjetoActivity.this,
-                                new TimePickerDialog.OnTimeSetListener() {
-                                    @Override
-                                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                        // Ação a ser executada quando a hora é selecionada
-                                        // Aqui você pode fazer algo com a hora selecionada
-                                        Toast.makeText(CriarProjetoActivity.this, "Hora selecionada: " + hourOfDay + ":" + minute, Toast.LENGTH_SHORT).show();
-                                    }
-                                }, hourOfDay, minute, true); // true para usar o formato de 24 horas
-
-                        timePickerDialog.show();
-                    }
+                (view, year1, monthOfYear, dayOfMonth1) -> {
+                    String data = dayOfMonth1 + "/" + (monthOfYear + 1) + "/" + year1;
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(CriarProjetoActivity.this,
+                            (view1, hourOfDay1, minute1) -> {
+                                String hora = hourOfDay1 + ":" + minute1;
+                                dataHora = data + " " + hora; // Atualiza a variável dataHora
+                                binding.TextViewDate.setText("Data e hora selecionadas: " + dataHora); // Atualiza o texto do TextView
+                            }, hourOfDay, minute, true);
+                    timePickerDialog.show();
                 }, year, month, dayOfMonth);
-
         datePickerDialog.show();
     }
+}
 
-
-};

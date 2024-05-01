@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_drones"
-    android:layout_width="350dp"
+    android:layout_width="360dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
     android:background="@drawable/container_border"
-    android:padding="10dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="5dp"
+    android:layout_gravity="center">
 
 
     <ImageView
@@ -21,6 +20,17 @@
         android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btEditarDrone"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:backgroundTint="@color/blueFirst"
+        android:text="Editar"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/droneFoto"
+        app:layout_constraintStart_toStartOf="@+id/droneFoto"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -67,12 +77,12 @@
     </LinearLayout>
 
     <LinearLayout
-    android:id="@+id/linearLayout2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
     <TextView
             android:id="@+id/droneTipo"

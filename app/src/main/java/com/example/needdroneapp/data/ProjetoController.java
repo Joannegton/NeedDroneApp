@@ -1,8 +1,15 @@
 package com.example.needdroneapp.data;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.needdroneapp.models.Projeto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjetoController {
     private SQLiteDatabase db;
@@ -15,19 +22,11 @@ public class ProjetoController {
     public String insereDados(
             String titulo,
             String descricao,
-            String tipoDrone,
-            String imgQualidade,
-            String imgSobreposicao,
-            String cobertArea,
             String dataEvento,
-            String localizacao,
-            String valor,
-            String status,
-            String clienteId,
-            String clientNome,
-            String clienteAvaliacao,
-            String pilotoId,
-            String pilotoNome
+            String rua,
+            String cidadeEstado,
+            Integer clienteId,
+            Integer pilotoId
     ){
         ContentValues valores;
         long resultado;
@@ -36,19 +35,11 @@ public class ProjetoController {
         valores = new ContentValues();
         valores.put("titulo", titulo);
         valores.put("descricao", descricao);
-        valores.put("tipoDrone", tipoDrone);
-        valores.put("imgQualidade", imgQualidade);
-        valores.put("imgSobreposicao", imgSobreposicao);
-        valores.put("cobertArea", cobertArea);
         valores.put("dataEvento", dataEvento);
-        valores.put("localizacao", localizacao);
-        valores.put("status", status);
+        valores.put("rua", rua);
+        valores.put("cidadeEstado", cidadeEstado);
         valores.put("clienteId", clienteId);
-        valores.put("clientNome", clientNome);
-        valores.put("clienteAvaliacao", clienteAvaliacao);
         valores.put("pilotoId", pilotoId);
-        valores.put("pilotoNome", pilotoNome);
-
 
         resultado = db.insert("projeto", null, valores);
         db.close();
@@ -58,5 +49,99 @@ public class ProjetoController {
         } else {
             return "Registro inserido com sucesso!";
         }
+    }
+
+    //ATUALIZAÇÕES
+    public String atualizarProjeto(
+            Integer idProjeto,
+            String titulo,
+            String descricao,
+            String dataEvento,
+            String rua,
+            String cidadeEstado
+    ) {
+
+        db = banco.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("titulo", titulo);
+        valores.put("descricao", descricao);
+        valores.put("dataEvento", dataEvento);
+        valores.put("rua", rua);
+        valores.put("cidadeEstado", cidadeEstado);
+
+        String where = "id = " + idProjeto;
+        String msg = "";
+        int linha = db.update("projeto", valores, where, null);
+        if (linha == -1) {
+            msg = "Erro ao alterar os dados!";
+        } else {
+            msg = "Dados alterados com sucesso!";
+        }
+
+        db.close();
+        return msg;
+    }
+
+    public boolean projetoExiste(Integer idProjeto) {
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.query("projeto", new String[]{"id"}, "id = ?", new String[]{String.valueOf(idProjeto)}, null, null, null);
+        boolean existe = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return existe;
+    }
+    public String atualizarStatusProjeto(Integer idProjeto, String status) {
+        db = banco.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("status", status);
+
+        String where = "id = " + idProjeto;
+        String msg = "";
+        int linha = db.update("projeto", valores, where, null);
+        if (linha == -1) {
+            msg = "Erro ao alterar os dados!";
+        } else {
+            msg = "Dados alterados com sucesso!";
+        }
+
+        db.close();
+        return msg;
+    }
+
+    //LISTAGENS
+    public List<Projeto> listarTodosProjetos(){
+        List<Projeto> projetoList = new ArrayList<>();
+
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM projeto", null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Projeto projeto = new Projeto();
+                projeto.setProjetoId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+                projeto.setTitulo(cursor.getString(cursor.getColumnIndexOrThrow("titulo")));
+                projeto.setDescricao(cursor.getString(cursor.getColumnIndexOrThrow("descricao")));
+                projeto.setDataEvento(cursor.getString(cursor.getColumnIndexOrThrow("dataEvento")));
+                projeto.setRua(cursor.getString(cursor.getColumnIndexOrThrow("rua")));
+                projeto.setCidadeEstado(cursor.getString(cursor.getColumnIndexOrThrow("cidadeEstado")));
+                projeto.setStatus(cursor.getString(cursor.getColumnIndexOrThrow("status")));
+                projeto.setClienteId(cursor.getInt(cursor.getColumnIndexOrThrow("clienteId")));
+
+                projetoList.add(projeto);
+            } while (cursor.moveToNext());
+
+        }
+        db.close();
+        return projetoList;
+    }
+
+    public Cursor buscarProjeto(Integer projetoId) {
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM projeto WHERE id = " + projetoId, null);
+
+        cursor.moveToFirst();
+        db.close();
+        return cursor;
+
     }
 }

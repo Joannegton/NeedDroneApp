@@ -11,28 +11,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.data.PilotoController;
+import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.data.PropostaController;
 import com.example.needdroneapp.databinding.FragmentDashboardBinding;
+import com.example.needdroneapp.models.Projeto;
+import com.example.needdroneapp.models.ProjetoAdapter;
 import com.example.needdroneapp.ui.PerfilActivity;
 import com.example.needdroneapp.ui.cadastros.CriarDroneActivity;
 import com.example.needdroneapp.ui.cadastros.CriarProjetoActivity;
 import com.example.needdroneapp.ui.edicao.EditClienteActivity;
 import com.example.needdroneapp.ui.edicao.EditDroneActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
-import com.example.needdroneapp.ui.piloto.Drone;
-import com.example.needdroneapp.ui.piloto.DroneAdapter;
+import com.example.needdroneapp.models.Drone;
+import com.example.needdroneapp.models.DroneAdapter;
 import com.example.needdroneapp.ui.piloto.ProjetoActivity;
 
 import java.util.List;
@@ -71,8 +75,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             // Se o usuário é um cliente, esconde o container do fragmento
             container_fragment.setVisibility(View.GONE);
 
-            Button btVerDetalhes = root.findViewById(R.id.btnDetalhes);
-            btVerDetalhes.setOnClickListener(this);
             TextView linkAdcProjeto = root.findViewById(R.id.linkAdcProjeto);
             linkAdcProjeto.setOnClickListener(this);
 
@@ -86,6 +88,15 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             TextView txtEmail = root.findViewById(R.id.tvAvaliacao);
             txtNome.setText(nome);
             txtEmail.setText("Avaliação: " + avaliacao + " estrelas");
+
+            //adicionar lista de projetos que o cliente tem cadastrado
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
+            RecyclerView listViewListaProjetos = root.findViewById(R.id.listaProjetos);
+            listViewListaProjetos.setLayoutManager(layoutManager);
+            ProjetoController db = new ProjetoController(getContext());
+            List<Projeto> listaProjetos = db.listarTodosProjetos();
+            ProjetoAdapter projetoAdapter = new ProjetoAdapter(listaProjetos, getContext());
+            listViewListaProjetos.setAdapter(projetoAdapter);
 
         } else if (userType.equals("piloto")) {
             // Se o usuário é um piloto, esconde o container da proposta
@@ -107,17 +118,20 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             TextView txtEmail = root.findViewById(R.id.tvAvaliacao);
             txtNome.setText(nome);
             txtEmail.setText("Avaliação: " + avaliacao + " estrelas");
+
+            //adicionar lista de drones que o piloto tem cadastrado
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
+            RecyclerView listViewListaDrones = root.findViewById(R.id.listaDrones);
+            listViewListaDrones.setLayoutManager(layoutManager);
+            DroneController db = new DroneController(getContext());
+            List<Drone> listaDrones = db.pegarTodosDrones();
+            DroneAdapter droneAdapter = new DroneAdapter(listaDrones);
+            listViewListaDrones.setAdapter(droneAdapter);
         } else {
             // Se o usuário não é nem cliente nem piloto, esconde ambos os containers
             container_fragment.setVisibility(View.GONE);
             container_projeto.setVisibility(View.GONE);
         }
-
-        RecyclerView listViewListaDrones = root.findViewById(R.id.listaDrones);
-        DroneController db = new DroneController(getContext());
-        List<Drone> listaDrones = db.pegarTodosDrones();
-        DroneAdapter droneAdapter = new DroneAdapter(listaDrones);
-        listViewListaDrones.setAdapter(droneAdapter);
 
 
 
@@ -158,9 +172,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         } else if (v.getId() == R.id.linkAdcProjeto) {
             Intent adcProjeto = new Intent(getContext(), CriarProjetoActivity.class);
             startActivity(adcProjeto);
-        } else if (v.getId() == R.id.btnDetalhes) {
-            Intent detalhesProjeto = new Intent(getContext(), ProjetoActivity.class);
-            startActivity(detalhesProjeto);
         }
     }
 

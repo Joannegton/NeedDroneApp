@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/container_border"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingVertical="5dp"
+        tools:layout_editor_absoluteY="10dp">
+
+        <TextView
+            android:id="@+id/projeto_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:shadowColor="#201B1B"
+            android:text="Documentário sobre a Vida Selvagem Amazônica"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/projeto_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:shadowColor="#201B1B"
+            android:text="Um documentário fascinante que explora a diversidade da vida selvagem na Amazônia, destacando a importância da conservação ambiental e da preservação das espécies ameaçadas."
+            android:textColor="@color/black"
+            android:textSize="@dimen/texts" />
+
+        <Button
+            android:id="@+id/btnDetalhes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blueFirst"
+            android:text="Ver detalhes"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texts" />
+
+
+    </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.needdroneapp.ui.piloto;
+package com.example.needdroneapp.models;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
-import com.example.needdroneapp.ui.piloto.Drone;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.DroneViewHol
     @NonNull
     @Override
     public DroneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.droneitem, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemdrone, parent, false);
         return new DroneViewHolder(view);
     }
 
@@ -37,14 +36,14 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.DroneViewHol
         Drone drone = droneList.get(position);
         //holder.imageViewDroneFoto.setImageBitmap(drone.getFoto());
         holder.textViewNome.setText(drone.getNome());
-        holder.textViewAutonomia.setText("Autonomia: até " + drone.getAutonomia() + " minutos.");
+        holder.textViewAutonomia.setText("Autonomia: " + drone.getAutonomia() + " minutos.");
         holder.textViewAreaCobertura.setText("Área de cobertura: até " + drone.getAreaCobertura() + "m².");
         holder.textViewdroneSobreposicao.setText(drone.getImgSobreposicao());
         holder.textViewdroneQualidade.setText(drone.getImgQualidade());
         holder.textViewDroneTipo.setText(drone.getTipoDrone());
 
         if (selectedItem == position) {
-            holder.itemView.setBackgroundColor(Color.parseColor("#FB2E00"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#dcdcdc"));
         } else {
             holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }

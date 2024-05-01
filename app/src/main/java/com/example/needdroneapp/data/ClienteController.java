@@ -1,5 +1,6 @@
 package com.example.needdroneapp.data;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -73,21 +74,30 @@ public class ClienteController implements UsuarioController {
         return cursor;
     }
 
+    public String pegarNomePorId(int id){
+        Cursor cursor;
+        String nome = null;
+        db = banco.getReadableDatabase();
+        cursor = db.rawQuery("SELECT nome FROM clientes WHERE id = " + id, null);
+        if (cursor.moveToFirst()){
+            nome = cursor.getString(0);
+
+        }
+        db.close();
+        return nome;
+    }
+
     public Cursor carregaDadosLogin(String email, String password) {
         Cursor cursor;
         String[] campos = { "id", "email", "password"};
 
-        // Corrigindo a cláusula where para adicionar o critério de seleção do email e senha
         String where = "email=? AND password=?";
         String[] whereArgs = { email, password };
 
         db = banco.getReadableDatabase();
         cursor = db.query("clientes", campos, where, whereArgs, null, null, null);
 
-        // Não é necessário verificar se o cursor é nulo antes de chamar moveToFirst
-        if (cursor != null){
-            cursor.moveToFirst();
-        }
+        cursor.moveToFirst();
 
         return cursor;
     }

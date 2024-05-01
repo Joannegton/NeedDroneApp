@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.needdroneapp.ui.piloto.Drone;
+import com.example.needdroneapp.models.Drone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,19 +73,21 @@ public class DroneController {
         if (cursor.moveToFirst()) {
             do {
                 Drone drone = new Drone();
-                drone.setNome(String.valueOf(cursor.getColumnIndexOrThrow("nome")));
-                drone.setTipoDrone(String.valueOf(cursor.getColumnIndexOrThrow("tipoDrone")));
-                drone.setImgQualidade(String.valueOf(cursor.getColumnIndexOrThrow("imgQualidade")));
-                drone.setAutonomia(String.valueOf(cursor.getColumnIndexOrThrow("autonomia")));
-                drone.setAreaCobertura(String.valueOf(cursor.getColumnIndexOrThrow("areaCobertura")));
-                drone.setStatus(String.valueOf(cursor.getColumnIndexOrThrow("status")));
-                drone.setImgSobreposicao(String.valueOf(cursor.getColumnIndexOrThrow("imgSobreposicao")));
-                drone.setFoto(String.valueOf(cursor.getColumnIndexOrThrow("foto")));
-                drone.setPilotoId(String.valueOf(cursor.getColumnIndexOrThrow("pilotoId")));
+                drone.setNome(cursor.getString(cursor.getColumnIndexOrThrow("nome")));
+                drone.setTipoDrone(cursor.getString(cursor.getColumnIndexOrThrow("tipoDrone")));
+                drone.setImgQualidade(cursor.getString(cursor.getColumnIndexOrThrow("imgQualidade")));
+                drone.setAutonomia(cursor.getString(cursor.getColumnIndexOrThrow("autonomia")));
+                drone.setAreaCobertura(cursor.getString(cursor.getColumnIndexOrThrow("areaCobertura")));
+                drone.setStatus(cursor.getString(cursor.getColumnIndexOrThrow("status")));
+                drone.setImgSobreposicao(cursor.getString(cursor.getColumnIndexOrThrow("imgSobreposicao")));
+                drone.setFoto(cursor.getString(cursor.getColumnIndexOrThrow("foto")));
+                drone.setPilotoId(cursor.getString(cursor.getColumnIndexOrThrow("pilotoId")));
 
                 droneList.add(drone);
             } while (cursor.moveToNext());
         }
+
+
 
         cursor.close();
         return droneList;

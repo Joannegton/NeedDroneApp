@@ -10,6 +10,12 @@
     android:background="#EDEDED">
     <!-- #6792C7, #0E0E2C, #D9D9D9 -->
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/container_login"
+    android:layout_marginTop="16dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,12 +25,6 @@
         android:text="Detalhes do Projeto"
         android:textColor="@color/white"
         android:textSize="25sp" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/container_login"
-    android:layout_marginTop="16dp">
     <TextView
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
@@ -38,11 +38,14 @@
         android:id="@+id/titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
+        android:padding="5dp"
         android:layout_marginHorizontal="10dp"
         android:ems="10"
         android:inputType="text"
-        android:background="@drawable/container_edit_text"/>
+        android:textSize="@dimen/texts"
+        android:background="@drawable/container_edit_text"
+        android:hint="@string/filmagem_de_casamento"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="10dp"
@@ -57,91 +60,74 @@
             android:id="@+id/descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#222" />
+            android:background="@drawable/container_edit_text"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
     <TextView
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
         android:textColor="#222"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tipo de Drone: ... "
+        android:text="Rua:"
         android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spTipo"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
-
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Qualidade da Imagem: ..."
-        android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spQualidadeImagem"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
-
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Área de Cobertura Desejada: ..."
-        android:textSize="16sp"/>
-    <Spinner
-        android:id="@+id/spAreaCobertura"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/opcoes"
-        android:textSize="@dimen/texts"/>
 
     <EditText
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:id="@+id/editTextDate"
+        android:id="@+id/editTextRua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:layout_marginHorizontal="10dp"
         android:ems="10"
-        android:text="Prazo de Entrega:"
-        android:inputType="date" />
+        android:inputType="text"
+        android:textSize="@dimen/texts"
+        android:background="@drawable/container_edit_text"
+        android:hint="Av. dos ilhados, 10052"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="#222"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cidade - Estado:"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/editTextCidadeEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:layout_marginHorizontal="10dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="@dimen/texts"
+        android:background="@drawable/container_edit_text"
+        android:hint="Mairiporã - SP"/>
+
 
     <Button
         android:id="@+id/btnSelectDateTime"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Selecionar Data e Hora"
         android:layout_gravity="center"
         android:backgroundTint="@color/blueFirst"/>
-    <CheckBox
-        android:layout_marginTop="10dp"
+    <TextView
         android:layout_marginHorizontal="10dp"
-        android:textSize="16sp"
-        android:id="@+id/cBImgSobreposicao"
+        android:id="@+id/TextViewDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
-        android:text="Sobreposição de imagem" />
-</LinearLayout>
+        android:ems="10"
+        android:textSize="@dimen/texts"
+        android:textColor="@color/black"
+        android:text="Prazo de Entrega:"
+        android:inputType="date" />
+
+
 
     <Button
         android:id="@+id/btnEnviar"
@@ -153,5 +139,9 @@
         android:textSize="16sp"
         android:layout_marginTop="15dp"
         android:textColor="@color/white"/>
+
+</LinearLayout>
+
+
 
 </LinearLayout>

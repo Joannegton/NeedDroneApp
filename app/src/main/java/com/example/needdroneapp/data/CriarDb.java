@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos de SQLiteOpenHelper
     private static final String NOME_DB = "needDroneDB.db";
-    private static final int VERSAO = 7;
+    private static final int VERSAO = 9;
 
     public CriarDb(Context context){
         super(context, NOME_DB, null, VERSAO);
@@ -79,24 +79,14 @@ public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos 
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "titulo TEXT,"
                 + "descricao TEXT,"
-                + "tipoDrone TEXT,"
-                + "imgQualidade TEXT CHECK(imgQualidade IN ('SD', 'HD', 'Full HD', 'Quad HD', '4K')),"
-                + "imgSobreposicao INTEGER DEFAULT 0 CHECK(imgSobreposicao IN (0, 1)),"
-                + "cobertArea TEXT CHECK(cobertArea IN ('100', '200', '400', '500+')),"
-                + "dataEvento DATE,"
-                + "localizacao TEXT,"
-                + "valor REAL,"
-                + "status TEXT DEFAULT 'Ativo' CHECK(status IN ('Ativo', 'Manutencao', 'Inativo')),"
+                + "dataEvento TEXT,"
+                + "rua TEXT,"
+                + "cidadeEstado TEXT,"
+                + "status TEXT DEFAULT 'Pendente' CHECK(status IN ('Andamento', 'Cancelado', 'Finalizado', 'Pendente')),"
                 + "clienteId INTEGER,"
-                + "clientNome TEXT,"
-                + "clienteAvaliacao REAL,"
                 + "pilotoId INTEGER,"
-                + "pilotoNome TEXT,"
                 + "FOREIGN KEY(clienteId) REFERENCES cliente(id),"
-                + "FOREIGN KEY(clientNome) REFERENCES cliente(nome),"
-                + "FOREIGN KEY(clienteAvaliacao) REFERENCES cliente(avaliacao),"
-                + "FOREIGN KEY(pilotoId) REFERENCES piloto(id),"
-                + "FOREIGN KEY(pilotoNome) REFERENCES piloto(nome));";
+                + "FOREIGN KEY(pilotoId) REFERENCES piloto(id));";
 
         String proposta = "CREATE TABLE proposta ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
