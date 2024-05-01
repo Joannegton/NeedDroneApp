@@ -125,7 +125,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             listViewListaDrones.setLayoutManager(layoutManager);
             DroneController db = new DroneController(getContext());
             List<Drone> listaDrones = db.pegarTodosDrones();
-            DroneAdapter droneAdapter = new DroneAdapter(listaDrones);
+            DroneAdapter droneAdapter = new DroneAdapter(listaDrones, false);
             listViewListaDrones.setAdapter(droneAdapter);
         } else {
             // Se o usuário não é nem cliente nem piloto, esconde ambos os containers

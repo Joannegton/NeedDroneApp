@@ -41,7 +41,7 @@
             android:id="@+id/spStatusProjeto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/opcoes" />
+            android:entries="@array/status" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

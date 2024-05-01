@@ -64,6 +64,62 @@ public class DroneController {
     }
 
 
+
+
+    public void atualizarDrone(
+            int idDrone,
+            String nome,
+            String tipo,
+            String qualidadeImagem,
+            String autonomia,
+            String areaCobertura,
+            String status,
+            Boolean imgSobreposicao,
+            String foto
+    ) {
+        db = banco.getWritableDatabase(); //abre o banco de dados
+        ContentValues valores = new ContentValues();
+        valores.put("nome", nome);
+        valores.put("tipoDrone", tipo);
+        valores.put("imgQualidade", qualidadeImagem);
+        valores.put("autonomia", autonomia);
+        valores.put("areaCobertura", areaCobertura);
+        valores.put("status", status);
+        valores.put("imgSobreposicao", imgSobreposicao);
+        valores.put("foto", foto);
+
+        db.update("drones", valores, "id = ?", new String[]{String.valueOf(idDrone)});
+        db.close();
+    }
+
+    public void atualizarStatus(int idDrone, String status) {
+        db = banco.getWritableDatabase(); //abre o banco de dados
+        ContentValues valores = new ContentValues();
+        valores.put("status", status);
+
+        db.update("drones", valores, "id = ?", new String[]{String.valueOf(idDrone)});
+        db.close();
+    }
+
+    public void excluirDrone(int idDrone) {
+        try {
+            db = banco.getWritableDatabase(); //abre o banco de dados
+            db.delete("drones", "id = ?", new String[]{String.valueOf(idDrone)});
+        } catch (Exception e) {
+            Log.e("DB_ERROR", "Erro ao excluir drone", e);
+        } finally {
+            if (db != null) {
+                db.close();
+            }
+        }
+    }
+    public Cursor carregarDadosDrone(int idDrone) {
+        db = banco.getReadableDatabase(); //abre o banco de dados
+        Cursor cursor = db.rawQuery("SELECT * FROM drones WHERE id = ?", new String[]{String.valueOf(idDrone)});
+        cursor.moveToFirst();
+        return cursor;
+    }
+
     public List<Drone> pegarTodosDrones(){
         List<Drone> droneList = new ArrayList<>();
 
@@ -73,15 +129,20 @@ public class DroneController {
         if (cursor.moveToFirst()) {
             do {
                 Drone drone = new Drone();
+                drone.setDroneId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
                 drone.setNome(cursor.getString(cursor.getColumnIndexOrThrow("nome")));
                 drone.setTipoDrone(cursor.getString(cursor.getColumnIndexOrThrow("tipoDrone")));
                 drone.setImgQualidade(cursor.getString(cursor.getColumnIndexOrThrow("imgQualidade")));
                 drone.setAutonomia(cursor.getString(cursor.getColumnIndexOrThrow("autonomia")));
                 drone.setAreaCobertura(cursor.getString(cursor.getColumnIndexOrThrow("areaCobertura")));
                 drone.setStatus(cursor.getString(cursor.getColumnIndexOrThrow("status")));
-                drone.setImgSobreposicao(cursor.getString(cursor.getColumnIndexOrThrow("imgSobreposicao")));
-                drone.setFoto(cursor.getString(cursor.getColumnIndexOrThrow("foto")));
-                drone.setPilotoId(cursor.getString(cursor.getColumnIndexOrThrow("pilotoId")));
+
+                int imgSobreposicaoInt = cursor.getInt(cursor.getColumnIndexOrThrow("imgSobreposicao"));
+                boolean imgSobreposicao = imgSobreposicaoInt != 0;
+                drone.setImgSobreposicao(imgSobreposicao);
+                //drone.setFoto(cursor.getString(cursor.getColumnIndexOrThrow("foto")));
+
+                drone.setPilotoId(cursor.getInt(cursor.getColumnIndexOrThrow("pilotoId")));
 
                 droneList.add(drone);
             } while (cursor.moveToNext());

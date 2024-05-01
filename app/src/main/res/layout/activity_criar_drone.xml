@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.cadastros.CriarDroneActivity"
-    android:padding="10dp"
-    android:background="#EDEDED">
+    tools:context=".ui.cadastros.CriarDroneActivity">
     <!-- #6792C7, #0E0E2C, #D9D9D9 -->
 
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="30dp"
     android:background="@drawable/container_login"
-    android:layout_marginTop="16dp">
+    android:backgroundTint="@color/gray"
+    android:orientation="vertical"
+    android:padding="16dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,7 +80,8 @@
                 android:layout_height="wrap_content"
                 android:entries="@array/tipoDrone"
                 android:textSize="@dimen/texts"
-                android:padding="10dp"/>
+                android:background="@drawable/container_border"
+                android:padding="5dp"/>
 
         </LinearLayout>
 
@@ -106,12 +109,12 @@
                 android:layout_marginTop="10dp"
                 android:entries="@array/autonomia"
                 android:textColor="@color/black"
-                android:padding="10dp"
+                android:background="@drawable/container_border"
+                android:padding="5dp"
                 android:textSize="@dimen/texts" />
 
         </LinearLayout>
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -138,7 +141,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="10dp"
                 android:textColor="@color/black"
-                android:padding="10dp"
+                android:background="@drawable/container_border"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/areaCobertura"
@@ -157,13 +161,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Qualidade de Imagem:"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="16sp"/>
             <Spinner
                 android:id="@+id/spQualidadeImagem"
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="10dp"
                 android:textColor="@color/black"
-                android:padding="10dp"
+                android:background="@drawable/container_border"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/qualidadeDrone"

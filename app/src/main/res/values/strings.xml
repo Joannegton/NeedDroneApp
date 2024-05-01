@@ -51,6 +51,7 @@
     </string-array>
 
     <string-array name="qualidadeDrone">
+        <item>Selecione</item>
         <item>SD</item>
         <item>HD</item>
         <item>Full HD</item>
@@ -59,6 +60,7 @@
     </string-array>
 
     <string-array name="autonomia">
+        <item>Selecione</item>
         <item>até 60 min</item>
         <item>entre 61 e 90 min</item>
         <item>entre 91 e 120 min</item>
@@ -66,18 +68,14 @@
     </string-array>
 
     <string-array name="areaCobertura">
+        <item>Selecione</item>
         <item>até 100m²</item>
         <item>até 200m²</item>
         <item>até 400m²</item>
-        <item>500m² +</item>
+        <item>500m²+</item>
     </string-array>
 
     <string-array name="status">
-        <item>Ativo</item>
-        <item>Manutenção</item>
-        <item>Inativo</item>
-    </string-array>
-    <string-array name="opcoes">
         <item>Ativo</item>
         <item>Manutenção</item>
         <item>Inativo</item>

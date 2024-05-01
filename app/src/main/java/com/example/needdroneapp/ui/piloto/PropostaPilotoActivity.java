@@ -26,7 +26,7 @@ public class PropostaPilotoActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DroneController db = new DroneController(getApplicationContext());
         List<Drone> droneList = db.pegarTodosDrones();
-        DroneAdapter droneAdapter = new DroneAdapter(droneList);
+        DroneAdapter droneAdapter = new DroneAdapter(droneList, true);
         recyclerView.setAdapter(droneAdapter);
 
         binding.btnEnviar.setOnClickListener(v -> enviarProposta());

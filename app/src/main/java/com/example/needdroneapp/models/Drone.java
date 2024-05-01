@@ -1,21 +1,30 @@
 package com.example.needdroneapp.models;
 
 public class Drone {
+    private Integer droneId;
     private String nome;
     private String tipoDrone;
     private String imgQualidade;
     private String autonomia;
     private String areaCobertura;
     private String status;
-    private String imgSobreposicao;
+    private Boolean imgSobreposicao;
     private String foto;
-    private String pilotoId;
+    private Integer pilotoId;
 
 
     // Add other drone properties...
 
     // Getters and setters
 
+
+    public int getDroneId() {
+        return droneId;
+    }
+
+    public void setDroneId(int id) {
+        this.droneId = id;
+    }
 
     public String getNome() {
         return nome;
@@ -65,11 +74,11 @@ public class Drone {
         this.status = status;
     }
 
-    public String getImgSobreposicao() {
+    public Boolean getImgSobreposicao() {
         return imgSobreposicao;
     }
 
-    public void setImgSobreposicao(String imgSobreposicao) {
+    public void setImgSobreposicao(Boolean imgSobreposicao) {
         this.imgSobreposicao = imgSobreposicao;
     }
 
@@ -81,11 +90,11 @@ public class Drone {
         this.foto = foto;
     }
 
-    public String getPilotoId() {
+    public Integer getPilotoId() {
         return pilotoId;
     }
 
-    public void setPilotoId(String pilotoId) {
+    public void setPilotoId(Integer pilotoId) {
         this.pilotoId = pilotoId;
     }
 }
