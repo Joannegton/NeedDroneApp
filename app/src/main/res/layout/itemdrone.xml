@@ -8,18 +8,19 @@
     android:layout_marginHorizontal="16dp"
     android:layout_marginTop="16dp"
     android:background="@drawable/container_border"
-    android:paddingVertical="10dp"
-    android:paddingHorizontal="10dp">
+    >
 
 
     <ImageView
         android:id="@+id/droneFoto"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btEditarDrone"
         android:layout_width="75dp"
@@ -30,29 +31,30 @@
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="@+id/droneFoto"
         app:layout_constraintStart_toStartOf="@+id/droneFoto"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/droneFoto" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/droneFoto"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <TextView
-        android:id="@+id/droneNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="nome drone"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
+            android:id="@+id/droneNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="nome drone"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/droneAutonomia"
@@ -76,15 +78,41 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="-40dp"
+        android:background="@drawable/container_status"
+        android:backgroundTint="@color/green"
+        android:gravity="center"
+        android:paddingHorizontal="5dp"
+        android:rotation="90"
+        android:text="Ativo"
+        android:textColor="@color/black"
+        android:textSize="@dimen/texts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btEditarDrone"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    <TextView
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
             android:id="@+id/droneTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,6 +127,11 @@
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             tools:ignore="MissingConstraints" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/droneQualidade"
@@ -116,11 +149,17 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             tools:ignore="MissingConstraints" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/droneSobreposicao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_weight="1"
             android:background="@drawable/container_edit_text"
             android:backgroundTint="@color/gray"
             android:paddingStart="3dp"
@@ -131,7 +170,13 @@
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/viewSobreposicao"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

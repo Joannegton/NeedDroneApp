@@ -78,6 +78,5 @@
     <string-array name="status">
         <item>Ativo</item>
         <item>Manutenção</item>
-        <item>Inativo</item>
     </string-array>
 </resources>

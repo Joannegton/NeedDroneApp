@@ -26,7 +26,7 @@ public class DroneController {
             String autonomia, //autonomia
             String areaCobertura, //area de cobertura
             String status, //status
-            String imgSobreposicao,
+            Boolean imgSobreposicao,
             String foto,
             Integer pilotoId
     ){

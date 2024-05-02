@@ -33,7 +33,7 @@ public class CriarDroneActivity extends AppCompatActivity {
 
     private void criarDrone() {
         String nome = binding.edtNome.getText().toString().trim(); //trim() remove espaços em branco
-        String imgSobreposicao = String.valueOf(binding.cBImgSobreposicao.isChecked());
+        Boolean imgSobreposicao = binding.cBImgSobreposicao.isChecked();
         //String foto = binding.edtDescricao.toString().trim();
         String tipo = valorSelecionado(R.id.spTipo);
         String qualidadeImagem = valorSelecionado(R.id.spQualidadeImagem);

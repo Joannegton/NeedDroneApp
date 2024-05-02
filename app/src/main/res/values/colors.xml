@@ -5,6 +5,8 @@
     <color name="blueSecond">#6629ABE2</color>
     <color name="darkBlue">#0E0E2C</color>
     <color name="gray">#D9D9D9 </color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="green">#38FF31</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
