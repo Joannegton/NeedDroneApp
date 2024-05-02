@@ -101,7 +101,7 @@ public class EditPilotoActivity extends AppCompatActivity {
         return directory.getAbsolutePath();
     }
 
-    private Bitmap getBitmapFromView(View view) {
+    public Bitmap getBitmapFromView(View view) {
         final Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(bitmap);
         final Drawable bgDrawable = view.getBackground();
@@ -136,7 +136,8 @@ public class EditPilotoActivity extends AppCompatActivity {
         String rua = binding.rua.getText().toString();
         String cidadeEstado = binding.cidadeEstado.getText().toString();
         String cep = binding.cep.getText().toString();
-        String foto = saveToInternalStorage(getBitmapFromView(binding.userImg));        String experiencia = binding.experiencia.getText().toString();
+        String foto = saveToInternalStorage(getBitmapFromView(binding.userImg));
+        String experiencia = binding.experiencia.getText().toString();
         String especializacao = binding.especializacao.getText().toString();
 
         String dataNasc = cursor.getString(cursor.getColumnIndexOrThrow("dataNasc"));
