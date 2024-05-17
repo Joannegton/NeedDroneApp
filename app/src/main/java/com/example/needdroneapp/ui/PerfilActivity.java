@@ -28,6 +28,7 @@ import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.PortfolioController;
 import com.example.needdroneapp.databinding.ActivityPerfilBinding;
+import com.example.needdroneapp.ui.edicao.EditClienteActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
 import com.example.needdroneapp.ui.piloto.ImagemTelaCheiaActivity;
 
@@ -61,10 +62,9 @@ public class PerfilActivity extends AppCompatActivity {
             if (dados.getCount() > 0){
                 dados.moveToFirst();
                 String fotoPath = dados.getString(dados.getColumnIndex("foto"));
+                Bitmap fotoBitmap = EditClienteActivity.loadImageFromStorage(fotoPath);
                 if (fotoPath != null) {
-                Glide.with(this)
-                        .load(new File(fotoPath)) // Carrega a imagem a partir do arquivo
-                        .into(binding.fotoPerfil); // Define a imagem no ImageView
+                    binding.fotoPerfil.setImageBitmap(fotoBitmap);
                 }else {
                     binding.fotoPerfil.setImageResource(android.R.drawable.ic_menu_camera);
                 }
@@ -156,8 +156,6 @@ public class PerfilActivity extends AppCompatActivity {
                     PortfolioController portfolioController = new PortfolioController(this);
                     portfolioController.insereDados(stringFoto, userId);
                 }
-
-
 
             } catch (IOException e) {
                 e.printStackTrace();
