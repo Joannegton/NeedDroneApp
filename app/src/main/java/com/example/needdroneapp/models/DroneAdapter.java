@@ -28,9 +28,18 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.DroneViewHol
     private boolean proposta;
     private int selectedItem = -1;
 
+    private RetornoDroneSelecionado selecao;
     public DroneAdapter(List<Drone> droneList, boolean proposta) {
         this.droneList = droneList;
         this.proposta = proposta;
+    }
+
+    public interface RetornoDroneSelecionado {
+        void droneSelecionado(int idDrone);
+    }
+
+    public void setSelecao(RetornoDroneSelecionado selecao) {
+        this.selecao = selecao;
     }
 
     @NonNull
@@ -81,6 +90,9 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.DroneViewHol
                 notifyItemChanged(selectedItem);
                 selectedItem = position;
                 notifyItemChanged(selectedItem);
+                if (selecao != null) {
+                    selecao.droneSelecionado(drone.getDroneId());
+                }
             });
         }else {
             holder.editarDrone.setOnClickListener(holder);

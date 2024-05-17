@@ -7,27 +7,26 @@
     tools:context=".ui.edicao.EditPilotoActivity">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/container_login"
+    android:backgroundTint="@color/gray"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@color/gray">
+    android:padding="16dp">
     <!-- #6792C7, #0E0E2C, #D9D9D9 -->
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/blueFirst"
-        android:gravity="center"
-        android:padding="15dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:text="Atualizar Perfil"
-        android:textColor="@color/white"
-        android:textSize="25sp" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/container_login"
-    android:layout_marginTop="16dp">
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    
     <ImageButton
         android:id="@+id/user_img"
         android:layout_marginTop="10dp"
@@ -45,15 +44,15 @@
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/blueFirst"
         android:textColor="@color/white"
-        android:textSize="12sp"
-        android:text="Selecione uma imagem" />
+        android:textSize="14sp"
+        android:text="Selecione imagem" />
 
     <TextView
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:text="Nome *"
         android:textSize="16sp"/>
 
@@ -62,14 +61,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
-        android:ems="10"
+        android:textColor="@color/black"
+        android:background="@drawable/container_edit_text"
+        android:padding="5dp"
         android:inputType="text" />
+    
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
         android:id="@+id/textField"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Biografia:">
@@ -89,7 +90,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:text="E-mail *"
         android:textSize="16sp"/>
 
@@ -110,7 +111,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Telefone *"
@@ -142,7 +143,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:text="Rua/N°"
         android:textSize="16sp"/>
 
@@ -162,7 +163,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cidade - Estado"
@@ -184,7 +185,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CEP"
@@ -207,8 +208,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Qualificação e Experiência"
-        android:textColor="#222"
-        android:background="#D9D9D9"
+        android:textColor="@color/black"
+        android:background="#F1F0F0"
         android:paddingHorizontal="30dp"
         android:textSize="25sp"
         android:layout_marginTop="15dp"/>
@@ -217,7 +218,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:text="Licença de Pilotagem"
         android:textSize="16sp"/>
@@ -237,7 +238,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tempo de experiência: ..."
@@ -246,7 +247,7 @@
         android:id="@+id/experiencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_marginHorizontal="10dp"
         android:ems="10"
         android:inputType="text"
@@ -256,7 +257,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Especialização"
@@ -266,11 +267,11 @@
         android:id="@+id/especializacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:layout_marginHorizontal="10dp"
         android:ems="10"
         android:inputType="text"
-        android:hint="foto aérea, inspe de infra, agricultura"/>
+        android:hint="Casamentos, Inspeção agricola"/>
 
     <Button
         android:id="@+id/btnAtualizar"
@@ -284,5 +285,4 @@
         android:textColor="@color/white"/>
 </LinearLayout>
 
-</LinearLayout>
 </ScrollView>

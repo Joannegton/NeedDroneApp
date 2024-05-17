@@ -12,14 +12,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Pair;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.PilotoController;
@@ -58,9 +61,10 @@ public class PerfilActivity extends AppCompatActivity {
             if (dados.getCount() > 0){
                 dados.moveToFirst();
                 String fotoPath = dados.getString(dados.getColumnIndex("foto"));
-                Bitmap fotoBitmap = EditPilotoActivity.loadImageFromStorage(fotoPath);
-                if (fotoBitmap != null) {
-                    binding.fotoPerfil.setImageBitmap(fotoBitmap);
+                if (fotoPath != null) {
+                Glide.with(this)
+                        .load(new File(fotoPath)) // Carrega a imagem a partir do arquivo
+                        .into(binding.fotoPerfil); // Define a imagem no ImageView
                 }else {
                     binding.fotoPerfil.setImageResource(android.R.drawable.ic_menu_camera);
                 }
@@ -93,12 +97,6 @@ public class PerfilActivity extends AppCompatActivity {
                 binding.telefonePiloto.setText("Tel: " + dados.getString(dados.getColumnIndex("tel")));
             }
 
-
-            binding.nome.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 100);
-            });
-
             //Carregar imagens do portfolio
             PortfolioController portfolioController = new PortfolioController(this);
             List<String> portfolio = portfolioController.carregaImagemPorIdPiloto(userId);
@@ -119,8 +117,10 @@ public class PerfilActivity extends AppCompatActivity {
                         imageView.setLayoutParams(layoutParams);
 
                         binding.galeriaPortfolio.addView(imageView);
+
                         imageView.setOnClickListener(v -> {
-                            imagemTelaCheia(v, fotoPath);
+                            mostrarPopup(v, fotoPath);
+
                         });
 
                     }
@@ -140,6 +140,9 @@ public class PerfilActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        int userId = prefs.getInt("userId", 0);
+
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
             try {
@@ -147,12 +150,13 @@ public class PerfilActivity extends AppCompatActivity {
                 binding.portfolio1.setImageBitmap(bitmap);
 
                 //salvar no banco de dados
-                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                int userId = prefs.getInt("userId", 0);
                 EditPilotoActivity editPilotoActivity = new EditPilotoActivity();
-                String stringFoto = saveToInternalStorage(editPilotoActivity.getBitmapFromView(binding.portfolio1));
-                PortfolioController portfolioController = new PortfolioController(this);
-                portfolioController.insereDados(stringFoto, userId);
+                if (binding.portfolio1.isActivated()){
+                    String stringFoto = saveToInternalStorage(editPilotoActivity.getBitmapFromView(binding.portfolio1));
+                    PortfolioController portfolioController = new PortfolioController(this);
+                    portfolioController.insereDados(stringFoto, userId);
+                }
+
 
 
             } catch (IOException e) {
@@ -202,4 +206,34 @@ public class PerfilActivity extends AppCompatActivity {
         intent.putExtra("pathUrl", pathUrl);
         startActivity(intent);
     }
+
+    public void mostrarPopup(View view, String pathUrl){
+        PopupMenu popup = new PopupMenu(this, view);
+        popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.itemEditarImagem) {
+                    abrirGaleria();
+                    return true;
+                } else if (itemId == R.id.itemVerImagem) {
+                    imagemTelaCheia(view, pathUrl);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            private void abrirGaleria() {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 100);
+            }
+        });
+        popup.show();
+
+    }
+
 }

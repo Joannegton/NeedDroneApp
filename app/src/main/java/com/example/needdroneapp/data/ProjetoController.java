@@ -144,4 +144,23 @@ public class ProjetoController {
         return cursor;
 
     }
+
+    public Integer buscarClientePorProjeto(Integer projetoId) {
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT clienteId FROM projeto WHERE id = " + projetoId, null);
+        cursor.moveToFirst();
+        @SuppressLint("Range") Integer clienteId = cursor.getInt(cursor.getColumnIndex("clienteId"));
+        db.close();
+        return clienteId;
+
+    }
+    public Integer buscarPilotoPorProjeto(Integer projetoId) {
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT pilotoId FROM projeto WHERE id = " + projetoId, null);
+        cursor.moveToFirst();
+        @SuppressLint("Range") Integer pilotoId = cursor.getInt(cursor.getColumnIndex("pilotoId"));
+        db.close();
+        return pilotoId;
+
+    }
 }

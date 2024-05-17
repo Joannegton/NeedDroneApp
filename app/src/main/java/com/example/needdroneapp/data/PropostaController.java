@@ -15,17 +15,13 @@ public class PropostaController {
     }
 
     public String insereDados(
-            String projetoId,
-            String tituloProjeto,
-            String clienteId,
-            String clienteNome,
-            String pilotoId,
-            String pilotoNome,
-            String ofertaInicial,
-            String ofertaFinal,
+            Integer projetoId,
+            Integer clienteId,
+            Integer pilotoId,
+            Float ofertaInicial,
             String detalhesProposta,
             String status,
-            String droneId
+            Integer droneId
     ){
         ContentValues valores;
         long resultado;
@@ -33,13 +29,9 @@ public class PropostaController {
 
         valores = new ContentValues();
         valores.put("projetoId", projetoId);
-        valores.put("tituloProjeto", tituloProjeto);
         valores.put("clienteId", clienteId);
-        valores.put("clienteNome", clienteNome);
         valores.put("pilotoId", pilotoId);
-        valores.put("pilotoNome", pilotoNome);
         valores.put("ofertaInicial", ofertaInicial);
-        valores.put("ofertaFinal", ofertaFinal);
         valores.put("detalhesProposta", detalhesProposta);
         valores.put("status", status);
         valores.put("droneId", droneId);
@@ -57,7 +49,7 @@ public class PropostaController {
 
     public Cursor recuperarInfosIdProjeto(int idProjeto){
         Cursor dados;
-        String[] campos = {"tituloProjeto", "clienteId", "clienteNome", "pilotoId", "pilotoNome", "ofertaInicial", "detalhesProposta", "status", "droneId"};
+        String[] campos = {"tituloProjeto", "clienteId", "pilotoId", "ofertaInicial", "detalhesProposta", "status", "droneId"};
         String where = "projetoId= " + idProjeto;
         db = banco.getReadableDatabase();
         dados = db.query("proposta", campos, where, null, null, null, null);

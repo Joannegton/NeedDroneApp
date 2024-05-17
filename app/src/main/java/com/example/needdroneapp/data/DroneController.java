@@ -64,8 +64,6 @@ public class DroneController {
     }
 
 
-
-
     public void atualizarDrone(
             int idDrone,
             String nome,
@@ -113,6 +111,7 @@ public class DroneController {
             }
         }
     }
+
     public Cursor carregarDadosDrone(int idDrone) {
         db = banco.getReadableDatabase(); //abre o banco de dados
         Cursor cursor = db.rawQuery("SELECT * FROM drones WHERE id = ?", new String[]{String.valueOf(idDrone)});

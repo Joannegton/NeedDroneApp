@@ -79,4 +79,10 @@
         <item>Ativo</item>
         <item>Manutenção</item>
     </string-array>
+
+    <string-array name="statusProjeto">
+        <item>Andamento</item>
+        <item>Cancelado</item>
+        <item>Finalizado</item>
+    </string-array>
 </resources>
