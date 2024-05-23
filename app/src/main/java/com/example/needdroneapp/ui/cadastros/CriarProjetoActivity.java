@@ -56,6 +56,7 @@ public class CriarProjetoActivity extends AppCompatActivity {
         ProjetoController db = new ProjetoController(getBaseContext());
         String resultado = db.insereDados(titulo, descricao, dataHora, rua, cidadeEstado, clienteId, null);
         Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
+        finish();
 
     }
 

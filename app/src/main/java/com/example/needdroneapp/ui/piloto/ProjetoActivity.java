@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,19 +13,28 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.ComentarActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.ProjetoController;
+import com.example.needdroneapp.data.PropostaController;
 import com.example.needdroneapp.databinding.ActivityProjetoBinding;
 import com.example.needdroneapp.models.ProjetoViewModel;
+import com.example.needdroneapp.models.Proposta;
+import com.example.needdroneapp.models.PropostaAdapter;
 import com.example.needdroneapp.ui.ChatActivity;
 
-public class ProjetoActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.List;
+
+public class ProjetoActivity extends AppCompatActivity {
 
     private ActivityProjetoBinding binding;
     private ProjetoViewModel projetoViewModel;
+
+    private Integer clienteId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,7 @@ public class ProjetoActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onChanged(@Nullable String status) {
                 if ("Andamento".equals(status)) {
-                    binding.btAceitar.setVisibility(View.GONE);
+                   // binding.btAceitar.setVisibility(View.GONE);
                     // Atualize a interface do usuário conforme necessário
                 }
             }
@@ -47,65 +57,32 @@ public class ProjetoActivity extends AppCompatActivity implements View.OnClickLi
         String userType = preferences.getString("userType", "");
 
         Integer projetoId = getIntent().getIntExtra("projetoId", 0);
+
         informacoesProjeto(projetoId);
+        carregarPropostas(projetoId);
+
+
 
         if(userType.equals("piloto")){
             binding.btEnviarProposta.setVisibility(View.VISIBLE);
-            binding.btEnviarProposta.setOnClickListener(this);
+            binding.btEnviarProposta.setOnClickListener(v -> {
+                Intent intent = new Intent(this, PropostaPilotoActivity.class);
+                intent.putExtra("projetoId", projetoId);
+                intent.putExtra("clienteId", clienteId);
+                startActivity(intent);
+            });
         } else {
             binding.btEnviarProposta.setVisibility(View.GONE);
         }
 
-        binding.btRecusar.setOnClickListener(this);
-        binding.btAceitar.setOnClickListener(this);
-        binding.btMensagem.setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btEnviarProposta) {
-            Integer projetoId = getIntent().getIntExtra("projetoId", 0);
-            Intent enviarProposta = new Intent(ProjetoActivity.this, PropostaPilotoActivity.class);
-            enviarProposta.putExtra("projetoId", projetoId);
-            startActivity(enviarProposta);
-        }  else if (v.getId() == R.id.btAceitar) {
-            Integer projetoId = getIntent().getIntExtra("projetoId", 0);
-            ProjetoController projetoController = new ProjetoController(this);
-            if (projetoController.projetoExiste(projetoId)) {
-                projetoController.atualizarStatusProjeto(projetoId, "Andamento");
-                Toast.makeText(this, "Status atualizado com sucesso!", Toast.LENGTH_SHORT).show();
-                binding.btAceitar.setVisibility(View.GONE);
-            } else {
-                Toast.makeText(this, "Projeto não encontrado!", Toast.LENGTH_SHORT).show();
-            }
 
-        } else if (v.getId() == R.id.btRecusar) {
-            //Mudar a img, tirar todos os botões
-            Integer projetoId = getIntent().getIntExtra("projetoId", 0);
-            ProjetoController projetoController = new ProjetoController(this);
-            if(projetoController.projetoExiste(projetoId)){
-                projetoController.atualizarStatusProjeto(projetoId, "Cancelado");
-                Toast.makeText(this, "Recusado com sucesso!", Toast.LENGTH_SHORT).show();
 
-            } else{
-                Toast.makeText(this, "Projeto não encontrado!", Toast.LENGTH_SHORT).show();
 
-            }
-            binding.btAceitar.setVisibility(View.GONE);
-            binding.btRecusar.setVisibility(View.GONE);
-            binding.btMensagem.setVisibility(View.GONE);
 
-        } else if (v.getId() == R.id.btMensagem) {
-            Integer projetoId = getIntent().getIntExtra("projetoId", 0);
-            ProjetoController projetoController = new ProjetoController(this);
-            Integer clienteId = projetoController.buscarClientePorProjeto(projetoId);
-            Integer pilotoId = projetoController.buscarPilotoPorProjeto(projetoId);
 
-            Intent mensagem = new Intent(ProjetoActivity.this, ComentarActivity.class);
-            mensagem.putExtra("pilotoId", pilotoId);
-            mensagem.putExtra("clienteId", clienteId);
-            startActivity(mensagem);
-        }
+        // inserir as propostas enviadas pelo piloto
+
     }
 
     @SuppressLint("Range")
@@ -119,6 +96,7 @@ public class ProjetoActivity extends AppCompatActivity implements View.OnClickLi
                 dados.moveToFirst();
                 String rua = dados.getString(dados.getColumnIndex("rua"));
                 String cidadeEstado = dados.getString(dados.getColumnIndex("cidadeEstado"));
+                clienteId = dados.getInt(dados.getColumnIndex("clienteId"));
 
                 binding.titulo.setText(dados.getString(dados.getColumnIndex("titulo")));
                 binding.descricao.setText(dados.getString(dados.getColumnIndex("descricao")));
@@ -127,6 +105,18 @@ public class ProjetoActivity extends AppCompatActivity implements View.OnClickLi
                 binding.cliente.setText("De: " + clienteNome);
             }
         }
+
+    }
+
+    @SuppressLint("Range")
+    public void carregarPropostas(Integer projetoId) {
+        PropostaController propostaController = new PropostaController(getApplicationContext());
+
+        RecyclerView recyclerView = binding.recyclerView;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<Proposta> listaPropostas = propostaController.buscarPropostasProjeto(projetoId);
+        PropostaAdapter adapter = new PropostaAdapter(listaPropostas, this);
+        recyclerView.setAdapter(adapter);
 
     }
 }

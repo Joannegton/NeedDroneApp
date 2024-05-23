@@ -47,7 +47,7 @@ public class PropostaPilotoActivity extends AppCompatActivity {
             Toast.makeText(this, "Selecione um drone!", Toast.LENGTH_SHORT).show();
         } else {
             PropostaController propostaController = new PropostaController(this);
-            String valor = binding.etOfertaInicial.getText().toString().replace("R$", "");
+            String valor = binding.etOfertaInicial.getText().toString().replace("R$", "").replace(",", ".");
             Float ofertaInicial = Float.parseFloat(valor);
 
             String descricao = binding.etDescricao.getText().toString();
@@ -55,8 +55,12 @@ public class PropostaPilotoActivity extends AppCompatActivity {
             Integer clienteId = getIntent().getIntExtra("clienteId", 0);
 
             SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-            Integer pilotoId = preferences.getInt("userId", 0);
-            propostaController.insereDados(projetoId, clienteId, pilotoId , ofertaInicial, descricao, "Pendente", droneSelecionado);
+            int pilotoId = preferences.getInt("userId", 0);
+            String proposta = propostaController.insereDados(projetoId, clienteId, pilotoId , ofertaInicial, descricao, "Pendente", droneSelecionado);
+
+            Toast.makeText(this, proposta, Toast.LENGTH_SHORT).show();
+
+
         }
 
     }

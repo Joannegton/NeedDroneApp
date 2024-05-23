@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,7 +83,16 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             // Obtém as informações do cliente
             String[] informacoesCliente = pegarInformacoesCliente(userId);
             String nome = informacoesCliente[1];
-            String avaliacao = informacoesCliente[2];
+            String avaliacao = informacoesCliente[3];
+            String fotoPath = informacoesCliente[2];
+
+            // Configura a imagem do cliente
+            Bitmap bitmap = EditClienteActivity.loadImageFromStorage(fotoPath);
+            if (fotoPath != null) {
+                binding.imageViewProfile.setImageBitmap(bitmap);
+            }else {
+                binding.imageViewProfile.setImageResource(android.R.drawable.ic_menu_camera);
+            }
 
             // Configura os textos de nome e avaliação
             TextView txtNome = root.findViewById(R.id.tvNome);
@@ -111,7 +122,16 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             // Obtém as informações do piloto
             String[] informacoesPiloto = pegarInformacoesPiloto(userId);
             String nome = informacoesPiloto[1];
-            String avaliacao = informacoesPiloto[2];
+            String avaliacao = informacoesPiloto[3];
+            String fotoPath = informacoesPiloto[2];
+
+            // Configura a imagem do cliente
+            Bitmap bitmap = EditPilotoActivity.loadImageFromStorage(fotoPath);
+            if (fotoPath != null) {
+                binding.imageViewProfile.setImageBitmap(bitmap);
+            }else {
+                binding.imageViewProfile.setImageResource(android.R.drawable.ic_menu_camera);
+            }
 
             // Configura os textos de nome e avaliação
             TextView txtNome = root.findViewById(R.id.tvNome);
@@ -132,9 +152,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             container_fragment.setVisibility(View.GONE);
             container_projeto.setVisibility(View.GONE);
         }
-
-
-
 
         // Retorna a visualização do fragmento
         return root;
@@ -180,11 +197,12 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public String[] pegarInformacoesCliente(int id) {
         ClienteController clienteController = new ClienteController(getContext());
         Cursor dados = clienteController.carregaDadosPorId(id);
-        String[] informacoesCliente = new String[3];
+        String[] informacoesCliente = new String[4];
         if (dados != null && dados.getCount() > 0 && dados.moveToFirst()) {
             informacoesCliente[0] = dados.getString(dados.getColumnIndex("id"));
             informacoesCliente[1] = dados.getString(dados.getColumnIndex("nome"));
-            informacoesCliente[2] = String.valueOf(dados.getInt(dados.getColumnIndex("avaliacaoCliente")));
+            informacoesCliente[2] = dados.getString(dados.getColumnIndex("foto"));
+            informacoesCliente[3] = String.valueOf(dados.getInt(dados.getColumnIndex("avaliacaoCliente")));
         }
         return informacoesCliente;
     }
@@ -200,11 +218,12 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private String[] pegarInformacoesPiloto(int id) {
         PilotoController pilotoController = new PilotoController(getContext());
         Cursor dados = pilotoController.carregaDadosPorId(id);
-        String[] informacoesPiloto = new String[3];
+        String[] informacoesPiloto = new String[4];
         if (dados != null && dados.getCount() > 0 && dados.moveToFirst()) {
             informacoesPiloto[0] = dados.getString(dados.getColumnIndex("id"));
             informacoesPiloto[1] = dados.getString(dados.getColumnIndex("nome"));
-            informacoesPiloto[2] = String.valueOf(dados.getInt(dados.getColumnIndex("avaliacaoPiloto")));
+            informacoesPiloto[2] = dados.getString(dados.getColumnIndex("foto"));
+            informacoesPiloto[3] = String.valueOf(dados.getInt(dados.getColumnIndex("avaliacaoPiloto")));
         }
         return informacoesPiloto;
     }

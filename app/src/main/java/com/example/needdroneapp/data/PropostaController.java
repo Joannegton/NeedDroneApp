@@ -1,9 +1,15 @@
 package com.example.needdroneapp.data;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.needdroneapp.models.Proposta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PropostaController {
     private SQLiteDatabase db;
@@ -59,5 +65,34 @@ public class PropostaController {
         }
         db.close();
         return dados;
+    }
+
+    @SuppressLint("Range")
+    public List<Proposta> buscarPropostasProjeto(int projetoId){
+        List<Proposta> listaPropostas = new ArrayList<>();
+
+        String[] campos = {"id", "projetoId", "pilotoId", "clienteId", "ofertaInicial", "detalhesProposta", "status", "droneId"};
+        String where = "projetoId= " + projetoId;
+        db = banco.getReadableDatabase();
+        Cursor dados = db.query("proposta", campos, where, null, null, null, null);
+
+        if(dados.moveToFirst()){
+            do{
+                Proposta proposta = new Proposta();
+                proposta.setId(dados.getInt(dados.getColumnIndex("id")));
+                proposta.setProjetoId(dados.getInt(dados.getColumnIndex("projetoId")));
+                proposta.setPilotoId(dados.getInt(dados.getColumnIndex("pilotoId")));
+                proposta.setClienteId(dados.getInt(dados.getColumnIndex("clienteId")));
+                proposta.setOfertaInicial(dados.getFloat(dados.getColumnIndex("ofertaInicial")));
+                proposta.setDetalhesProposta(dados.getString(dados.getColumnIndex("detalhesProposta")));
+                proposta.setStatus(dados.getString(dados.getColumnIndex("status")));
+                proposta.setDroneId(dados.getInt(dados.getColumnIndex("droneId")));
+
+                listaPropostas.add(proposta);
+            } while (dados.moveToNext());
+        }
+
+        db.close();
+        return listaPropostas;
     }
 }
