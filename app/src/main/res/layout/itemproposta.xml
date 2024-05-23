@@ -72,6 +72,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/statusImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/accepted" />
@@ -90,10 +91,11 @@
     app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/droneImagem"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
         android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -105,12 +107,12 @@
         android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/droneImagem"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/nomeDrone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -121,7 +123,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/droneAutonomia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -130,7 +132,7 @@
             android:textSize="@dimen/texts" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/droneAreaCobertura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Área de cobertura: até 400m²."
@@ -148,10 +150,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/droneTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -167,6 +170,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
+            android:id="@+id/droneResolucao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -182,6 +186,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
+            android:id="@+id/droneSobreposicao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
