@@ -21,7 +21,7 @@ public class CriarPilotoActivity extends AppCompatActivity {
         binding = ActivityCriarPilotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnCriar.setOnClickListener(v -> validaDados()); //cria o evento de click
+        binding.btnCriar.setOnClickListener(v -> validaDados());
     }
 
     private void validaDados(){

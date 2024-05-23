@@ -165,7 +165,7 @@ public class EditPilotoActivity extends AppCompatActivity {
         cursor.close();
         cursor = pilotoController.carregaDadosPorId(userId);
 
-        carregaDados();
+        finish();
     }
 
     public void carregaDados(){
@@ -190,4 +190,6 @@ public class EditPilotoActivity extends AppCompatActivity {
         binding.experiencia.setText(cursor.getString(cursor.getColumnIndexOrThrow("experiencia")));
         binding.especializacao.setText(cursor.getString(cursor.getColumnIndexOrThrow("especializacao")));
     }
+
+
 }

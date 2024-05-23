@@ -119,4 +119,11 @@ public class ProjetoActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Integer projetoId = getIntent().getIntExtra("projetoId", 0);
+        carregarPropostas(projetoId);
+    }
 }

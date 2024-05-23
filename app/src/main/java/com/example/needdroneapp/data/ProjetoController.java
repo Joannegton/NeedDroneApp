@@ -135,6 +135,32 @@ public class ProjetoController {
         return projetoList;
     }
 
+    public List<Projeto> listarProjetosPorIdCliente(Integer idCliente){
+        List<Projeto> projetoList = new ArrayList<>();
+
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM projeto WHERE id = " + idCliente, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Projeto projeto = new Projeto();
+                projeto.setProjetoId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+                projeto.setTitulo(cursor.getString(cursor.getColumnIndexOrThrow("titulo")));
+                projeto.setDescricao(cursor.getString(cursor.getColumnIndexOrThrow("descricao")));
+                projeto.setDataEvento(cursor.getString(cursor.getColumnIndexOrThrow("dataEvento")));
+                projeto.setRua(cursor.getString(cursor.getColumnIndexOrThrow("rua")));
+                projeto.setCidadeEstado(cursor.getString(cursor.getColumnIndexOrThrow("cidadeEstado")));
+                projeto.setStatus(cursor.getString(cursor.getColumnIndexOrThrow("status")));
+                projeto.setClienteId(cursor.getInt(cursor.getColumnIndexOrThrow("clienteId")));
+
+                projetoList.add(projeto);
+            } while (cursor.moveToNext());
+
+        }
+        db.close();
+        return projetoList;
+    }
+
     public Cursor buscarProjeto(Integer projetoId) {
         db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM projeto WHERE id = " + projetoId, null);

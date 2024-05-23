@@ -81,6 +81,7 @@
                 android:entries="@array/tipoDrone"
                 android:textSize="@dimen/texts"
                 android:background="@drawable/container_border"
+                android:backgroundTint="@color/white"
                 android:padding="5dp"/>
 
         </LinearLayout>
@@ -110,6 +111,7 @@
                 android:entries="@array/autonomia"
                 android:textColor="@color/black"
                 android:background="@drawable/container_border"
+                android:backgroundTint="@color/white"
                 android:padding="5dp"
                 android:textSize="@dimen/texts" />
 
@@ -142,6 +144,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:textColor="@color/black"
                 android:background="@drawable/container_border"
+                android:backgroundTint="@color/white"
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,6 +173,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:textColor="@color/black"
                 android:background="@drawable/container_border"
+                android:backgroundTint="@color/white"
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -187,7 +191,7 @@
         android:textSize="16sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#222"
+        android:textColor="@color/black"
         android:text="Sobreposição de imagem" />
 
     <Button

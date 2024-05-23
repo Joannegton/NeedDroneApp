@@ -30,14 +30,16 @@ public class PropostaPilotoActivity extends AppCompatActivity {
         RecyclerView recyclerView = binding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DroneController db = new DroneController(getApplicationContext());
-        List<Drone> droneList = db.pegarTodosDrones();
+
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        int pilotoId = preferences.getInt("userId", 0);
+        List<Drone> droneList = db.pegarDronesPorPiloto(pilotoId);
         DroneAdapter droneAdapter = new DroneAdapter(droneList, true);
         droneAdapter.setSelecao(droneId -> {
             // acesso ao droneId que foi clicado
             droneSelecionado = droneId;
         });
         recyclerView.setAdapter(droneAdapter);
-
 
         binding.btnEnviar.setOnClickListener(v -> enviarProposta());
     }
@@ -59,7 +61,7 @@ public class PropostaPilotoActivity extends AppCompatActivity {
             String proposta = propostaController.insereDados(projetoId, clienteId, pilotoId , ofertaInicial, descricao, "Pendente", droneSelecionado);
 
             Toast.makeText(this, proposta, Toast.LENGTH_SHORT).show();
-
+            finish();
 
         }
 

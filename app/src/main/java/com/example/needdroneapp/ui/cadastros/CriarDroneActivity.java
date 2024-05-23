@@ -1,5 +1,6 @@
 package com.example.needdroneapp.ui.cadastros;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,12 +41,16 @@ public class CriarDroneActivity extends AppCompatActivity {
         String autonomia = valorSelecionado(R.id.spAutonomia);
         String areaCobertura = valorSelecionado(R.id.spAreaCobertura);
 
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        Integer pilotoId = preferences.getInt("userId", 0);
+
         DroneController db = new DroneController(getBaseContext());
         String resultado;
 
-        resultado = db.insereDados(nome, tipo, qualidadeImagem, autonomia, areaCobertura, null, imgSobreposicao, null, null);
+        resultado = db.insereDados(nome, tipo, qualidadeImagem, autonomia, areaCobertura, "Ativo", imgSobreposicao, null, pilotoId);
 
         Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+        finish();
 
     }
 

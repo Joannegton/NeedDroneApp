@@ -81,7 +81,7 @@ public class DroneAdapter extends RecyclerView.Adapter<DroneAdapter.DroneViewHol
 
         if (proposta){
             if (selectedItem == position) {
-                holder.itemView.setBackgroundColor(Color.parseColor("#dcdcdc"));
+                holder.itemView.setBackgroundColor(Color.parseColor("#6629ABE2"));
             } else {
                 holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
             }

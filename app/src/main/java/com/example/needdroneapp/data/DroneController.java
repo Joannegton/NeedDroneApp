@@ -152,4 +152,38 @@ public class DroneController {
         cursor.close();
         return droneList;
     }
+
+    public List<Drone> pegarDronesPorPiloto(Integer idPiloto){
+        List<Drone> droneList = new ArrayList<>();
+
+        db = banco.getReadableDatabase(); //abre o banco de dados
+        Cursor cursor = db.rawQuery("SELECT * FROM drones WHERE pilotoId = " + idPiloto, null); //executa a query para pegar todos os drones
+
+        if (cursor.moveToFirst()) {
+            do {
+                Drone drone = new Drone();
+                drone.setDroneId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+                drone.setNome(cursor.getString(cursor.getColumnIndexOrThrow("nome")));
+                drone.setTipoDrone(cursor.getString(cursor.getColumnIndexOrThrow("tipoDrone")));
+                drone.setImgQualidade(cursor.getString(cursor.getColumnIndexOrThrow("imgQualidade")));
+                drone.setAutonomia(cursor.getString(cursor.getColumnIndexOrThrow("autonomia")));
+                drone.setAreaCobertura(cursor.getString(cursor.getColumnIndexOrThrow("areaCobertura")));
+                drone.setStatus(cursor.getString(cursor.getColumnIndexOrThrow("status")));
+
+                int imgSobreposicaoInt = cursor.getInt(cursor.getColumnIndexOrThrow("imgSobreposicao"));
+                boolean imgSobreposicao = imgSobreposicaoInt != 0;
+                drone.setImgSobreposicao(imgSobreposicao);
+                //drone.setFoto(cursor.getString(cursor.getColumnIndexOrThrow("foto")));
+
+                drone.setPilotoId(cursor.getInt(cursor.getColumnIndexOrThrow("pilotoId")));
+
+                droneList.add(drone);
+            } while (cursor.moveToNext());
+        }
+
+
+
+        cursor.close();
+        return droneList;
+    }
 }

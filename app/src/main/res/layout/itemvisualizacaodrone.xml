@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_drones"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/container_border"
+    >
+
+
+    <ImageView
+        android:id="@+id/droneFoto"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintStart_toEndOf="@+id/droneFoto"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/droneNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="nome drone"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/droneAutonomia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Autonomia: até 60 minutos."
+            android:textColor="@color/black"
+            android:textSize="@dimen/texts" />
+
+        <TextView
+            android:id="@+id/droneAreaCobertura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Área de cobertura: até 400m²."
+            android:textColor="@color/black"
+            android:textSize="@dimen/texts"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="-40dp"
+        android:background="@drawable/container_status"
+        android:backgroundTint="@color/green"
+        android:gravity="center"
+        android:paddingHorizontal="5dp"
+        android:rotation="90"
+        android:text="Ativo"
+        android:textColor="@color/black"
+        android:textSize="@dimen/texts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/droneTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/container_edit_text"
+            android:backgroundTint="@color/gray"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:text="hexacoptero"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texts"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/droneQualidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/container_edit_text"
+            android:backgroundTint="@color/gray"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:text="Full HD"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texts"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/droneSobreposicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/container_edit_text"
+            android:backgroundTint="@color/gray"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:text="Sobreposição"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texts"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/viewSobreposicao"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

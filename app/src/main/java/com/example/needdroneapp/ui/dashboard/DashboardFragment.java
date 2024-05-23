@@ -105,7 +105,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             RecyclerView listViewListaProjetos = root.findViewById(R.id.listaProjetos);
             listViewListaProjetos.setLayoutManager(layoutManager);
             ProjetoController db = new ProjetoController(getContext());
-            List<Projeto> listaProjetos = db.listarTodosProjetos();
+            List<Projeto> listaProjetos = db.listarProjetosPorIdCliente(userId);
             ProjetoAdapter projetoAdapter = new ProjetoAdapter(listaProjetos, getContext());
             listViewListaProjetos.setAdapter(projetoAdapter);
 
@@ -140,13 +140,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             txtEmail.setText("Avaliação: " + avaliacao + " estrelas");
 
             //adicionar lista de drones que o piloto tem cadastrado
-            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
             RecyclerView listViewListaDrones = root.findViewById(R.id.listaDrones);
-            listViewListaDrones.setLayoutManager(layoutManager);
             DroneController db = new DroneController(getContext());
-            List<Drone> listaDrones = db.pegarTodosDrones();
-            DroneAdapter droneAdapter = new DroneAdapter(listaDrones, false);
-            listViewListaDrones.setAdapter(droneAdapter);
+            List<Drone> listaDrones = db.pegarDronesPorPiloto(userId);
+            configRecyclerView(listViewListaDrones, listaDrones);
         } else {
             // Se o usuário não é nem cliente nem piloto, esconde ambos os containers
             container_fragment.setVisibility(View.GONE);
@@ -190,6 +187,30 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             Intent adcProjeto = new Intent(getContext(), CriarProjetoActivity.class);
             startActivity(adcProjeto);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userType = sharedPreferences.getString("userType", "");
+        int userId = sharedPreferences.getInt("userId", 0);
+
+        if (userType.equals("piloto")) {
+            //adicionar lista de drones que o piloto tem cadastrado
+            RecyclerView listViewListaDrones = getView().findViewById(R.id.listaDrones);
+            DroneController db = new DroneController(getContext());
+            List<Drone> listaDrones = db.pegarDronesPorPiloto(userId);
+            configRecyclerView(listViewListaDrones, listaDrones);
+        }
+    }
+
+    private void configRecyclerView(RecyclerView recyclerView, List<Drone> drones) {
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
+        recyclerView.setLayoutManager(layoutManager);
+        DroneAdapter droneAdapter = new DroneAdapter(drones, false);
+        recyclerView.setAdapter(droneAdapter);
     }
 
     // Este método obtém as informações do cliente

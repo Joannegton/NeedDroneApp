@@ -75,12 +75,14 @@ public class EditDroneActivity extends AppCompatActivity {
             return "Erro ao atualizar drone: " + e.getMessage();
         }
 
+        finish();
         return "Drone atualizado com sucesso!";
     }
 
     private String excluirDrone(int idDrone) {
         DroneController db = new DroneController(this);
         db.excluirDrone(idDrone);
+        finish();
         return "Drone excluído com sucesso!";
     }
 
