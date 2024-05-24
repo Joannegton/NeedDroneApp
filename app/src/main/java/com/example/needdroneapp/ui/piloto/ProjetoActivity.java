@@ -75,14 +75,6 @@ public class ProjetoActivity extends AppCompatActivity {
             binding.btEnviarProposta.setVisibility(View.GONE);
         }
 
-
-
-
-
-
-
-        // inserir as propostas enviadas pelo piloto
-
     }
 
     @SuppressLint("Range")
@@ -117,6 +109,10 @@ public class ProjetoActivity extends AppCompatActivity {
         List<Proposta> listaPropostas = propostaController.buscarPropostasProjeto(projetoId);
         PropostaAdapter adapter = new PropostaAdapter(listaPropostas, this);
         recyclerView.setAdapter(adapter);
+
+        if (listaPropostas.isEmpty()) {
+            binding.textViewPropostas.setVisibility(View.GONE);
+        }
 
     }
 

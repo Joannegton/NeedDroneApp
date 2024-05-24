@@ -114,4 +114,15 @@ public class PropostaController {
         db.close();
         return msg;
     }
+
+    public Integer buscarPilotoPorProjeto(Integer projetoId) {
+        int pilotoId = 0;
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT pilotoId FROM proposta WHERE projetoId = " + projetoId, null);
+        if (cursor.moveToFirst()) {
+            pilotoId = cursor.getInt(cursor.getColumnIndexOrThrow("pilotoId"));
+        }
+        db.close();
+        return pilotoId;
+    }
 }

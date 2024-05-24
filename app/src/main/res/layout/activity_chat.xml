@@ -6,30 +6,37 @@
     android:orientation="vertical"
     android:background="@color/gray">
 <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/container_login">
     <!-- Título do Chat -->
     <TextView
         android:textAlignment="center"
         android:id="@+id/tvChatTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="Documentário sobre a Vida Selvagem Amazônica"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:padding="16dp"/>
 
     <!-- Spinner para Status do Projeto -->
-    <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp">
+
+        <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/container_border"
         android:layout_gravity="center"
         android:layout_marginVertical="16dp"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_centerVertical="true">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,27 +44,51 @@
             android:textSize="17dp"
             android:text="Status: "
             android:textStyle="bold"/>
-        <Spinner
+        <TextView
             android:id="@+id/spStatusProjeto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/status" />
-    </LinearLayout>
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:text="Status: "
+            android:layout_marginStart="5dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/btFinalizar"
+            android:backgroundTint="#BD0000"
+            android:text="Cancelar"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="10dp"/>
+        <Button
+            android:id="@+id/btFinalizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/blueFirst"
+            android:text="Finalizar"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/container_login"
         android:backgroundTint="#2D00335C"
         android:orientation="vertical"
         android:layout_marginHorizontal="5dp"
         android:layout_marginBottom="5dp">
-    <!-- Lista de Mensagens -->
+
+        <!-- Lista de Mensagens -->
         <ListView
             android:id="@+id/lvChatMessages"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@id/tvChatTitle"
-            android:layout_margin="8dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="#BCFFFFFF"
             android:divider="@android:color/transparent"
             android:dividerHeight="8dp"
@@ -69,12 +100,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
+
             <!-- Campo de Digitação de Mensagem -->
             <EditText
                 android:id="@+id/etMessageInput"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/lvChatMessages"
                 android:hint="Digite sua mensagem"
                 android:inputType="textMultiLine"
                 android:maxLines="3"
@@ -88,7 +119,6 @@
                 android:id="@+id/btnSendMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etMessageInput"
                 android:text="Enviar" />
         </LinearLayout>
     </LinearLayout>

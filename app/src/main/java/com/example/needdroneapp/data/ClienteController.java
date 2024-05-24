@@ -74,18 +74,7 @@ public class ClienteController implements UsuarioController {
         return cursor;
     }
 
-    public String pegarNomePorId(int id){
-        Cursor cursor;
-        String nome = null;
-        db = banco.getReadableDatabase();
-        cursor = db.rawQuery("SELECT nome FROM clientes WHERE id = " + id, null);
-        if (cursor.moveToFirst()){
-            nome = cursor.getString(0);
 
-        }
-        db.close();
-        return nome;
-    }
 
     public Cursor carregaDadosLogin(String email, String password) {
         Cursor cursor;
@@ -102,6 +91,20 @@ public class ClienteController implements UsuarioController {
         return cursor;
     }
 
+    @Override
+    public String pegarNomePorId(Integer userId) {
+        Cursor cursor;
+        String nome = null;
+        db = banco.getReadableDatabase();
+        cursor = db.rawQuery("SELECT nome FROM clientes WHERE id = " + userId, null);
+        if (cursor.moveToFirst()){
+            nome = cursor.getString(0);
+
+        }
+        db.close();
+        return nome;
+
+    }
 
 
     public String alteraDados(

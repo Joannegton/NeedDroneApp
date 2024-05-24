@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.data.PropostaController;
+import com.example.needdroneapp.ui.ChatActivity;
 import com.example.needdroneapp.ui.piloto.ProjetoActivity;
 import com.example.needdroneapp.ui.piloto.PropostaPilotoActivity;
 
@@ -36,7 +38,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
 
     private List<Proposta> listaPropostas;
     private Activity activity;
-    private Integer droneId;
+    private Integer projetoId;
 
     public PropostaAdapter(List<Proposta> propostaList, Activity activity){
         this.listaPropostas = propostaList;
@@ -56,6 +58,8 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
     public void onBindViewHolder(@NonNull VisualizadorProposta holder, int position) {
         PilotoController piloto = new PilotoController(activity);
         Proposta proposta = listaPropostas.get(position);
+        Integer propostaId = proposta.getId();
+        projetoId = proposta.getProjetoId();
 
         Cursor cursor = piloto.carregaDadosPorId(proposta.getPilotoId());
         if (cursor.moveToFirst()) {
@@ -66,24 +70,36 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
         float valorFinal = proposta.getOfertaInicial() + proposta.getOfertaInicial() * 0.3f;
         holder.valorPropostaFinal.setText("Valor Final: " + Float.toString(valorFinal));
 
-        Toast.makeText(activity, proposta.getStatus(), Toast.LENGTH_SHORT).show();
+        // Setar tags para os botões de aceitar, recusar
+        holder.btAceitar.setTag(propostaId);
+        holder.btRecusar.setTag(propostaId);
+        //holder.btMensagem.setTag(propostaId);
 
-        if (proposta.getStatus().equals("Recusada")) {
-            holder.statusImage.setImageResource(R.drawable.baseline_access_denied);
+
+        SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userType = preferences.getString("userType", "");
+        if (userType.equals("piloto")) {
             holder.btAceitar.setVisibility(View.GONE);
             holder.btRecusar.setVisibility(View.GONE);
-            holder.btMensagem.setVisibility(View.GONE);
-        } else if (proposta.getStatus().equals("Pendente")) {
-            holder.statusImage.setVisibility(View.GONE);
-            holder.btAceitar.setVisibility(View.VISIBLE);
-            holder.btRecusar.setVisibility(View.VISIBLE);
-            holder.btMensagem.setVisibility(View.VISIBLE);
         } else {
-            holder.statusImage.setImageResource(R.drawable.accepted);
-            holder.btAceitar.setVisibility(View.GONE);
-            holder.btRecusar.setVisibility(View.GONE);
-            holder.btMensagem.setVisibility(View.VISIBLE);
+            if (proposta.getStatus().equals("Recusada")) {
+                holder.statusImage.setImageResource(R.drawable.baseline_access_denied);
+                holder.btAceitar.setVisibility(View.GONE);
+                holder.btRecusar.setVisibility(View.GONE);
+                holder.btMensagem.setVisibility(View.GONE);
+            } else if (proposta.getStatus().equals("Aceita")) {
+                holder.statusImage.setVisibility(View.GONE);
+                holder.btAceitar.setVisibility(View.GONE);
+                holder.btRecusar.setVisibility(View.VISIBLE);
+                holder.btMensagem.setVisibility(View.VISIBLE);
+            } else {
+                holder.statusImage.setImageResource(R.drawable.accepted);
+                holder.btAceitar.setVisibility(View.VISIBLE);
+                holder.btRecusar.setVisibility(View.VISIBLE);
+                holder.btMensagem.setVisibility(View.VISIBLE);
+            }
         }
+
 
         preencherDetalhesDrone(holder, proposta.getDroneId());
 
@@ -130,40 +146,44 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
 
         @Override
         public void onClick(View v) {
+            PropostaController propostaController = new PropostaController(activity);
+            int pilotoId = propostaController.buscarPilotoPorProjeto(projetoId);
+
             if (v.getId() == R.id.btAceitar){
-                Integer projetoId = activity.getIntent().getIntExtra("projetoId", 0);
-                PropostaController proposta = new PropostaController(activity);
-                String status = proposta.atualizarStatusProposta(projetoId, "Aceita");
+                propostaController.atualizarStatusProposta(projetoId, "Aceita");
+
                 statusImage.setImageResource(R.drawable.accepted);
-                Toast.makeText(activity, status, Toast.LENGTH_SHORT).show();
-                Toast.makeText(activity, "Status atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                ProjetoController projetoController = new ProjetoController(activity);
+                projetoController.atualizarStatusePilotoProjeto(projetoId, "Andamento", pilotoId);
+                Toast.makeText(activity, "Proposta aceita!", Toast.LENGTH_SHORT).show();
                 btAceitar.setVisibility(View.GONE);
 
             } else if (v.getId() == R.id.btRecusar) {
-                //Mudar a img, tirar todos os botões
-                Integer projetoId = activity.getIntent().getIntExtra("projetoId", 0);
-                PropostaController proposta = new PropostaController(activity);
-                String status = proposta.atualizarStatusProposta(projetoId, "Recusada");
+                String status = propostaController.atualizarStatusProposta(projetoId, "Recusada");
                 statusImage.setImageResource(R.drawable.baseline_access_denied);
-                Toast.makeText(activity, "Recusado com sucesso!", Toast.LENGTH_SHORT).show();
+                ProjetoController projetoController = new ProjetoController(activity);
+                projetoController.atualizarStatusePilotoProjeto(projetoId, "Pendente", pilotoId);
+
+                Toast.makeText(activity, "Proposta Recusada!", Toast.LENGTH_SHORT).show();
 
                 btAceitar.setVisibility(View.GONE);
                 btRecusar.setVisibility(View.GONE);
                 btMensagem.setVisibility(View.GONE);
 
             } else if (v.getId() == R.id.btMensagem) {
-                Integer projetoId = activity.getIntent().getIntExtra("projetoId", 0);
                 ProjetoController projetoController = new ProjetoController(activity);
-                Integer clienteId = projetoController.buscarClientePorProjeto(projetoId);
-                Integer pilotoId = projetoController.buscarPilotoPorProjeto(projetoId);
+                //Integer clienteId = projetoController.buscarClientePorProjeto(projetoId);
+                //Integer pilotoIdd = projetoController.buscarPilotoPorProjeto(projetoId);
 
-                Intent mensagem = new Intent(activity, ComentarActivity.class);
-                mensagem.putExtra("pilotoId", pilotoId);
-                mensagem.putExtra("clienteId", clienteId);
-                activity.startActivity(mensagem);
+                //Toast.makeText(activity, clienteId, Toast.LENGTH_SHORT).show();
+                Intent chat = new Intent(activity, ChatActivity.class);
+                chat.putExtra("projetoId", projetoId);
+                //mensagem.putExtra("pilotoId", pilotoIdd);
+                //mensagem.putExtra("clienteId", clienteId);
+                activity.startActivity(chat);
             }
-
-            }
+        }
     }
 
     @SuppressLint("Range")

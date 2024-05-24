@@ -20,8 +20,8 @@ public class AvaliacaoController {
     }
 
     public String insereDados(
-            Integer pilotoId,
-            Integer clienteId,
+            Integer avaliadorId,
+            Integer avaliadoId,
             String comentario,
             String dataAvaliacao,
             Float avaliacao
@@ -31,8 +31,8 @@ public class AvaliacaoController {
         db = banco.getWritableDatabase();
 
         valores = new ContentValues();
-        valores.put("pilotoId", pilotoId);
-        valores.put("clienteId", clienteId);
+        valores.put("avaliadorId", avaliadorId);
+        valores.put("avaliadoId", avaliadoId);
         valores.put("comentario", comentario);
         valores.put("dataAvaliacao", dataAvaliacao);
         valores.put("avaliacao", avaliacao);

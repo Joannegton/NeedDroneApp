@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.data.AvaliacaoController;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.data.PilotoController;
@@ -162,8 +163,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 // Configura os textos de nome e avaliação
                 TextView txtNome = root.findViewById(R.id.tvNome);
                 txtNome.setText(nome);
+
+                AvaliacaoController avaliacaoController = new AvaliacaoController(getContext());
                 RatingBar ratingBar = root.findViewById(R.id.ratingBar);
                 ratingBar.setRating(Float.parseFloat(avaliacao));
+                //ratingBar.setRating(avaliacaoController.pegarAvaliacaoPiloto(userId));
 
                 //adicionar lista de drones que o piloto tem cadastrado
                 RecyclerView listViewListaDrones = root.findViewById(R.id.listaDrones);

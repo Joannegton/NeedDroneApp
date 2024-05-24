@@ -84,5 +84,6 @@
         <item>Andamento</item>
         <item>Cancelado</item>
         <item>Finalizado</item>
+        <item>Pendente</item>
     </string-array>
 </resources>

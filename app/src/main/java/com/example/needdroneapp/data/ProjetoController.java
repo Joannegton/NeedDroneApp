@@ -90,6 +90,24 @@ public class ProjetoController {
         db.close();
         return existe;
     }
+    public String atualizarStatusePilotoProjeto(Integer idProjeto, String status, Integer pilotoId) {
+        db = banco.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("status", status);
+        valores.put("pilotoId", pilotoId);
+
+        String where = "id = " + idProjeto;
+        String msg = "";
+        int linha = db.update("projeto", valores, where, null);
+        if (linha == -1) {
+            msg = "Erro ao alterar os dados!";
+        } else {
+            msg = "Dados alterados com sucesso!";
+        }
+
+        db.close();
+        return msg;
+    }
     public String atualizarStatusProjeto(Integer idProjeto, String status) {
         db = banco.getWritableDatabase();
         ContentValues valores = new ContentValues();
@@ -164,8 +182,8 @@ public class ProjetoController {
     public Cursor buscarProjeto(Integer projetoId) {
         db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM projeto WHERE id = " + projetoId, null);
-
         cursor.moveToFirst();
+
         db.close();
         return cursor;
 

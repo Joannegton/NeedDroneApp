@@ -79,7 +79,7 @@ public class PerfilActivity extends AppCompatActivity {
             LinearLayout experiencia = findViewById(R.id.containerExperiencia);
             experiencia.setVisibility(View.VISIBLE);//deixa a experiencia invisivel
 
-            binding.tituloPortfolio.setOnClickListener(v ->{
+            binding.portfolio1.setOnClickListener(v ->{
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, 100);
             });

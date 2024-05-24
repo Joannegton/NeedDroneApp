@@ -92,6 +92,20 @@ public class PilotoController implements UsuarioController{
         return cursor;
     }
 
+    @Override
+    public String pegarNomePorId(Integer userId) {
+        Cursor cursor;
+        String nome = null;
+        db = banco.getReadableDatabase();
+        cursor = db.rawQuery("SELECT nome FROM clientes WHERE id = " + userId, null);
+        if (cursor.moveToFirst()){
+            nome = cursor.getString(0);
+
+        }
+        db.close();
+        return nome;
+    }
+
     public String atualizaDados(
             int id,
             String nome,
