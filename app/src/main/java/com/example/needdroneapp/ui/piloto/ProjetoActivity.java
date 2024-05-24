@@ -87,9 +87,6 @@ public class ProjetoActivity extends AppCompatActivity {
 
     @SuppressLint("Range")
     public void informacoesProjeto(Integer projetoId){
-        ClienteController clienteController = new ClienteController(this);
-        String clienteNome = clienteController.pegarNomePorId(projetoId);
-
         ProjetoController projetoController = new ProjetoController(this);
         try (Cursor dados = projetoController.buscarProjeto(projetoId)) {
             if (dados.getCount() > 0) {
@@ -102,6 +99,9 @@ public class ProjetoActivity extends AppCompatActivity {
                 binding.descricao.setText(dados.getString(dados.getColumnIndex("descricao")));
                 binding.dataEvento.setText("Data do Evento: " + dados.getString(dados.getColumnIndex("dataEvento")));
                 binding.localizacao.setText("Local: " + rua + " - " + cidadeEstado);
+
+                ClienteController clienteController = new ClienteController(this);
+                String clienteNome = clienteController.pegarNomePorId(clienteId);
                 binding.cliente.setText("De: " + clienteNome);
             }
         }

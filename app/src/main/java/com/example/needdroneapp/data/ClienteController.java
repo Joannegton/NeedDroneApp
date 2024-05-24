@@ -116,7 +116,7 @@ public class ClienteController implements UsuarioController {
             String foto,
             String biografia
     ){
-        String msg = "Dados alterados com sucesso!!!";
+        String msg;
 
         db = banco.getReadableDatabase();
 

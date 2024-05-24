@@ -139,7 +139,7 @@ public class ProjetoController {
         List<Projeto> projetoList = new ArrayList<>();
 
         db = banco.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM projeto WHERE id = " + idCliente, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM projeto WHERE clienteId = " + idCliente, null);
 
         if (cursor.moveToFirst()){
             do {

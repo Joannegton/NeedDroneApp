@@ -6,15 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.cadastros.CriarProjetoActivity"
-    android:padding="10dp">
+    android:padding="16dp">
     <!-- #6792C7, #0E0E2C, #D9D9D9 -->
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginTop="30dp"
     android:background="@drawable/container_login"
     android:backgroundTint="@color/gray"
     android:orientation="vertical"
@@ -123,11 +120,21 @@
         android:id="@+id/TextViewDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginVertical="3dp"
         android:textSize="@dimen/texts"
         android:textColor="@color/black"
-        android:text="Prazo de Entrega:"
-        android:inputType="date" />
+        android:text="Data: 25/05/2022"
+        android:gravity="center"/>
+    <TextView
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/TextViewHora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="3dp"
+        android:textSize="@dimen/texts"
+        android:textColor="@color/black"
+        android:text="Horário: 15:00"
+        android:gravity="center"/>
 
 
 

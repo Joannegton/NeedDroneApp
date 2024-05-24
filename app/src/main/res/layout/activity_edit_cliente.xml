@@ -5,17 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".ui.edicao.EditClienteActivity"
 >
     <!-- #6792C7, #0E0E2C, #D9D9D9 -->
 
-
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginTop="30dp"
     android:background="@drawable/container_login"
     android:backgroundTint="@color/gray"
     android:orientation="vertical"
@@ -84,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:background="@drawable/container_edit_text"/>
+            android:background="@color/white"/>
 
     </com.google.android.material.textfield.TextInputLayout>
     <TextView

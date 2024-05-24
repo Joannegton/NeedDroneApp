@@ -29,8 +29,8 @@ public class CriarProjetoActivity extends AppCompatActivity {
     private ActivityCriarProjetoBinding binding;
 
     private Button btnSelectDateTime;
-    private String dataHora;
-    int clienteId;
+    private String data;
+    private Integer clienteId;
 
 
     @Override
@@ -46,6 +46,9 @@ public class CriarProjetoActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         clienteId = prefs.getInt("userId", 0);
 
+        binding.TextViewDate.setVisibility(View.GONE);
+        binding.TextViewHora.setVisibility(View.GONE);
+
     }
 
     private void enviarProjeto() {
@@ -54,8 +57,9 @@ public class CriarProjetoActivity extends AppCompatActivity {
         String rua = binding.editTextRua.getText().toString();
         String cidadeEstado = binding.editTextCidadeEstado.getText().toString();
         ProjetoController db = new ProjetoController(getBaseContext());
-        String resultado = db.insereDados(titulo, descricao, dataHora, rua, cidadeEstado, clienteId, null);
+        String resultado = db.insereDados(titulo, descricao, data, rua, cidadeEstado, clienteId, null);
         Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
+
         finish();
 
     }
@@ -70,12 +74,14 @@ public class CriarProjetoActivity extends AppCompatActivity {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(CriarProjetoActivity.this,
                 (view, year1, monthOfYear, dayOfMonth1) -> {
-                    String data = dayOfMonth1 + "/" + (monthOfYear + 1) + "/" + year1;
+                    data = dayOfMonth1 + "/" + (monthOfYear + 1) + "/" + year1;
                     TimePickerDialog timePickerDialog = new TimePickerDialog(CriarProjetoActivity.this,
                             (view1, hourOfDay1, minute1) -> {
                                 String hora = hourOfDay1 + ":" + minute1;
-                                dataHora = data + " " + hora; // Atualiza a variável dataHora
-                                binding.TextViewDate.setText("Data e hora selecionadas: " + dataHora); // Atualiza o texto do TextView
+                                binding.TextViewDate.setText("Data: " + data);
+                                binding.TextViewHora.setText("Horário: " + hora);
+                                binding.TextViewDate.setVisibility(View.VISIBLE);
+                                binding.TextViewHora.setVisibility(View.VISIBLE);
                             }, hourOfDay, minute, true);
                     timePickerDialog.show();
                 }, year, month, dayOfMonth);

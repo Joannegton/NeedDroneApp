@@ -42,6 +42,7 @@ import java.util.List;
 public class PerfilActivity extends AppCompatActivity {
 
     private ActivityPerfilBinding binding;
+    private static final int SELECT_IMAGE_REQUEST_CODE = 100;
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,11 @@ public class PerfilActivity extends AppCompatActivity {
         } else if (userType.equals("piloto")) {
             LinearLayout experiencia = findViewById(R.id.containerExperiencia);
             experiencia.setVisibility(View.VISIBLE);//deixa a experiencia invisivel
+
+            binding.tituloPortfolio.setOnClickListener(v ->{
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 100);
+            });
 
             PilotoController pilotoController = new PilotoController(this);
             Cursor dados = pilotoController.carregaDadosPorId(userId);
@@ -126,7 +132,7 @@ public class PerfilActivity extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(this, String.valueOf(binding.galeriaPortfolio.getChildCount()), Toast.LENGTH_SHORT).show();
+
                 if (binding.galeriaPortfolio.getChildCount() == 4){
                     binding.portfolio1.setVisibility(View.GONE);
                     binding.portfolio1.setImageResource(android.R.drawable.ic_menu_camera);

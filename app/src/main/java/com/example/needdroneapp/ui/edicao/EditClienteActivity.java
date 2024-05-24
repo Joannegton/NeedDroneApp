@@ -90,21 +90,17 @@ public class EditClienteActivity extends AppCompatActivity {
         boolean whatsapp = cursor.getInt(cursor.getColumnIndexOrThrow("whatsapp")) > 0;
         String tel = binding.telefone.getText().toString();
         String rua = binding.rua.getText().toString();
-        String cidadeEstado = cursor.getString(cursor.getColumnIndexOrThrow("cidadeEstado"));
+        String cidadeEstado = binding.cidadeEstado.getText().toString();
         String cep = binding.cep.getText().toString();
         String foto = saveToInternalStorage(getBitmapFromView(binding.userImg));
 
         String resultado = clienteController.alteraDados(userId ,nome, dataNasc, tel, whatsapp, rua, cidadeEstado, cep, foto, biografia);
         Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
-        if (resultado.equals("Registro atualizado com sucesso!")){
-            Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
-        }
         cursor.close();
         cursor = clienteController.carregaDadosPorId(userId);
-        carregaDados();
+
+        finish();
     }
 
     @Override

@@ -62,10 +62,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.btnLogin) {
             // Inicia a LoginActivity
             LoginFragment loginFragment = new LoginFragment();
-
             // Obtém o FragmentManager para iniciar a transação
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-
             // Inicia a transação para substituir o conteúdo do contêiner pelo LoginFragment
             fragmentManager.beginTransaction()
                     .replace(R.id.nav_host_fragment_content_main, loginFragment)
