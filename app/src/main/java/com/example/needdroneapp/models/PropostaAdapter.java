@@ -26,6 +26,7 @@ import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.ProjetoController;
+import com.example.needdroneapp.data.PropostaController;
 import com.example.needdroneapp.ui.piloto.ProjetoActivity;
 import com.example.needdroneapp.ui.piloto.PropostaPilotoActivity;
 
@@ -67,7 +68,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
 
         Toast.makeText(activity, proposta.getStatus(), Toast.LENGTH_SHORT).show();
 
-        if (proposta.getStatus().equals("Cancelado")) {
+        if (proposta.getStatus().equals("Recusada")) {
             holder.statusImage.setImageResource(R.drawable.baseline_access_denied);
             holder.btAceitar.setVisibility(View.GONE);
             holder.btRecusar.setVisibility(View.GONE);
@@ -131,8 +132,8 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
         public void onClick(View v) {
             if (v.getId() == R.id.btAceitar){
                 Integer projetoId = activity.getIntent().getIntExtra("projetoId", 0);
-                ProjetoController projetoController = new ProjetoController(activity);
-                String status = projetoController.atualizarStatusProjeto(projetoId, "Andamento");
+                PropostaController proposta = new PropostaController(activity);
+                String status = proposta.atualizarStatusProposta(projetoId, "Aceita");
                 statusImage.setImageResource(R.drawable.accepted);
                 Toast.makeText(activity, status, Toast.LENGTH_SHORT).show();
                 Toast.makeText(activity, "Status atualizado com sucesso!", Toast.LENGTH_SHORT).show();
@@ -141,8 +142,8 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
             } else if (v.getId() == R.id.btRecusar) {
                 //Mudar a img, tirar todos os botões
                 Integer projetoId = activity.getIntent().getIntExtra("projetoId", 0);
-                ProjetoController projetoController = new ProjetoController(activity);
-                projetoController.atualizarStatusProjeto(projetoId, "Cancelado");
+                PropostaController proposta = new PropostaController(activity);
+                String status = proposta.atualizarStatusProposta(projetoId, "Recusada");
                 statusImage.setImageResource(R.drawable.baseline_access_denied);
                 Toast.makeText(activity, "Recusado com sucesso!", Toast.LENGTH_SHORT).show();
 

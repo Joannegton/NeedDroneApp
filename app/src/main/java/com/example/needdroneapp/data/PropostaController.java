@@ -95,4 +95,23 @@ public class PropostaController {
         db.close();
         return listaPropostas;
     }
+
+    public String atualizarStatusProposta(Integer idProposta, String status){
+        ContentValues valores = new ContentValues();
+        db = banco.getWritableDatabase();
+
+        valores.put("status", status);
+
+        String where = "id = " + idProposta;
+        String msg = "";
+        int linha = db.update("proposta", valores, where, null);
+        if (linha == -1) {
+            msg = "Erro ao alterar os dados!";
+        } else {
+            msg = "Dados alterados com sucesso!";
+        }
+
+        db.close();
+        return msg;
+    }
 }
