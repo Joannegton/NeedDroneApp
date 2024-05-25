@@ -26,7 +26,6 @@ public class PilotoController implements UsuarioController{
             String cep,
             String foto,
             String biografia,
-            String avaliacao,
             String licenca
     ){
         ContentValues valores;
@@ -46,7 +45,7 @@ public class PilotoController implements UsuarioController{
         valores.put("cep", cep);
         valores.put("foto", foto);
         valores.put("biografia", biografia);
-        valores.put("avaliacaoPiloto", 3);
+        valores.put("avaliacaoPiloto", 0);
         valores.put("licencaPilotagem", licenca);
 
         resultado = db.insert("piloto", null, valores);
@@ -104,6 +103,16 @@ public class PilotoController implements UsuarioController{
         }
         db.close();
         return nome;
+    }
+
+    @Override
+    public Float pegarAvaliacaoPorId(Integer pilotoId) {
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT avaliacaoPiloto FROM piloto WHERE id = " + pilotoId, null);
+        cursor.moveToFirst();
+        Float avaliacao = cursor.getFloat(0);
+        db.close();
+        return avaliacao;
     }
 
     public String atualizaDados(

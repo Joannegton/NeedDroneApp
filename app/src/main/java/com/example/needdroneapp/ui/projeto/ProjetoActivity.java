@@ -1,4 +1,4 @@
-package com.example.needdroneapp.ui.piloto;
+package com.example.needdroneapp.ui.projeto;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -26,6 +26,7 @@ import com.example.needdroneapp.models.ProjetoViewModel;
 import com.example.needdroneapp.models.Proposta;
 import com.example.needdroneapp.models.PropostaAdapter;
 import com.example.needdroneapp.ui.ChatActivity;
+import com.example.needdroneapp.ui.piloto.PropostaPilotoActivity;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class ProjetoActivity extends AppCompatActivity {
 
     private Integer clienteId;
 
+    private String userType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class ProjetoActivity extends AppCompatActivity {
         });
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String userType = preferences.getString("userType", "");
+        userType = preferences.getString("userType", "");
 
         Integer projetoId = getIntent().getIntExtra("projetoId", 0);
 
@@ -113,6 +115,9 @@ public class ProjetoActivity extends AppCompatActivity {
         if (listaPropostas.isEmpty()) {
             binding.textViewPropostas.setVisibility(View.GONE);
         }
+        if (userType.equals("piloto")) {
+            binding.textViewPropostas.setText("Propostas enviadas");
+        }
 
     }
 
@@ -121,5 +126,6 @@ public class ProjetoActivity extends AppCompatActivity {
         super.onResume();
         Integer projetoId = getIntent().getIntExtra("projetoId", 0);
         carregarPropostas(projetoId);
+
     }
 }

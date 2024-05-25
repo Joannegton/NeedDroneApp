@@ -1,6 +1,7 @@
 package com.example.needdroneapp.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.PopupMenu;
@@ -12,9 +13,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.needdroneapp.ComentarActivity;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.databinding.ActivityChatBinding;
+import com.example.needdroneapp.models.Avaliacao;
 
 import java.util.Arrays;
 
@@ -44,9 +47,9 @@ public class ChatActivity extends AppCompatActivity {
         binding.btFinalizar.setOnClickListener(v ->{
             projetoController.atualizarStatusProjeto(projetoId, "Finalizado");
             Toast.makeText(this, "Projeto Finalizado com sucesso", Toast.LENGTH_SHORT).show();
-
-
-
+            Intent intent = new Intent(this, ComentarActivity.class);
+            intent.putExtra("projetoId", projetoId);
+            startActivity(intent);
         });
 
     }

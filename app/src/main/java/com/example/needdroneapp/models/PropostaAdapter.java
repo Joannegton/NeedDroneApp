@@ -1,9 +1,5 @@
 package com.example.needdroneapp.models;
 
-import static android.content.Intent.getIntent;
-
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -21,16 +17,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.needdroneapp.ComentarActivity;
 import com.example.needdroneapp.R;
-import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.DroneController;
 import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.data.PropostaController;
 import com.example.needdroneapp.ui.ChatActivity;
-import com.example.needdroneapp.ui.piloto.ProjetoActivity;
-import com.example.needdroneapp.ui.piloto.PropostaPilotoActivity;
 
 import java.util.List;
 
@@ -81,6 +73,9 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
         if (userType.equals("piloto")) {
             holder.btAceitar.setVisibility(View.GONE);
             holder.btRecusar.setVisibility(View.GONE);
+            if (!proposta.getStatus().equals("Aceita")){
+                holder.btMensagem.setVisibility(View.GONE);
+            }
         } else {
             if (proposta.getStatus().equals("Recusada")) {
                 holder.statusImage.setImageResource(R.drawable.baseline_access_denied);
@@ -155,15 +150,15 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
                 statusImage.setImageResource(R.drawable.accepted);
 
                 ProjetoController projetoController = new ProjetoController(activity);
-                projetoController.atualizarStatusePilotoProjeto(projetoId, "Andamento", pilotoId);
+                projetoController.atualizarStatusUsuarioProjeto(projetoId, "Andamento", pilotoId);
                 Toast.makeText(activity, "Proposta aceita!", Toast.LENGTH_SHORT).show();
                 btAceitar.setVisibility(View.GONE);
 
             } else if (v.getId() == R.id.btRecusar) {
-                String status = propostaController.atualizarStatusProposta(projetoId, "Recusada");
+                propostaController.atualizarStatusProposta(projetoId, "Recusada");
                 statusImage.setImageResource(R.drawable.baseline_access_denied);
                 ProjetoController projetoController = new ProjetoController(activity);
-                projetoController.atualizarStatusePilotoProjeto(projetoId, "Pendente", pilotoId);
+                projetoController.atualizarStatusUsuarioProjeto(projetoId, "Pendente", pilotoId);
 
                 Toast.makeText(activity, "Proposta Recusada!", Toast.LENGTH_SHORT).show();
 
@@ -172,15 +167,8 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
                 btMensagem.setVisibility(View.GONE);
 
             } else if (v.getId() == R.id.btMensagem) {
-                ProjetoController projetoController = new ProjetoController(activity);
-                //Integer clienteId = projetoController.buscarClientePorProjeto(projetoId);
-                //Integer pilotoIdd = projetoController.buscarPilotoPorProjeto(projetoId);
-
-                //Toast.makeText(activity, clienteId, Toast.LENGTH_SHORT).show();
                 Intent chat = new Intent(activity, ChatActivity.class);
                 chat.putExtra("projetoId", projetoId);
-                //mensagem.putExtra("pilotoId", pilotoIdd);
-                //mensagem.putExtra("clienteId", clienteId);
                 activity.startActivity(chat);
             }
         }

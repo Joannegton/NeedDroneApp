@@ -1,28 +1,36 @@
 package com.example.needdroneapp.models;
 
 public class Avaliacao {
-    private Integer pilotoId;
-    private Integer clienteId;
+    private Integer id;
+    private Integer avaliadorId;
+    private Integer avaliadoId;
     private String comentario;
     private String dataAvaliacao;
     private Float avaliacao;
 
 
 
-    public Integer getPilotoId() {
-        return pilotoId;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public Integer getId() {
+        return id;
     }
 
-    public void setPilotoId(Integer pilotoId) {
-        this.pilotoId = pilotoId;
+    public Integer getAvaliadorId() {
+        return avaliadorId;
     }
 
-    public Integer getClienteId() {
-        return clienteId;
+    public void setAvaliadorId(Integer pilotoId) {
+        this.avaliadorId = pilotoId;
     }
 
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
+    public Integer getAvaliadoId() {
+        return avaliadoId;
+    }
+
+    public void setAvaliadoId(Integer clienteId) {
+        this.avaliadoId = clienteId;
     }
 
     public String getComentario() {

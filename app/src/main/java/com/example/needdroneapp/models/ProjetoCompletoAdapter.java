@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
-import com.example.needdroneapp.ui.piloto.ProjetoActivity;
+import com.example.needdroneapp.ui.projeto.ProjetoActivity;
 
 import java.util.List;
 
@@ -47,6 +48,9 @@ public class ProjetoCompletoAdapter extends RecyclerView.Adapter<ProjetoCompleto
         holder.tvCliente.setText(nomeCliente + ": ");
         holder.tvTitulo.setOnClickListener(holder);
 
+        Float media = clienteController.pegarAvaliacaoPorId(clienteId);
+        holder.ratingBar.setRating(media);
+
     }
 
 
@@ -57,7 +61,7 @@ public class ProjetoCompletoAdapter extends RecyclerView.Adapter<ProjetoCompleto
 
     class VisualizadorProjeto extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvTitulo, tvDescricao, tvCliente, tvData;
-
+        RatingBar ratingBar;
         Integer projetoId;
 
         public VisualizadorProjeto(@NonNull View itemView) {
@@ -66,6 +70,7 @@ public class ProjetoCompletoAdapter extends RecyclerView.Adapter<ProjetoCompleto
             tvDescricao = itemView.findViewById(R.id.tvDescricao);
             tvCliente = itemView.findViewById(R.id.tvCliente);
             tvData = itemView.findViewById(R.id.tvData);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
 
         }
 

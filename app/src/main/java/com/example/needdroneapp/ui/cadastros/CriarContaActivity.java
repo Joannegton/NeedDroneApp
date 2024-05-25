@@ -28,10 +28,12 @@ public class CriarContaActivity extends AppCompatActivity {
             // Inicia a CriarClienteActivity
             Intent clienteIntent = new Intent(this, CriarClienteActivity.class);
             startActivity(clienteIntent);
+            finish();
         } else if (binding.rbPiloto.isChecked()) {
             // Inicia a CriarPilotoActivity
             Intent pilotoIntent = new Intent(this, CriarPilotoActivity.class);
             startActivity(pilotoIntent);
+            finish();
         }
     }
 }

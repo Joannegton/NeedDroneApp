@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
-import com.example.needdroneapp.ui.piloto.ProjetoActivity;
+import com.example.needdroneapp.ui.projeto.ProjetoActivity;
 
 import java.util.List;
 

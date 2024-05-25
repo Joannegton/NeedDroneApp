@@ -37,7 +37,7 @@ public class AvaliacaoController {
         valores.put("dataAvaliacao", dataAvaliacao);
         valores.put("avaliacao", avaliacao);
 
-        resultado = db.insert("avaliacao", null, valores);
+        resultado = db.insert("avaliacoes", null, valores);
         db.close();
 
         if (resultado == -1){
@@ -58,8 +58,8 @@ public class AvaliacaoController {
 
         for (int i = 0; i < cursor.getCount(); i++){
             Avaliacao avaliacao = new Avaliacao();
-            avaliacao.setPilotoId(cursor.getInt(cursor.getColumnIndex("pilotoId")));
-            avaliacao.setClienteId(cursor.getInt(cursor.getColumnIndex("clienteId")));
+            avaliacao.setAvaliadorId(cursor.getInt(cursor.getColumnIndex("avaliadorId")));
+            avaliacao.setAvaliadoId(cursor.getInt(cursor.getColumnIndex("avaliadoId")));
             avaliacao.setComentario(cursor.getString(cursor.getColumnIndex("comentario")));
             avaliacao.setAvaliacao(cursor.getFloat(cursor.getColumnIndex("avaliacao")));
             avaliacoes.add(avaliacao);

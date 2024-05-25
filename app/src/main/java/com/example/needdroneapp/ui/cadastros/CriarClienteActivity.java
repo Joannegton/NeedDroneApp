@@ -50,10 +50,7 @@ public class CriarClienteActivity extends AppCompatActivity {
 
         //conexão com o banco de dados
         ClienteController db = new ClienteController(getBaseContext());
-        String resultado;
-        resultado = db.insereDados(nome, email, senha, cpf, null, null, null, null, null, null, null, null, 3 );
-
-        Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+        db.insereDados(nome, email, senha, cpf, null, null, null, null, null, null, null, null );
 
         // Intent para retornar à atividade principal onde o LoginFragment pode ser exibido
         Intent intent = new Intent(this, MainActivity.class);

@@ -51,7 +51,7 @@ public class CriarPilotoActivity extends AppCompatActivity {
 
         PilotoController db = new PilotoController(getBaseContext());
         String resultado;
-        resultado = db.insereDados(nome, email, senha, cpf, null, null, null, null, null, null, null, null, null, licenca);
+        resultado = db.insereDados(nome, email, senha, cpf, null, null, null, null, null, null, null, null, licenca);
 
         Toast.makeText(this, resultado, Toast.LENGTH_LONG).show();
         limpar();

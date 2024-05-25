@@ -26,8 +26,7 @@ public class ClienteController implements UsuarioController {
             String cidadeEstado,
             String cep,
             String foto,
-            String biografia,
-            Integer avaliacao
+            String biografia
     ){
         ContentValues valores;
         long resultado;
@@ -46,7 +45,7 @@ public class ClienteController implements UsuarioController {
         valores.put("cep", cep);
         valores.put("foto", foto);
         valores.put("biografia", biografia);
-        valores.put("avaliacaoCliente", avaliacao);
+        valores.put("avaliacaoCliente", 0);
 
         resultado = db.insert("clientes", null, valores);
         db.close();
@@ -104,6 +103,16 @@ public class ClienteController implements UsuarioController {
         db.close();
         return nome;
 
+    }
+
+    @Override
+    public Float pegarAvaliacaoPorId(Integer clienteId) {
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT avaliacaoCliente FROM clientes WHERE id = " + clienteId, null);
+        cursor.moveToFirst();
+        Float avaliacao = cursor.getFloat(0);
+        db.close();
+        return avaliacao;
     }
 
 

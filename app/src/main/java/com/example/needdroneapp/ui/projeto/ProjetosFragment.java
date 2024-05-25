@@ -1,11 +1,9 @@
-package com.example.needdroneapp.ui;
+package com.example.needdroneapp.ui.projeto;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,11 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ProjetoController;
-import com.example.needdroneapp.databinding.FragmentLoginBinding;
 import com.example.needdroneapp.databinding.FragmentProjetosBinding;
 import com.example.needdroneapp.models.Projeto;
 import com.example.needdroneapp.models.ProjetoCompletoAdapter;
-import com.example.needdroneapp.ui.piloto.ProjetoActivity;
 
 import java.util.List;
 

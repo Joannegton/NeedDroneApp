@@ -90,7 +90,7 @@ public class ProjetoController {
         db.close();
         return existe;
     }
-    public String atualizarStatusePilotoProjeto(Integer idProjeto, String status, Integer pilotoId) {
+    public String atualizarStatusUsuarioProjeto(Integer idProjeto, String status, Integer pilotoId) {
         db = banco.getWritableDatabase();
         ContentValues valores = new ContentValues();
         valores.put("status", status);
@@ -182,8 +182,8 @@ public class ProjetoController {
     public Cursor buscarProjeto(Integer projetoId) {
         db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM projeto WHERE id = " + projetoId, null);
-        cursor.moveToFirst();
 
+        cursor.moveToFirst();
         db.close();
         return cursor;
 

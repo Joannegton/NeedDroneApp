@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -83,40 +85,48 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    private int indiceAvaliacao = 0;
+    private Handler handler = new Handler();
+    private Runnable runnable;
     @SuppressLint("Range")
     public void lancarAvaliacao(){
         AvaliacaoController avaliacaoController = new AvaliacaoController(getContext());
         List<Avaliacao> avaliacoes = avaliacaoController.pegarAvaliacoes();
+        
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (!avaliacoes.isEmpty()){
+                    Avaliacao avaliacao = avaliacoes.get(indiceAvaliacao);
+                    TextView tvNomeAvaliador = binding.tvNomeUsuario;
+                    TextView tvComentario = binding.tvComentario;
+                    RatingBar ratingBar = binding.ratingBar;
 
-        if (!avaliacoes.isEmpty()) {
-            avaliacoes.forEach(avaliacao -> {
-                ClienteController clienteController = new ClienteController(getContext());
-                try (Cursor dados = clienteController.carregaDadosPorId(avaliacao.getPilotoId())) {
-                    if (dados != null && dados.moveToFirst()) {
-                        String fotoPath = dados.getString(dados.getColumnIndex("foto"));
-                        Glide.with(this)
-                                .load(new File(fotoPath)) // Carrega a imagem a partir do arquivo
-                                .into(binding.profileImg); // Define a imagem no ImageView
-                        binding.tvNomeUsuario.setText(dados.getString(dados.getColumnIndex("nome")));
-                        binding.tvComentario.setText(avaliacao.getComentario());
-                        binding.ratingBar.setRating(avaliacao.getAvaliacao());
+                    ClienteController clienteController = new ClienteController(getContext());
+                    String nomeAvaliador = clienteController.pegarNomePorId(avaliacao.getAvaliadorId());
+                    tvNomeAvaliador.setText(nomeAvaliador);
+
+                    tvComentario.setText(avaliacao.getComentario());
+                    ratingBar.setRating(avaliacao.getAvaliacao());
+
+                    indiceAvaliacao++;
+                    if (indiceAvaliacao >= avaliacoes.size()) {
+                        indiceAvaliacao = 0;
                     }
-                } catch (Exception e) {
-                    Log.e("DB_ERROR", "Erro ao carregar dados do cliente", e);
                 }
-            });
-        }
+                handler.postDelayed(this, 5000);
+            }
+        };
 
-
-
-
-
-
+        handler.post(runnable);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (handler != null && runnable != null) {
+            handler.removeCallbacks(runnable);
+        }
         binding = null;
     }
 

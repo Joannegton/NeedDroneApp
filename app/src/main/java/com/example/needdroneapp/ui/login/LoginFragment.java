@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.data.AvaliacaoController;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.UsuarioController;
@@ -103,15 +104,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     editor.putInt("userId", id);
                     editor.apply();
 
-                    // Mostra uma mensagem de sucesso e abre o fragmento do painel
-                    Toast.makeText(getContext(), "Login bem-sucedido como " + tipoUsuario, Toast.LENGTH_SHORT).show();
-
+                    // Abre o fragmento de dashboard
                     DashboardFragment dashboardFragment = new DashboardFragment();
                     FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.nav_host_fragment_content_main, dashboardFragment)
-                            .addToBackStack(null)
                             .commit();
+
                 } else {
                     // Se o login falhou, mostra uma mensagem de erro
                     Toast.makeText(getContext(), "Email ou Senha incorretos!", Toast.LENGTH_SHORT).show();

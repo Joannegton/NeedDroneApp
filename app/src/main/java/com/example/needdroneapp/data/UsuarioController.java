@@ -6,4 +6,6 @@ public interface UsuarioController {
     Cursor carregaDadosLogin(String email, String senha);
 
     String pegarNomePorId(Integer userId);
+
+    Float pegarAvaliacaoPorId(Integer clienteId);
 }

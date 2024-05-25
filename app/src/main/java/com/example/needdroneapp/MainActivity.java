@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
 
-
         Intent intent = new Intent(this, MainActivity.class);
         //garante que todas as atividades na pilha de atividades sejam limpas quando a nova intent for iniciada.
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

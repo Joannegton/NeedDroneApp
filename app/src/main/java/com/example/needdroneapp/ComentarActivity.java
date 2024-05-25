@@ -1,6 +1,8 @@
 package com.example.needdroneapp;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -15,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.needdroneapp.data.AvaliacaoController;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.PilotoController;
+import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.databinding.ActivityComentarBinding;
 import com.example.needdroneapp.models.Avaliacao;
 
@@ -26,6 +29,11 @@ import java.util.Locale;
 public class ComentarActivity extends AppCompatActivity {
 
     ActivityComentarBinding binding;
+
+    Integer avaliadoId;
+    Integer avaliadorId;
+
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +41,21 @@ public class ComentarActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        Integer avaliadorId = preferences.getInt("userId", 0);
-        Integer avaliadoId = getIntent().getIntExtra("pilotoId", 0);
+        Integer projetoId = getIntent().getIntExtra("projetoId", 0);
         String userType = preferences.getString("userType", "");
 
-        Toast.makeText(this, avaliadoId.toString(), Toast.LENGTH_SHORT).show();
+        ProjetoController projetoController = new ProjetoController(this);
+        Cursor cursor = projetoController.buscarProjeto(projetoId);
 
+        if (userType.equals("cliente")){
+            avaliadoId = cursor.getInt(cursor.getColumnIndex("pilotoId"));
+            avaliadorId = cursor.getInt(cursor.getColumnIndex("clienteId"));
+            binding.tvAvaliado.setText(carregarDados(avaliadoId, "piloto"));
+        } else {
+            avaliadoId = cursor.getInt(cursor.getColumnIndex("clienteId"));
+            avaliadorId = cursor.getInt(cursor.getColumnIndex("pilotoId"));
+            binding.tvAvaliado.setText(carregarDados(avaliadorId, "cliente"));
+        }
 
         // Formatar a data em uma string
         Calendar calendar = Calendar.getInstance();
@@ -46,29 +63,18 @@ public class ComentarActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         String dateString = dateFormat.format(date);
 
-        if (userType.equals("cliente")){
-            binding.tvAvaliado.setText(carregarDados(avaliadoId, "piloto"));
-        } else {
-            binding.tvAvaliado.setText(carregarDados(avaliadorId, "cliente"));
-        }
-
         binding.btnEnviar.setOnClickListener(v ->{
             RatingBar ratingBar = binding.ratingBar;
             float avaliacao = ratingBar.getRating();
             String comentario = binding.etComentario.getText().toString();
-            AvaliacaoController avaliacaoController = new AvaliacaoController(this);
-            /*String retorno = "";
-            if (userType.equals("cliente")){
-                retorno = avaliacaoController.insereDados(clienteId, pilotoId, comentario, dateString, avaliacao);
-            } else {
-                retorno = avaliacaoController.insereDados(pilotoId, clienteId, comentario, dateString, avaliacao);
-            }
-            Toast.makeText(this, retorno, Toast.LENGTH_SHORT).show();
-            finish();*/
 
-            //Toast.makeText(this, pilotoId, Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, comentario, Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, (int) avaliacao, Toast.LENGTH_SHORT).show();
+            AvaliacaoController avaliacaoController = new AvaliacaoController(this);
+            String retorno = avaliacaoController.insereDados(avaliadorId, avaliadoId, comentario, dateString, avaliacao);
+
+            Toast.makeText(this, retorno, Toast.LENGTH_SHORT).show();
+            finish();
+
+
         });
     }
 

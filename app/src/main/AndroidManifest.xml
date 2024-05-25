@@ -36,7 +36,7 @@
             android:name=".ui.piloto.HistoricoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.piloto.ProjetoActivity"
+            android:name=".ui.projeto.ProjetoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.piloto.PropostaPilotoActivity"

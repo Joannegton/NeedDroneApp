@@ -7,7 +7,7 @@
     android:background="@color/gray"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProjetosFragment">
+    tools:context=".ui.projeto.ProjetosFragment">
 
     <LinearLayout
         android:id="@+id/container_filtros"
