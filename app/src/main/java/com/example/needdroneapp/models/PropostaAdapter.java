@@ -31,6 +31,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
     private List<Proposta> listaPropostas;
     private Activity activity;
     private Integer projetoId;
+    private Integer propostaId;
 
     public PropostaAdapter(List<Proposta> propostaList, Activity activity){
         this.listaPropostas = propostaList;
@@ -50,7 +51,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
     public void onBindViewHolder(@NonNull VisualizadorProposta holder, int position) {
         PilotoController piloto = new PilotoController(activity);
         Proposta proposta = listaPropostas.get(position);
-        Integer propostaId = proposta.getId();
+        propostaId = proposta.getId();
         projetoId = proposta.getProjetoId();
 
         Cursor cursor = piloto.carregaDadosPorId(proposta.getPilotoId());
@@ -145,7 +146,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
             int pilotoId = propostaController.buscarPilotoPorProjeto(projetoId);
 
             if (v.getId() == R.id.btAceitar){
-                propostaController.atualizarStatusProposta(projetoId, "Aceita");
+                propostaController.atualizarStatusProposta(propostaId, "Aceita");
 
                 statusImage.setImageResource(R.drawable.accepted);
 
@@ -155,7 +156,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
                 btAceitar.setVisibility(View.GONE);
 
             } else if (v.getId() == R.id.btRecusar) {
-                propostaController.atualizarStatusProposta(projetoId, "Recusada");
+                propostaController.atualizarStatusProposta(propostaId, "Recusada");
                 statusImage.setImageResource(R.drawable.baseline_access_denied);
                 ProjetoController projetoController = new ProjetoController(activity);
                 projetoController.atualizarStatusUsuarioProjeto(projetoId, "Pendente", pilotoId);
