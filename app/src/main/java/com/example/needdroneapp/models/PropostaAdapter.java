@@ -111,12 +111,12 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
                 holder.btRecusar.setVisibility(View.GONE);
                 holder.btMensagem.setVisibility(View.GONE);
             } else if (proposta.getStatus().equals("Aceita")) {
-                holder.statusImage.setVisibility(View.GONE);
+                holder.statusImage.setImageResource(R.drawable.accepted);
                 holder.btAceitar.setVisibility(View.GONE);
                 holder.btRecusar.setVisibility(View.VISIBLE);
                 holder.btMensagem.setVisibility(View.VISIBLE);
             } else {
-                holder.statusImage.setImageResource(R.drawable.accepted);
+                holder.statusImage.setVisibility(View.GONE);
                 holder.btAceitar.setVisibility(View.VISIBLE);
                 holder.btRecusar.setVisibility(View.VISIBLE);
                 holder.btMensagem.setVisibility(View.VISIBLE);
