@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
+import com.example.needdroneapp.ui.PerfilActivity;
 import com.example.needdroneapp.ui.projeto.ProjetoActivity;
 
 import java.util.List;
@@ -46,11 +47,13 @@ public class ProjetoCompletoAdapter extends RecyclerView.Adapter<ProjetoCompleto
         ClienteController clienteController = new ClienteController(context.getApplicationContext());
         String nomeCliente = clienteController.pegarNomePorId(clienteId);
         holder.tvCliente.setText(nomeCliente + ": ");
+        holder.tvCliente.setTag(projeto.getProjetoId());
 
         Float media = clienteController.pegarAvaliacaoPorId(clienteId);
         holder.ratingBar.setRating(media);
 
         holder.tvTitulo.setOnClickListener(holder);
+        holder.tvCliente.setOnClickListener(holder);
     }
 
 
@@ -79,6 +82,12 @@ public class ProjetoCompletoAdapter extends RecyclerView.Adapter<ProjetoCompleto
             if (v.getId() == R.id.tvTitulo){
                 Intent intent = new Intent(context, ProjetoActivity.class);
                 intent.putExtra("projetoId", projetoId);
+                context.startActivity(intent);
+            } else if (v.getId() == R.id.tvCliente){
+                Integer clienteId = (Integer) tvCliente.getTag();
+                Intent intent = new Intent(context, PerfilActivity.class);
+                intent.putExtra("userType", "cliente");
+                intent.putExtra("userId", clienteId);
                 context.startActivity(intent);
             }
         }
