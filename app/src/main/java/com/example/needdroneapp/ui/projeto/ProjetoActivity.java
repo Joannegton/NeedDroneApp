@@ -38,6 +38,7 @@ public class ProjetoActivity extends AppCompatActivity {
     private Integer clienteId;
 
     private String userType;
+    private Integer userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +58,7 @@ public class ProjetoActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         userType = preferences.getString("userType", "");
+        userId = preferences.getInt("userId", 0);
 
         Integer projetoId = getIntent().getIntExtra("projetoId", 0);
 
@@ -106,17 +108,27 @@ public class ProjetoActivity extends AppCompatActivity {
     public void carregarPropostas(Integer projetoId) {
         PropostaController propostaController = new PropostaController(getApplicationContext());
 
-        RecyclerView recyclerView = binding.recyclerView;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<Proposta> listaPropostas = propostaController.buscarPropostasProjeto(projetoId);
-        PropostaAdapter adapter = new PropostaAdapter(listaPropostas, this);
-        recyclerView.setAdapter(adapter);
-
-        if (listaPropostas.isEmpty()) {
-            binding.textViewPropostas.setVisibility(View.GONE);
-        }
         if (userType.equals("piloto")) {
             binding.textViewPropostas.setText("Propostas enviadas");
+            RecyclerView recyclerView = binding.recyclerView;
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            List<Proposta> listaPropostas = propostaController.buscarPropostasProjetoUserId(projetoId, userId);
+            PropostaAdapter adapter = new PropostaAdapter(listaPropostas, this);
+            recyclerView.setAdapter(adapter);
+
+            if (listaPropostas.isEmpty()) {
+                binding.textViewPropostas.setVisibility(View.GONE);
+            }
+        } else {
+            RecyclerView recyclerView = binding.recyclerView;
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            List<Proposta> listaPropostas = propostaController.buscarPropostasProjeto(projetoId);
+            PropostaAdapter adapter = new PropostaAdapter(listaPropostas, this);
+            recyclerView.setAdapter(adapter);
+
+            if (listaPropostas.isEmpty()) {
+                binding.textViewPropostas.setVisibility(View.GONE);
+            }
         }
 
     }
