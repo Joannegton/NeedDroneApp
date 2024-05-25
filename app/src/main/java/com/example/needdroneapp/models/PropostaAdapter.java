@@ -23,7 +23,10 @@ import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.ProjetoController;
 import com.example.needdroneapp.data.PropostaController;
 import com.example.needdroneapp.ui.ChatActivity;
+import com.example.needdroneapp.ui.PerfilActivity;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.VisualizadorProposta> {
@@ -36,6 +39,27 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
     public PropostaAdapter(List<Proposta> propostaList, Activity activity){
         this.listaPropostas = propostaList;
         this.activity = activity;
+
+        // Ordenar a lista de propostas por status
+        Collections.sort(this.listaPropostas, new Comparator<Proposta>() {
+            @Override
+            public int compare(Proposta p1, Proposta p2) {
+                return statusValue(p1.getStatus()) - statusValue(p2.getStatus());
+            }
+
+            private int statusValue(String status) {
+                switch (status) {
+                    case "Aceita":
+                        return 1;
+                    case "Pendente":
+                        return 2;
+                    case "Recusada":
+                        return 3;
+                    default:
+                        return 4;
+                }
+            }
+        });
 
     }
 
@@ -56,17 +80,20 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
 
         Cursor cursor = piloto.carregaDadosPorId(proposta.getPilotoId());
         if (cursor.moveToFirst()) {
-            holder.enviadorProposta.setText("Piloto: " + cursor.getString(cursor.getColumnIndex("nome")));
+            holder.enviadorProposta.setText(cursor.getString(cursor.getColumnIndex("nome")));
+            holder.enviadorProposta.setTag(proposta.getPilotoId()); // Armazenar o ID do piloto como uma tag
         }
-        holder.valorProposta.setText("Valor: " + proposta.getOfertaInicial().toString());
-        holder.detalhesProposta.setText("Detalhes: " + proposta.getDetalhesProposta());
-        float valorFinal = proposta.getOfertaInicial() + proposta.getOfertaInicial() * 0.3f;
-        holder.valorPropostaFinal.setText("Valor Final: " + Float.toString(valorFinal));
+        holder.valorProposta.setText(proposta.getOfertaInicial().toString());
+        holder.detalhesProposta.setText(proposta.getDetalhesProposta());
+
+        String valorFinalFormatado = String.format("%.2f", proposta.getOfertaInicial() + proposta.getOfertaInicial() * 0.3f);
+        holder.valorPropostaFinal.setText(valorFinalFormatado);
 
         // Setar tags para os botões de aceitar, recusar
         holder.btAceitar.setTag(propostaId);
         holder.btRecusar.setTag(propostaId);
-        //holder.btMensagem.setTag(propostaId);
+        holder.btMensagem.setTag(propostaId);
+
 
 
         SharedPreferences preferences = activity.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -127,7 +154,6 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
             droneResolucao = itemView.findViewById(R.id.droneResolucao);
             droneAreaCobertura = itemView.findViewById(R.id.droneAreaCobertura);
 
-
             btAceitar = itemView.findViewById(R.id.btAceitar);
             btRecusar = itemView.findViewById(R.id.btRecusar);
             btMensagem = itemView.findViewById(R.id.btMensagem);
@@ -135,17 +161,16 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
             btAceitar.setOnClickListener(this);
             btRecusar.setOnClickListener(this);
             btMensagem.setOnClickListener(this);
-
-
-
+            enviadorProposta.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             PropostaController propostaController = new PropostaController(activity);
-            int pilotoId = propostaController.buscarPilotoPorProjeto(projetoId);
+            int pilotoId = propostaController.buscarPilotoPorProposta(propostaId);
 
             if (v.getId() == R.id.btAceitar){
+                int propostaId = (int) v.getTag();
                 propostaController.atualizarStatusProposta(propostaId, "Aceita");
 
                 statusImage.setImageResource(R.drawable.accepted);
@@ -156,6 +181,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
                 btAceitar.setVisibility(View.GONE);
 
             } else if (v.getId() == R.id.btRecusar) {
+                int propostaId = (int) v.getTag();
                 propostaController.atualizarStatusProposta(propostaId, "Recusada");
                 statusImage.setImageResource(R.drawable.baseline_access_denied);
                 ProjetoController projetoController = new ProjetoController(activity);
@@ -168,9 +194,18 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
                 btMensagem.setVisibility(View.GONE);
 
             } else if (v.getId() == R.id.btMensagem) {
+                int propostaId = (int) v.getTag();
                 Intent chat = new Intent(activity, ChatActivity.class);
                 chat.putExtra("projetoId", projetoId);
+                chat.putExtra("propostaId", propostaId);
                 activity.startActivity(chat);
+
+            } else if (v.getId() == R.id.enviadorProposta) {
+                int pilotoIdTag = (int) v.getTag(); // Recuperar o ID do piloto da tag
+                Intent perfil = new Intent(activity, PerfilActivity.class);
+                perfil.putExtra("userType", "piloto");
+                perfil.putExtra("userId", pilotoIdTag);
+                activity.startActivity(perfil);
             }
         }
     }

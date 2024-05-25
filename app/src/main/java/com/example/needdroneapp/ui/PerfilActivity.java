@@ -50,9 +50,11 @@ public class PerfilActivity extends AppCompatActivity {
         binding = ActivityPerfilBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String userType = prefs.getString("userType", "");
-        int userId = prefs.getInt("userId", 0);
+        String userType = getIntent().getStringExtra("userType");
+        int userId = getIntent().getIntExtra("userId", 0);
+
+        Toast.makeText(this, "userType: " + userType, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "userId: " + userId, Toast.LENGTH_SHORT).show();
 
         if (userType.equals("cliente")) {
             LinearLayout experiencia = findViewById(R.id.containerExperiencia);

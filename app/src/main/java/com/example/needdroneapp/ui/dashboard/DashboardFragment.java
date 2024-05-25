@@ -49,6 +49,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     // Variável para armazenar a referência ao binding do fragmento
     private FragmentDashboardBinding binding;
 
+    // Variáveis para armazenar o tipo de usuário e o id do usuário
+    private String userType;
+    private int userId;
+
     // Este método é chamado para criar a visualização do fragmento
     @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,8 +64,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         // Obtém as SharedPreferences
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         // Recupera o tipo de usuário e o id do usuário
-        String userType = sharedPreferences.getString("userType", "");
-        int userId = sharedPreferences.getInt("userId", 0);
+        userType = sharedPreferences.getString("userType", "");
+        userId = sharedPreferences.getInt("userId", 0);
 
         if (userType.isEmpty()) {
             LoginFragment loginFragment = new LoginFragment();
@@ -191,14 +195,16 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             // Se o botão para editar drone foi clicado, inicia a atividade para editar drone
             Intent editDrone = new Intent(getContext(), EditDroneActivity.class);
             startActivity(editDrone);
+
         } else if (v.getId() == R.id.linkVer) {
             // Se o link para ver perfil foi clicado, inicia a atividade para ver perfil
             Intent verPerfil = new Intent(getContext(), PerfilActivity.class);
+            verPerfil.putExtra("userId", userId);
+            verPerfil.putExtra("userType", userType);
             startActivity(verPerfil);
+
         } else if (v.getId() == R.id.linkEditar) {
             // Se o link para editar perfil foi clicado, verifica o tipo de usuário e inicia a atividade correspondente
-            SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            String userType = sharedPreferences.getString("userType", "");
             if (userType.equals("cliente")) {
                 Intent editPerfil = new Intent(getContext(), EditClienteActivity.class);
                 startActivity(editPerfil);
@@ -206,6 +212,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 Intent editPerfil = new Intent(getContext(), EditPilotoActivity.class);
                 startActivity(editPerfil);
             }
+
         } else if (v.getId() == R.id.linkAdcDrone) {
             // Se o link para adicionar drone foi clicado, inicia a atividade para criar drone
             Intent adcDrone = new Intent(getContext(), CriarDroneActivity.class);
@@ -219,10 +226,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onResume() {
         super.onResume();
-
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String userType = sharedPreferences.getString("userType", "");
-        int userId = sharedPreferences.getInt("userId", 0);
 
         if (userType.equals("piloto")) {
             //adicionar lista de drones que o piloto tem cadastrado
