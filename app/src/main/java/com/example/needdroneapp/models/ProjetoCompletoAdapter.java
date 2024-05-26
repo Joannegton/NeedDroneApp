@@ -46,7 +46,7 @@ public class ProjetoCompletoAdapter extends RecyclerView.Adapter<ProjetoCompleto
 
         ClienteController clienteController = new ClienteController(context.getApplicationContext());
         String nomeCliente = clienteController.pegarNomePorId(clienteId);
-        holder.tvCliente.setText(nomeCliente + ": ");
+        holder.tvCliente.setText(nomeCliente);
         holder.tvCliente.setTag(projeto.getProjetoId());
 
         Float media = clienteController.pegarAvaliacaoPorId(clienteId);
