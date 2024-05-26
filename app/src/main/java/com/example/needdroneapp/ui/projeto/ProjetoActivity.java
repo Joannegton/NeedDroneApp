@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -26,19 +29,28 @@ import com.example.needdroneapp.models.ProjetoViewModel;
 import com.example.needdroneapp.models.Proposta;
 import com.example.needdroneapp.models.PropostaAdapter;
 import com.example.needdroneapp.ui.ChatActivity;
+import com.example.needdroneapp.ui.PerfilActivity;
 import com.example.needdroneapp.ui.piloto.PropostaPilotoActivity;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class ProjetoActivity extends AppCompatActivity {
+public class ProjetoActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private ActivityProjetoBinding binding;
     private ProjetoViewModel projetoViewModel;
 
     private Integer clienteId;
-
     private String userType;
     private Integer userId;
+
+    private String rua;
+    private String cidadeEstado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +77,10 @@ public class ProjetoActivity extends AppCompatActivity {
         informacoesProjeto(projetoId);
         carregarPropostas(projetoId);
 
+        // Mapa do Google
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
 
         if(userType.equals("piloto")){
@@ -87,18 +103,25 @@ public class ProjetoActivity extends AppCompatActivity {
         try (Cursor dados = projetoController.buscarProjeto(projetoId)) {
             if (dados.getCount() > 0) {
                 dados.moveToFirst();
-                String rua = dados.getString(dados.getColumnIndex("rua"));
-                String cidadeEstado = dados.getString(dados.getColumnIndex("cidadeEstado"));
+                rua = dados.getString(dados.getColumnIndex("rua"));
+                cidadeEstado = dados.getString(dados.getColumnIndex("cidadeEstado"));
                 clienteId = dados.getInt(dados.getColumnIndex("clienteId"));
 
                 binding.titulo.setText(dados.getString(dados.getColumnIndex("titulo")));
                 binding.descricao.setText(dados.getString(dados.getColumnIndex("descricao")));
-                binding.dataEvento.setText("Data do Evento: " + dados.getString(dados.getColumnIndex("dataEvento")));
-                binding.localizacao.setText("Local: " + rua + " - " + cidadeEstado);
+                binding.dataEvento.setText(dados.getString(dados.getColumnIndex("dataEvento")));
+                binding.localizacao.setText(rua + " - " + cidadeEstado);
 
                 ClienteController clienteController = new ClienteController(this);
                 String clienteNome = clienteController.pegarNomePorId(clienteId);
-                binding.cliente.setText("De: " + clienteNome);
+                binding.cliente.setText(clienteNome);
+
+                binding.cliente.setOnClickListener(v -> {
+                    Intent intent = new Intent(this, PerfilActivity.class);
+                    intent.putExtra("userType", "cliente");
+                    intent.putExtra("userId", clienteId);
+                    startActivity(intent);
+                });
             }
         }
 
@@ -138,6 +161,25 @@ public class ProjetoActivity extends AppCompatActivity {
         super.onResume();
         Integer projetoId = getIntent().getIntExtra("projetoId", 0);
         carregarPropostas(projetoId);
+
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        String address = rua + ", " + cidadeEstado;
+        Geocoder geocoder = new Geocoder(this);
+        try {
+            List<Address> addresses = geocoder.getFromLocationName(address, 1);
+            if (addresses != null && !addresses.isEmpty()) {
+                Address location = addresses.get(0);
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                googleMap.setBuildingsEnabled(false);
+                googleMap.addMarker(new MarkerOptions().position(latLng).title(address));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+            }
+        } catch (Exception e) {
+            Log.e("Erro", e.getMessage());
+        }
 
     }
 }
