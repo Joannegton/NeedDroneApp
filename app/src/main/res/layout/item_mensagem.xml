@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chat_bubble_right"
+        android:padding="10dp"
+        android:text="algum texto aleatorio"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/dataHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/texto"
+        android:text="12/05 12:00"
+        android:layout_alignEnd="@id/texto"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+</RelativeLayout>

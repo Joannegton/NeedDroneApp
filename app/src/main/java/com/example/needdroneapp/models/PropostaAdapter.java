@@ -101,8 +101,8 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
         if (userType.equals("piloto")) {
             holder.btAceitar.setVisibility(View.GONE);
             holder.btRecusar.setVisibility(View.GONE);
-            if (!proposta.getStatus().equals("Aceita")){
-                holder.btMensagem.setVisibility(View.GONE);
+            if (proposta.getStatus().equals("Aceita")){
+                holder.btMensagem.setVisibility(View.VISIBLE);
             }
         } else {
             if (proposta.getStatus().equals("Recusada")) {

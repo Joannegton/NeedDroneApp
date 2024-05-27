@@ -84,10 +84,10 @@ public class ProjetoCompletoAdapter extends RecyclerView.Adapter<ProjetoCompleto
                 intent.putExtra("projetoId", projetoId);
                 context.startActivity(intent);
             } else if (v.getId() == R.id.tvCliente){
-                Integer clienteId = (Integer) tvCliente.getTag();
+                Integer clienteIdd = (Integer) tvCliente.getTag();
                 Intent intent = new Intent(context, PerfilActivity.class);
                 intent.putExtra("userType", "cliente");
-                intent.putExtra("userId", clienteId);
+                intent.putExtra("userId", clienteIdd);
                 context.startActivity(intent);
             }
         }

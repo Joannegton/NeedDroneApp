@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos de SQLiteOpenHelper
     private static final String NOME_DB = "needDroneDB.db";
-    private static final int VERSAO = 21;
+    private static final int VERSAO = 22;
 
     public CriarDb(Context context){
         super(context, NOME_DB, null, VERSAO);
@@ -106,6 +106,16 @@ public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos 
                 + "FOREIGN KEY(pilotoId) REFERENCES piloto(id)"
                 + ");";
 
+        String mensagens = "CREATE TABLE mensagens ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "remetenteId INTEGER,"
+                + "destinatarioId INTEGER,"
+                + "texto TEXT,"
+                + "dataHora TEXT,"
+                + "enviada BOOLEAN,"
+                + "FOREIGN KEY(remetenteId) REFERENCES usuario(id),"
+                + "FOREIGN KEY(destinatarioId) REFERENCES usuario(id));";
+
 
 
         db.execSQL(drones);
@@ -115,6 +125,10 @@ public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos 
         db.execSQL(projeto);
         db.execSQL(proposta);
         db.execSQL(portfolio);
+        db.execSQL(mensagens);
+
+        String idxMensagens = "CREATE INDEX idx_mensagens ON mensagens(remetenteId, destinatarioId);";
+        db.execSQL(idxMensagens);
     }
 
     @Override
@@ -126,6 +140,7 @@ public class CriarDb extends SQLiteOpenHelper { //estende para obter os metodos 
         db.execSQL("DROP TABLE IF EXISTS projeto");
         db.execSQL("DROP TABLE IF EXISTS proposta");
         db.execSQL("DROP TABLE IF EXISTS portfolio");
+        db.execSQL("DROP TABLE IF EXISTS mensagens");
         onCreate(db);
     }
 }
