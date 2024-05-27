@@ -19,51 +19,67 @@
         tools:targetApi="31">
         <activity
             android:name=".AcessoNegadoActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ComentarActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.ChatActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.PerfilActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.login.EsqueciSenhaActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.piloto.HistoricoActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.projeto.ProjetoActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.piloto.PropostaPilotoActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.cadastros.CriarProjetoActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.edicao.EditClienteActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.edicao.EditPilotoActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.cadastros.CriarContaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"/>
         <activity
             android:name=".ui.edicao.EditDroneActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.cadastros.CriarClienteActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.cadastros.CriarPilotoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"/>
         <activity
             android:name=".ui.cadastros.CriarDroneActivity"
+            android:theme="@style/Theme.NeedDroneAppOfc.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ui.piloto.ImagemTelaCheiaActivity"

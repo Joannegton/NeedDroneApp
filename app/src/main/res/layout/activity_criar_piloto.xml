@@ -4,31 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/white"
     tools:context=".ui.cadastros.CriarPilotoActivity">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/logo"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/appBarGeral"
+        layout="@layout/app_bar_geral"
+        />
 
     <LinearLayout
         android:id="@+id/llLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:background="@drawable/container_login"
         android:backgroundTint="@color/gray"
         android:orientation="vertical"
         android:padding="16dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/civLogo"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintTop_toBottomOf="@+id/appBarGeral">
 
         <TextView
             android:layout_width="wrap_content"

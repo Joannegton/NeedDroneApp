@@ -47,14 +47,17 @@ public class ComentarActivity extends AppCompatActivity {
         ProjetoController projetoController = new ProjetoController(this);
         Cursor cursor = projetoController.buscarProjeto(projetoId);
 
+        Toast.makeText(this, userType, Toast.LENGTH_SHORT).show();
         if (userType.equals("cliente")){
             avaliadoId = cursor.getInt(cursor.getColumnIndex("pilotoId"));
             avaliadorId = cursor.getInt(cursor.getColumnIndex("clienteId"));
             binding.tvAvaliado.setText(carregarDados(avaliadoId, "piloto"));
+
         } else {
             avaliadoId = cursor.getInt(cursor.getColumnIndex("clienteId"));
             avaliadorId = cursor.getInt(cursor.getColumnIndex("pilotoId"));
             binding.tvAvaliado.setText(carregarDados(avaliadorId, "cliente"));
+
         }
 
         // Formatar a data em uma string
@@ -70,6 +73,14 @@ public class ComentarActivity extends AppCompatActivity {
 
             AvaliacaoController avaliacaoController = new AvaliacaoController(this);
             String retorno = avaliacaoController.insereDados(avaliadorId, avaliadoId, comentario, dateString, avaliacao);
+
+            if (userType.equals("cliente")){
+                ClienteController clienteController = new ClienteController(this);
+                clienteController.atualizarAvaliacao(avaliadoId, avaliacaoController.mediaAvaliacoes(avaliadoId));
+            } else {
+                PilotoController pilotoController = new PilotoController(this);
+                pilotoController.atualizarAvaliacao(avaliadoId, avaliacaoController.mediaAvaliacoes(avaliadoId));
+            }
 
             Toast.makeText(this, retorno, Toast.LENGTH_SHORT).show();
             finish();

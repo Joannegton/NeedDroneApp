@@ -1,5 +1,7 @@
 package com.example.needdroneapp.ui;
 
+import static java.security.AccessController.getContext;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -10,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Pair;
 import android.view.MenuItem;
@@ -17,17 +20,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.needdroneapp.R;
+import com.example.needdroneapp.data.AvaliacaoController;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.data.PilotoController;
 import com.example.needdroneapp.data.PortfolioController;
 import com.example.needdroneapp.databinding.ActivityPerfilBinding;
+import com.example.needdroneapp.models.Avaliacao;
 import com.example.needdroneapp.ui.edicao.EditClienteActivity;
 import com.example.needdroneapp.ui.edicao.EditPilotoActivity;
 import com.example.needdroneapp.ui.piloto.ImagemTelaCheiaActivity;
@@ -43,6 +51,8 @@ public class PerfilActivity extends AppCompatActivity {
 
     private ActivityPerfilBinding binding;
     private static final int SELECT_IMAGE_REQUEST_CODE = 100;
+
+    private int userId;
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +60,9 @@ public class PerfilActivity extends AppCompatActivity {
         binding = ActivityPerfilBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        String userType = getIntent().getStringExtra("userType");
-        int userId = getIntent().getIntExtra("userId", 0);
 
-        Toast.makeText(this, "userType: " + userType, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "userId: " + userId, Toast.LENGTH_SHORT).show();
+        String userType = getIntent().getStringExtra("userType");
+        userId = getIntent().getIntExtra("userId", 0);
 
         if (userType.equals("cliente")) {
             LinearLayout experiencia = findViewById(R.id.containerExperiencia);
@@ -72,9 +80,11 @@ public class PerfilActivity extends AppCompatActivity {
                     binding.fotoPerfil.setImageResource(android.R.drawable.ic_menu_camera);
                 }
                 binding.nome.setText(dados.getString(dados.getColumnIndex("nome")));
+                binding.ratingBarPerfil.setRating(dados.getFloat(dados.getColumnIndex("avaliacaoCliente")));
                 binding.biografia.setText(dados.getString(dados.getColumnIndex("biografia")));
-                binding.emailPiloto.setText("E-mail :" + dados.getString(dados.getColumnIndex("email")));
-                binding.telefonePiloto.setText("Tel :" + dados.getString(dados.getColumnIndex("tel")));
+                binding.emailPiloto.setText(dados.getString(dados.getColumnIndex("email")));
+                binding.telefonePiloto.setText(dados.getString(dados.getColumnIndex("tel")));
+                binding.cidadeEstado.setText(dados.getString(dados.getColumnIndex("cidadeEstado")));
             }
 
         } else if (userType.equals("piloto")) {
@@ -100,10 +110,13 @@ public class PerfilActivity extends AppCompatActivity {
 
                 binding.nome.setText(dados.getString(dados.getColumnIndex("nome")));
                 binding.biografia.setText(dados.getString(dados.getColumnIndex("biografia")));
-                binding.licenca.setText("Licença de pilotagem: " + dados.getString(dados.getColumnIndex("licencaPilotagem")));
-                binding.emailPiloto.setText("E-mail: " + dados.getString(dados.getColumnIndex("email")));
-                binding.telefonePiloto.setText("Tel: " + dados.getString(dados.getColumnIndex("tel")));
+                binding.ratingBarPerfil.setRating(dados.getFloat(dados.getColumnIndex("avaliacaoPiloto")));
+                binding.licenca.setText(dados.getString(dados.getColumnIndex("licencaPilotagem")));
+                binding.emailPiloto.setText(dados.getString(dados.getColumnIndex("email")));
+                binding.telefonePiloto.setText(dados.getString(dados.getColumnIndex("tel")));
             }
+
+            lancarAvaliacao();
 
             //Carregar imagens do portfolio
             PortfolioController portfolioController = new PortfolioController(this);
@@ -240,6 +253,41 @@ public class PerfilActivity extends AppCompatActivity {
         });
         popup.show();
 
+    }
+
+    private int indiceAvaliacao = 0;
+    private Handler handler = new Handler();
+    @SuppressLint("Range")
+    public void lancarAvaliacao(){
+        AvaliacaoController avaliacaoController = new AvaliacaoController(getApplicationContext());
+        List<Avaliacao> avaliacoes = avaliacaoController.pegarAvaliacoesUserId(userId);
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (!avaliacoes.isEmpty()){
+                    Avaliacao avaliacao = avaliacoes.get(indiceAvaliacao);
+                    TextView tvNomeAvaliador = binding.tvNomeUsuario;
+                    TextView tvComentario = binding.tvComentario;
+                    RatingBar ratingBar = binding.ratingBar;
+
+                    ClienteController clienteController = new ClienteController(getApplicationContext());
+                    String nomeAvaliador = clienteController.pegarNomePorId(avaliacao.getAvaliadorId());
+                    tvNomeAvaliador.setText(nomeAvaliador);
+
+                    tvComentario.setText(avaliacao.getComentario());
+                    ratingBar.setRating(avaliacao.getAvaliacao());
+
+                    indiceAvaliacao++;
+                    if (indiceAvaliacao >= avaliacoes.size()) {
+                        indiceAvaliacao = 0;
+                    }
+                }
+                handler.postDelayed(this, 5000);
+            }
+        };
+
+        handler.post(runnable);
     }
 
 }

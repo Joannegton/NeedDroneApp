@@ -6,36 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AcessoNegadoActivity"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="vertical">
+    <include
+        layout="@layout/app_bar_geral" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="-100dp"
+            android:src="@drawable/baseline_access_denied" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="-100dp"
-        android:src="@drawable/baseline_access_denied" />
+        <TextView
+            android:id="@+id/tvAccessDenied"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acesso Negado!"
+            android:textSize="24sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvAccessDenied"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Acesso Negado!"
-        android:textSize="24sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvAccessDeniedDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sem permissão para acessar essa pagina."
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAccessDenied" />
+        <TextView
+            android:id="@+id/tvAccessDeniedDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sem permissão para acessar essa pagina."
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAccessDenied" />
+    </LinearLayout>
 
 </LinearLayout>

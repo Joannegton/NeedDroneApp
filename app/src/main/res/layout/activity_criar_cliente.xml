@@ -6,37 +6,21 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.cadastros.CriarClienteActivity">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/civLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@drawable/logo" />
-    </androidx.cardview.widget.CardView>
+    <include
+        android:id="@+id/appBarGeral"
+        layout="@layout/app_bar_geral" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="16dp"
         android:background="@drawable/container_login"
         android:backgroundTint="@color/gray"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/civLogo">
+        app:layout_constraintTop_toBottomOf="@+id/appBarGeral">
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,9 +44,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:padding="5dp"
             android:background="@drawable/container_edit_text"
             android:inputType="text"
+            android:padding="5dp"
             android:textColor="@color/black"
             android:textSize="@dimen/texts" />
 
@@ -78,9 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:padding="5dp"
             android:background="@drawable/container_edit_text"
             android:inputType="textEmailAddress"
+            android:padding="5dp"
             android:textColor="@color/black"
             android:textSize="@dimen/texts" />
 
@@ -145,8 +129,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/blueFirst"
-            android:textColor="@color/white"
             android:text="Criar Conta"
+            android:textColor="@color/white"
             android:textSize="@dimen/texts"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

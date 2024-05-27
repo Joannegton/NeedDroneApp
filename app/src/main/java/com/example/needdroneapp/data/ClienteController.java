@@ -73,8 +73,6 @@ public class ClienteController implements UsuarioController {
         return cursor;
     }
 
-
-
     public Cursor carregaDadosLogin(String email, String password) {
         Cursor cursor;
         String[] campos = { "id", "email", "password"};
@@ -115,7 +113,14 @@ public class ClienteController implements UsuarioController {
         return avaliacao;
     }
 
-
+    public void atualizarAvaliacao(Integer clienteId, Float avaliacao){
+        db = banco.getReadableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("avaliacaoCliente", avaliacao);
+        String where = "id = " + clienteId;
+        db.update("clientes", valores, where, null);
+        db.close();
+    }
     public String alteraDados(
             int id,
             String nome,

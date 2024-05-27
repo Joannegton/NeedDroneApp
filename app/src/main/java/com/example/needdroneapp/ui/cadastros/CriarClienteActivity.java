@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.needdroneapp.MainActivity;
+import com.example.needdroneapp.R;
 import com.example.needdroneapp.data.ClienteController;
 import com.example.needdroneapp.databinding.ActivityCriarClienteBinding;
-import com.example.needdroneapp.ui.login.LoginFragment;
 
 public class CriarClienteActivity extends AppCompatActivity {
     private ActivityCriarClienteBinding binding;
@@ -20,6 +21,8 @@ public class CriarClienteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnCriar.setOnClickListener(v -> validaDados()); //cria o evento de click
+
+
     }
 
     private void validaDados(){

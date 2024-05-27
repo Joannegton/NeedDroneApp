@@ -7,9 +7,13 @@
     android:background="#C6C0C0"
     tools:context=".ui.projeto.ProjetoActivity">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <include
+        android:id="@+id/include"
+        layout="@layout/app_bar_geral" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -124,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wellington Tavares"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueFirst"
                     android:textSize="@dimen/texts" />
             </LinearLayout>
 
@@ -170,5 +174,6 @@
             android:scrollbars="vertical"
             app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
 </ScrollView>

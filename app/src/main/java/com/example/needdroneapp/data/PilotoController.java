@@ -96,10 +96,9 @@ public class PilotoController implements UsuarioController{
         Cursor cursor;
         String nome = null;
         db = banco.getReadableDatabase();
-        cursor = db.rawQuery("SELECT nome FROM clientes WHERE id = " + userId, null);
+        cursor = db.rawQuery("SELECT nome FROM piloto WHERE id = " + userId, null);
         if (cursor.moveToFirst()){
             nome = cursor.getString(0);
-
         }
         db.close();
         return nome;
@@ -113,6 +112,15 @@ public class PilotoController implements UsuarioController{
         Float avaliacao = cursor.getFloat(0);
         db.close();
         return avaliacao;
+    }
+
+    public void atualizarAvaliacao(Integer pilotoId, Float avaliacao){
+        db = banco.getReadableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("avaliacaoCliente", avaliacao);
+        String where = "id = " + pilotoId;
+        db.update("clientes", valores, where, null);
+        db.close();
     }
 
     public String atualizaDados(

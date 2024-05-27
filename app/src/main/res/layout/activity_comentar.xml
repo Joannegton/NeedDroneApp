@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ComentarActivity">
+    <include
+        android:id="@+id/appBarGeral"
+        layout="@layout/app_bar_geral"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,9 +17,10 @@
         android:backgroundTint="@color/gray"
         android:orientation="vertical"
         android:padding="16dp"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarGeral"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -29,32 +33,49 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvAvaliado"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Avaliado:"
-            android:textColor="@color/black"
-            android:textSize="@dimen/texts" />
+            android:layout_marginVertical="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avalie: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/texts"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAvaliado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wellington Tavares Galbarini"
+                android:textColor="@color/black"
+                android:textSize="@dimen/texts" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Comentário:"
             android:textColor="@color/black"
-            android:textSize="@dimen/texts" />
+            android:textSize="@dimen/texts"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/etComentario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:padding="5dp"
-            android:textColor="@color/black"
             android:background="@color/white"
             android:inputType="textMultiLine"
-            android:minLines="1"
             android:maxLines="5"
+            android:minLines="1"
+            android:padding="5dp"
+            android:textColor="@color/black"
             android:textSize="@dimen/texts" />
 
 
@@ -63,9 +84,9 @@
             style="?android:attr/ratingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="-15dp"
             android:layout_marginBottom="-15dp"
-            android:layout_gravity="center"
             android:numStars="5"
             android:progressTint="#FFD700"
             android:rating="3"

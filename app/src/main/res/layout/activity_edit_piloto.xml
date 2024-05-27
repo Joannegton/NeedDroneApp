@@ -4,15 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.edicao.EditPilotoActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/appBarGeral"
+            layout="@layout/app_bar_geral"
+            />
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/container_login"
     android:backgroundTint="@color/gray"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_margin="16dp">
     <!-- #6792C7, #0E0E2C, #D9D9D9 -->
 
     <TextView
@@ -286,5 +295,5 @@
         android:layout_marginTop="15dp"
         android:textColor="@color/white"/>
 </LinearLayout>
-
+    </LinearLayout>
 </ScrollView>

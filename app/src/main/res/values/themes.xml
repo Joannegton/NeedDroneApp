@@ -10,16 +10,18 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item> <!-- bara de status do cel -->
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- appBar theme default. -->
     <style name="Theme.NeedDroneAppOfc.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
     <style name="Theme.NeedDroneAppOfc.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.NeedDroneAppOfc.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 </resources>

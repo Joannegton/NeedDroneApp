@@ -3,12 +3,14 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <include layout="@layout/app_bar_geral" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,15 +34,35 @@
                         android:src="@drawable/ic_launcher_background"
                         android:contentDescription="Foto de perfil" />
 
-                    <TextView
-                        android:id="@+id/nome"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Wellington Tavares Galbarini"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_marginStart="16dp"/>
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/nome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wellington Tavares Galbarini"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="16dp"/>
+
+                        <RatingBar
+                            android:id="@+id/ratingBarPerfil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:rating="3"
+                            android:progressTint="#FFD700"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginStart="33dp"
+                            android:layout_marginTop="8dp"/>
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -79,7 +101,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/gray"
-        android:layout_marginVertical="5dp">
+        android:layout_marginTop="5dp">
 
         <TextView
             android:id="@+id/tituloExperiencia"
@@ -93,35 +115,75 @@
             android:textColor="@color/black"
             android:layout_marginTop="16dp"/>
 
-        <TextView
-            android:id="@+id/licenca"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Licença de pilotagem: "
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Licença de pilotagem: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/licenca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2254874554"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/experiencia"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Experiência com drone: 3 anos"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Experiência com drone: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/experiencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 anos"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/especializacao"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Área de especialização: inspeção agrícola"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"/>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Área de especialização: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/especializacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inspeção agrícola"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
         <!-- Portfólio -->
 
         <TextView
@@ -164,7 +226,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/gray">
+        android:background="@color/gray"
+        android:layout_marginTop="5dp">
         <TextView
             android:id="@+id/tituloAvaliacoes"
             android:layout_width="match_parent"
@@ -269,27 +332,75 @@
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email: "
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"
+                        android:gravity="end"
+                        android:paddingStart="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="Telefone: "
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"
+                        android:paddingStart="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/emailPiloto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="mateus@gmail.com"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"
+                        android:paddingEnd="10dp"/>
+
+                    <TextView
+                        android:id="@+id/telefonePiloto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="11970179936"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
             <TextView
-                android:id="@+id/emailPiloto"
+                android:id="@+id/cidadeEstado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Email: mateus@gmail.com"
+                android:text="Guarulhos - SP"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:layout_marginTop="8dp"
+                android:layout_marginVertical="8dp"
                 android:paddingHorizontal="10dp"/>
 
-            <TextView
-                android:id="@+id/telefonePiloto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Telefone: 11970179936"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="8dp"
-                android:paddingHorizontal="10dp"/>
         </LinearLayout>
 
     </LinearLayout>

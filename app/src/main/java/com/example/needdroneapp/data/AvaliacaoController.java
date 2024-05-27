@@ -70,16 +70,35 @@ public class AvaliacaoController {
     }
 
     @SuppressLint("Range")
-    public Float pegarAvaliacaoPiloto(int pilotoId){
-        float valorAvaliacao = 0;
+    public List<Avaliacao> pegarAvaliacoesUserId(int userId) {
         db = banco.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM avaliacao WHERE pilotoId = " + pilotoId, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM avaliacoes WHERE avaliadoId = " + userId, null);
         cursor.moveToFirst();
 
-        for (int i = 0; i < cursor.getCount(); i++){
-            valorAvaliacao += (cursor.getFloat(cursor.getColumnIndex("avaliacao")));
+        List<Avaliacao> avaliacoes = new ArrayList<>();
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            Avaliacao avaliacao = new Avaliacao();
+            avaliacao.setAvaliadorId(cursor.getInt(cursor.getColumnIndex("avaliadorId")));
+            avaliacao.setAvaliadoId(cursor.getInt(cursor.getColumnIndex("avaliadoId")));
+            avaliacao.setComentario(cursor.getString(cursor.getColumnIndex("comentario")));
+            avaliacao.setAvaliacao(cursor.getFloat(cursor.getColumnIndex("avaliacao")));
+            avaliacoes.add(avaliacao);
+            cursor.moveToNext();
         }
 
-        return valorAvaliacao/cursor.getCount();
+        return avaliacoes;
+    }
+
+    public Float mediaAvaliacoes(int userId) {
+        List<Avaliacao> avaliacoes = pegarAvaliacoesUserId(userId);
+        int totalAvaliacoes = avaliacoes.size();
+        Float somaAvaliacoes = 0.0f;
+
+        for (Avaliacao avaliacao : avaliacoes) {
+            somaAvaliacoes += avaliacao.getAvaliacao();
+        }
+
+        return somaAvaliacoes / totalAvaliacoes;
     }
 }

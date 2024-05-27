@@ -106,7 +106,7 @@ public class PropostaAdapter extends RecyclerView.Adapter<PropostaAdapter.Visual
             }
         } else {
             if (proposta.getStatus().equals("Recusada")) {
-                holder.statusImage.setImageResource(R.drawable.baseline_access_denied);
+                holder.statusImage.setImageResource(R.drawable.canceled);
                 holder.btAceitar.setVisibility(View.GONE);
                 holder.btRecusar.setVisibility(View.GONE);
                 holder.btMensagem.setVisibility(View.GONE);
