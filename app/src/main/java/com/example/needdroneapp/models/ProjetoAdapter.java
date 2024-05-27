@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.needdroneapp.R;
 import com.example.needdroneapp.ui.projeto.ProjetoActivity;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProjetoAdapter extends RecyclerView.Adapter<ProjetoAdapter.VisualizadorProjeto>{
@@ -24,6 +26,13 @@ public class ProjetoAdapter extends RecyclerView.Adapter<ProjetoAdapter.Visualiz
     public ProjetoAdapter(List<Projeto> projetoList, Context context){
         this.projetoList = projetoList;
         this.context = context;
+
+        Collections.sort(projetoList, new Comparator<Projeto>() {
+            @Override
+            public int compare(Projeto p1, Projeto p2) {
+                return p2.getDataEvento().compareTo(p1.getDataEvento());
+            }
+        });
     }
 
     @NonNull

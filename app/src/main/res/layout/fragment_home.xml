@@ -57,11 +57,11 @@
 
         <ImageView
             android:id="@+id/banner"
-            android:layout_width="550dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:layout_marginTop="2dp"
             android:src="@drawable/dronebanner"
             app:layout_constraintTop_toBottomOf="@+id/header"
-            tools:layout_editor_absoluteX="-70dp"
             tools:ignore="MissingConstraints" />
         <LinearLayout
             android:id="@+id/container_cadastrese"
